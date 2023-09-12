@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "561278340254",
+    "project_id": "administrativoujed",
+    "storage_bucket": "administrativoujed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561278340254:android:8be6e7e1f23fa11de4ff8f",
+        "android_client_info": {
+          "package_name": "com.example.administrativoujed"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrKwWUg8eQ2WacmcubsUIdoKSUhhPEw-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AdministrativoUJED</string>
+    <string name="email_hint">Email</string>
+    <string name="email_description">Campo de Email</string>
+
+    <string name="password_hint">Password</string>
+    <string name="password_description">Campo de Password</string>
+
+</resources>
