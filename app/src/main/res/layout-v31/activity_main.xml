@@ -38,8 +38,8 @@
     <EditText
         android:id="@+id/inputEmail"
         android:layout_width="301dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="48dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="@string/email_hint"
         android:inputType="textEmailAddress"
@@ -54,8 +54,8 @@
 
     <EditText
         android:id="@+id/inputPassword"
-        android:layout_width="297dp"
-        android:layout_height="62dp"
+        android:layout_width="301dp"
+        android:layout_height="49dp"
         android:ems="10"
         android:hint="@string/password_hint"
         android:inputType="textPassword"
@@ -65,16 +65,15 @@
         android:paddingBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/btnIngresar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputEmail"
-        app:layout_constraintVertical_bias="0.49" />
+        app:layout_constraintVertical_bias="0.186" />
 
     <Button
         android:id="@+id/btnIngresar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="76dp"
         android:backgroundTint="@color/red"
         android:text="Ingresar"
         app:cornerRadius="@android:dimen/system_app_widget_inner_radius"
@@ -82,6 +81,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:rippleColor="@color/white" />
+
+    <TextView
+        android:id="@+id/btnOlvidar"
+        android:layout_width="254dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="80dp"
+        android:clickable="true"
+        android:text="@string/strOlvidaste"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.369"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/inputPassword"
+        app:layout_constraintVertical_bias="0.005" />
+
+    <TextView
+        android:id="@+id/btnCrearCuenta"
+        android:layout_width="127dp"
+        android:layout_height="25dp"
+        android:clickable="true"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/strCrear_cuenta"
+        android:textColorHint="#838080"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/dowView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnIngresar"
+        app:layout_constraintVertical_bias="0.352" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

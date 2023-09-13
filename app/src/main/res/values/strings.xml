@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">AdministrativoUJED</string>
+    <string name="strCrear_cuenta"><u>Crear Cuenta </u></string>
+    <string name="strOlvidaste"><u>Olvidaste tu contraseña? </u></string>
     <string name="email_hint">Email</string>
     <string name="email_description">Campo de Email</string>
 

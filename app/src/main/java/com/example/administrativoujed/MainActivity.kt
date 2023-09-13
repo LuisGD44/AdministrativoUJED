@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         val btnIngresar : Button = findViewById(R.id.btnIngresar)
         val txtEmail : EditText = findViewById(R.id.inputEmail)
         val txtPassword : EditText = findViewById(R.id.inputPassword)
+        val btnCrearCuenta: TextView = findViewById(R.id.btnCrearCuenta)
+
         firebaseAuth= Firebase.auth
         btnIngresar.setOnClickListener()
         {
@@ -37,6 +39,11 @@ class MainActivity : AppCompatActivity() {
                 //Llamado de la funcion singIn al boton de ingresar
                 signIn(txtEmail.text.toString(), txtPassword.text.toString())
             }
+        }
+        btnCrearCuenta.setOnClickListener()
+        {
+            val i = Intent(this, CrearCuentaActivity::class.java)
+            startActivity(i)
         }
     }
     private fun signIn(email: String, password: String)
