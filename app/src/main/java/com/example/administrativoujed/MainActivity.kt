@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         val txtEmail : EditText = findViewById(R.id.inputEmail)
         val txtPassword : EditText = findViewById(R.id.inputPassword)
         val btnCrearCuenta: TextView = findViewById(R.id.btnCrearCuenta)
+        val btnOlvidar : TextView = findViewById(R.id.btnOlvidar)
 
         firebaseAuth= Firebase.auth
         btnIngresar.setOnClickListener()
@@ -43,6 +44,11 @@ class MainActivity : AppCompatActivity() {
         btnCrearCuenta.setOnClickListener()
         {
             val i = Intent(this, CrearCuentaActivity::class.java)
+            startActivity(i)
+        }
+        btnOlvidar.setOnClickListener()
+        {
+            val i = Intent(this, RecordarPassActivity::class.java)
             startActivity(i)
         }
     }

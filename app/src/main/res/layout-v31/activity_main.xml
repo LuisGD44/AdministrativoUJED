@@ -89,6 +89,8 @@
         android:layout_marginTop="80dp"
         android:clickable="true"
         android:text="@string/strOlvidaste"
+        android:textColor="#1635DF"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.369"
@@ -103,14 +105,27 @@
         android:clickable="true"
         android:fontFamily="sans-serif-condensed"
         android:text="@string/strCrear_cuenta"
+        android:textColor="#1635DF"
         android:textColorHint="#838080"
-        android:textSize="20dp"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="@+id/dowView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintHorizontal_bias="0.401"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnIngresar"
-        app:layout_constraintVertical_bias="0.352" />
+        app:layout_constraintVertical_bias="0.49" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="83dp"
+        android:layout_height="22dp"
+        android:text="Eres nuevo?"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnCrearCuenta"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnOlvidar"
+        app:layout_constraintVertical_bias="0.835" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
