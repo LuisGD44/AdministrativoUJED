@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         val txtEmail : EditText = findViewById(R.id.inputEmail)
         val txtPassword : EditText = findViewById(R.id.inputPassword)
         val btnCrearCuenta: TextView = findViewById(R.id.btnCrearCuenta)
+        val btnOlvidar : TextView = findViewById(R.id.btnOlvidar)
 
         firebaseAuth= Firebase.auth
         btnIngresar.setOnClickListener()
@@ -45,6 +46,11 @@ class MainActivity : AppCompatActivity() {
             val i = Intent(this, CrearCuentaActivity::class.java)
             startActivity(i)
         }
+        btnOlvidar.setOnClickListener()
+        {
+            val i = Intent(this, RecordarPassActivity::class.java)
+            startActivity(i)
+        }
     }
     private fun signIn(email: String, password: String)
     {
@@ -52,11 +58,18 @@ class MainActivity : AppCompatActivity() {
         addOnCompleteListener(this) { task ->
             if (task.isSuccessful){
                 val user = firebaseAuth.currentUser
+                val verfica = user?.isEmailVerified
+                if (verfica==true){
+
                 Toast.makeText(baseContext,"Credenciales Correctas", Toast.LENGTH_SHORT).show()
                 //Redireccion hacia la pagina principal
                 val i = Intent(this, principal::class.java)
                 startActivity(i)
-            }
+
+                }else{
+                    Toast.makeText(baseContext,"No se autentico el correo", Toast.LENGTH_SHORT).show()
+                  }
+                }
             else
             {
                 Toast.makeText(baseContext, "Usuario y/o contraseña incorrectos", Toast.LENGTH_SHORT).show()
