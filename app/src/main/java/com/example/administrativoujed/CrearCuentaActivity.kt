@@ -52,14 +52,31 @@ class CrearCuentaActivity : AppCompatActivity() {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener (this){ task ->
                 if (task.isSuccessful){
-                    Toast.makeText(baseContext, "Cuentra creada correctamente", Toast.LENGTH_SHORT).show()
-                    val i = Intent(this, principal::class.java)
+                    sendEmailVerification()
+                    Toast.makeText(baseContext, "Cuentra creada correctamente, se requiere verificacion", Toast.LENGTH_SHORT).show()
+                    val i = Intent(this, MainActivity::class.java)
                     startActivity(i)
                 }
                 else
                 {
-                Toast.makeText(baseContext, "Algo salio mal", Toast.LENGTH_SHORT)
+                Toast.makeText(baseContext, "Algo salio mal", Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+    private fun sendEmailVerification()
+    {
+        val  user = firebaseAuth.currentUser!!
+        user.sendEmailVerification().addOnCompleteListener(this){task ->
+            if (task.isSuccessful)
+            {
+                Toast.makeText(baseContext, "Se envio un email de verificacion", Toast.LENGTH_SHORT).show()
+            }
+            else
+            {
+                Toast.makeText(baseContext, "Algo salio mal", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
     }
 }

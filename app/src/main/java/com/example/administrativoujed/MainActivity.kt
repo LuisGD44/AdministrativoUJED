@@ -58,11 +58,18 @@ class MainActivity : AppCompatActivity() {
         addOnCompleteListener(this) { task ->
             if (task.isSuccessful){
                 val user = firebaseAuth.currentUser
+                val verfica = user?.isEmailVerified
+                if (verfica==true){
+
                 Toast.makeText(baseContext,"Credenciales Correctas", Toast.LENGTH_SHORT).show()
                 //Redireccion hacia la pagina principal
                 val i = Intent(this, principal::class.java)
                 startActivity(i)
-            }
+
+                }else{
+                    Toast.makeText(baseContext,"No se autentico el correo", Toast.LENGTH_SHORT).show()
+                  }
+                }
             else
             {
                 Toast.makeText(baseContext, "Usuario y/o contraseña incorrectos", Toast.LENGTH_SHORT).show()
