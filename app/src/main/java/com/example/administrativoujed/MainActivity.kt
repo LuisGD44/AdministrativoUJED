@@ -1,7 +1,6 @@
 package com.example.administrativoujed
 
 import android.content.Intent
-import android.net.wifi.p2p.WifiP2pManager.ActionListener
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -9,7 +8,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuth.AuthStateListener
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -63,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
                 Toast.makeText(baseContext,"Credenciales Correctas", Toast.LENGTH_SHORT).show()
                 //Redireccion hacia la pagina principal
-                val i = Intent(this, principal::class.java)
+                val i = Intent(this, MainPrincipal::class.java)
                 startActivity(i)
 
                 }else{

@@ -1,23 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".principal">
+    tools:context=".MainPrincipal">
 
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="128dp"
-        android:layout_height="101dp"
-        android:text="SI jala"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+   <FrameLayout
+       android:id="@+id/frameContainer1"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
+   <FrameLayout
+       android:id="@+id/frameContainer2"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
+   <FrameLayout
+       android:id="@+id/frameContainer3"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
 
+   <FrameLayout
+       android:id="@+id/frameContainer4"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+   <com.google.android.material.bottomnavigation.BottomNavigationView
+       android:id="@+id/navAbajo"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:menu="@menu/nav_menudown"
+       android:layout_gravity="bottom"
+       android:background="@color/red"
+       app:itemIconTint="@color/white"
+       app:itemTextColor="@color/white"
+   />
+
+   <androidx.appcompat.widget.Toolbar
+       android:id="@+id/nav"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:menu="@menu/bottom_nav_menu"
+       android:layout_gravity="top"
+       android:background="@color/red"
+       app:itemIconTint="@color/white"
+       app:itemTextColor="@color/white"
+       />
+
+   <androidx.appcompat.widget.SearchView
+       android:id="@+id/searchView"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       app:layout_constraintTop_toBottomOf="@+id/toolbar"
+       app:layout_constraintLeft_toLeftOf="parent"
+       app:layout_constraintRight_toRightOf="parent"
+       app:itemIconTint="@color/white"
+       app:itemTextColor="@color/white"
+       app:layout_constraintBottom_toTopOf="@+id/nav_view" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
