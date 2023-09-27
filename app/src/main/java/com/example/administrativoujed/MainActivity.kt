@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
                 Toast.makeText(baseContext,"Credenciales Correctas", Toast.LENGTH_SHORT).show()
                 //Redireccion hacia la pagina principal
-                val i = Intent(this, MainPrincipal::class.java)
+                val i = Intent(this, MainPerfil::class.java)
                 startActivity(i)
 
                 }else{

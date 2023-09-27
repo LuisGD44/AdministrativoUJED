@@ -2,8 +2,21 @@
 <resources>
 
     <style name="BottomNavigationTextStyle">
-        <item name="android:textSize">6sp</item> <!-- Tamaño del texto -->
+        <item name="android:textSize">10sp</item> <!-- Tamaño del texto -->
     </style>
+
+    <style name="BottomNavigationTextStyleSmall">
+        <item name="android:textSize">8sp</item> <!-- Tamaño de texto más pequeño -->
+        <item name="android:layout_marginTop">2dp</item> <!-- Margen superior ajustado -->
+    </style>
+
+    <style name="BottonNavigation">
+        <item name="android:background">@color/red</item>
+        <item name="itemIconTint">@color/white</item>
+        <item name="itemTextColor">@color/white</item>
+    </style>
+
+
 
 
 </resources>

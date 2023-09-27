@@ -14,5 +14,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_nav_up">nav_up</string>
+    <string name="title_activity_nave_abajo">NaveAbajo</string>
+    <string name="title_activity_navegacion">Navegacion</string>
 
 </resources>

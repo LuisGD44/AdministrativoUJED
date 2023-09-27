@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -16,51 +17,20 @@ class MainPrincipal : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var navegation: BottomNavigationView
 
-    private val onNavMenu = BottomNavigationView.OnNavigationItemSelectedListener { item ->
 
-        when (item.itemId) {
-            R.id.frameContainer1 -> {
-                // Crea un Intent para iniciar la actividad MainPrincipal (o la actividad deseada)
-                val intent = Intent(this, MainPrincipal::class.java)
-                startActivity(intent)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.frameContainer2 -> {
-                // Crea un Intent para iniciar la actividad MainTramites
-                val intent = Intent(this, MainTramites::class.java)
-                startActivity(intent)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.frameContainer3 -> {
-                // Crea un Intent para iniciar la actividad MainNotificaciones
-                val intent = Intent(this, MainNotificaciones::class.java)
-                startActivity(intent)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.frameContainer4 -> {
-                // Crea un Intent para iniciar la actividad Calendario
-                val intent = Intent(this, Calendario::class.java)
-                startActivity(intent)
-                return@OnNavigationItemSelectedListener true
-            }
-        }
-        false
-    }
+    //funcion desloguarse con boton atras
+    private var backButtonPressedCount = 0
+    private val maxBackButtonPressCount = 3
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_principal)
-        firebaseAuth = Firebase.auth
-
-        navegation = findViewById(R.id.navAbajo)
-        navegation.setOnNavigationItemSelectedListener(onNavMenu)
-
-        supportFragmentManager.commit {
-            replace<nav_down>(R.id.frameContainer1)
-            setReorderingAllowed(true)
-            addToBackStack("replacement")
+    override fun onBackPressed() {
+        if (backButtonPressedCount < maxBackButtonPressCount - 1) {
+            backButtonPressedCount++
+            Toast.makeText(this, "Presiona Atrás ${maxBackButtonPressCount - backButtonPressedCount} veces más para cerrar sesion.", Toast.LENGTH_SHORT).show()
+        } else {
+            super.onBackPressed()
         }
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.bottom_nav_menu, menu)
@@ -69,14 +39,13 @@ class MainPrincipal : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_salir -> {
-                sinOut()
+            R.id.btnSalir-> {
+              sinOut()
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
         }
     }
-
     // Función para cerrar sesión
     private fun sinOut() {
         firebaseAuth.signOut()

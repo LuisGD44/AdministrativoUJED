@@ -13,9 +13,8 @@
         android:theme="@style/Theme.AdministrativoUJED"
         tools:targetApi="31">
         <activity
-            android:name=".nav_up"
-            android:exported="false"
-            android:label="@string/title_activity_nav_up" />
+            android:name=".MainPerfil"
+            android:exported="false" />
         <activity
             android:name=".Calendario"
             android:exported="false" />
@@ -25,10 +24,6 @@
         <activity
             android:name=".MainTramites"
             android:exported="false" />
-        <activity
-            android:name=".Menu"
-            android:exported="false"
-            android:label="@string/title_activity_menu" />
         <activity
             android:name=".RecordarPassActivity"
             android:exported="false" />
