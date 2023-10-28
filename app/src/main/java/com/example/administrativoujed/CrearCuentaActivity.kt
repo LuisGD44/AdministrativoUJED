@@ -53,7 +53,6 @@ class CrearCuentaActivity : AppCompatActivity() {
             .addOnCompleteListener (this){ task ->
                 if (task.isSuccessful){
                     sendEmailVerification()
-                    Toast.makeText(baseContext, "Cuentra creada correctamente, se requiere verificacion", Toast.LENGTH_SHORT).show()
                     val i = Intent(this, MainActivity::class.java)
                     startActivity(i)
                 }

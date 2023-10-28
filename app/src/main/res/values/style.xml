@@ -2,7 +2,9 @@
 <resources>
 
     <style name="BottomNavigationTextStyle">
-        <item name="android:textSize">10sp</item> <!-- Tamaño del texto -->
+        <item name="android:backgroundTint">@color/red</item>
+        <item name="itemTextColor">@color/white</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="BottomNavigationTextStyleSmall">
@@ -14,6 +16,17 @@
         <item name="android:background">@color/red</item>
         <item name="itemIconTint">@color/white</item>
         <item name="itemTextColor">@color/white</item>
+    </style>
+
+    <style name="bottonGreen">
+        <item name="android:backgroundTint">@color/green</item>
+        <item name="itemTextColor">@color/white</item>
+        <item name="android:textSize">12sp</item>
+
+    </style>
+    <style name="MyToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/red</item>
+        <item name="android:titleTextColor">@android:color/white</item>
     </style>
 
 

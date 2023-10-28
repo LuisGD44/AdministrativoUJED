@@ -13,17 +13,13 @@
         android:theme="@style/Theme.AdministrativoUJED"
         tools:targetApi="31">
         <activity
+            android:name=".MainCompletar"
+            android:exported="false" />
+
+        <activity
             android:name=".MainPerfil"
             android:exported="false" />
-        <activity
-            android:name=".Calendario"
-            android:exported="false" />
-        <activity
-            android:name=".MainNotificaciones"
-            android:exported="false" />
-        <activity
-            android:name=".MainTramites"
-            android:exported="false" />
+
         <activity
             android:name=".RecordarPassActivity"
             android:exported="false" />

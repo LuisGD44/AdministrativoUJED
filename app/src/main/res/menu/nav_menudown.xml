@@ -9,7 +9,8 @@
         android:title="Inicio"
         app:labelVisibilityMode="labeled"
         app:layout_constraintWidth_percent="1"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        />
 
     <item
         android:id="@+id/tramites"

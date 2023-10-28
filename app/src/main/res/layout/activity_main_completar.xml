@@ -4,18 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainTramites">
-
-    <FrameLayout
-        android:id="@+id/frameContainer2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    tools:context=".MainCompletar">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tramites"
+        android:text="Aqui se mostrara el formulario completar registro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

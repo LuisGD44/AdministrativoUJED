@@ -1,20 +1,24 @@
 <resources>
     <string name="app_name">AdministrativoUJED</string>
     <string name="strCrear_cuenta"><u>Crear Cuenta </u></string>
-    <string name="strOlvidaste"><u>Olvidaste tu contraseña? </u></string>
+    <string name="strOlvidaste"><u>¿Olvidaste tu contraseña? </u></string>
     <string name="email_hint">Email</string>
     <string name="email_description">Campo de Email</string>
 
     <string name="password_hint">Password</string>
     <string name="password_description">Campo de Password</string>
     <string name="title_activity_menu">Menu</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_tramites">title_tramites</string>
+    <string name="title_notificaciones">Notificaciones</string>
+    <string name="title_calendario">calendario</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_nav_up">nav_up</string>
     <string name="title_activity_nave_abajo">NaveAbajo</string>
     <string name="title_activity_navegacion">Navegacion</string>
+    <string name="UJED"><font fgcolor="#FFFFFF">UJED MOVILE</font></string>
+    <string name="title_activity_navegation">navegation_activity</string>
+
 
 </resources>

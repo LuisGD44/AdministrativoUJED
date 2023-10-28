@@ -1,68 +1,49 @@
 package com.example.administrativoujed
 
-import com.example.administrativoujed.R
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
-import android.view.View
-import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.replace
-import com.example.administrativoujed.databinding.ActivityCalendarioBinding
-import com.example.administrativoujed.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.example.administrativoujed.Inicio
-import com.example.administrativoujed.databinding.ActivityMainPerfilBinding
-import androidx.fragment.app.replace
-
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.example.administrativoujed.databinding.ActivityMainBinding
+import com.example.administrativoujed.databinding.ActivityPerfilBinding
 
 class MainPerfil : AppCompatActivity() {
-    private lateinit var binding : ActivityMainBinding
+
+    private lateinit var binding: ActivityPerfilBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+
+
+        binding = ActivityPerfilBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(Inicio())
+
+        val navView: BottomNavigationView = binding.navView
+
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_calendario
+            )
+        )
+        setSupportActionBar(findViewById(R.id.my_toolbar))
+
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
+
+        val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
+        setSupportActionBar(toolbar)
 
 
-        binding.bottom_navigation.setOnItemSelectedListener { item: MenuItem ->
-                when (item.itemId){
-                R.id.inicio -> replaceFragment(Inicio())
-                R.id.tramites -> replaceFragment(Tramites())
-                R.id.notificaciones -> replaceFragment(Notificaciones())
-                R.id.calendario -> replaceFragment(Calendario())
 
-                else -> {
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        return navController.navigateUp() || super.onSupportNavigateUp()
 
-                }
-
-            }
-            true
         }
-
-    }
-
-    private fun replaceFragment(fragment : Fragment){
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frame_layout,fragment)
-        fragmentTransaction.commit()
-    }
-
-
-
-    //funcion desloguarse con boton atras
-    private var backButtonPressedCount = 0
-    private val maxBackButtonPressCount = 3
-
-
-    override fun onBackPressed() {
-        if (backButtonPressedCount < maxBackButtonPressCount - 1) {
-            backButtonPressedCount++
-            Toast.makeText(this, "Presiona Atrás ${maxBackButtonPressCount - backButtonPressedCount} veces más para cerrar sesion.", Toast.LENGTH_SHORT).show()
-        } else {
-            super.onBackPressed()
-        }
-    }
-
 }

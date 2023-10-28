@@ -37,15 +37,15 @@ class MainPrincipal : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.btnSalir-> {
+          R.id.btnSalir-> {
               sinOut()
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
         }
-    }
+    }*/
     // Función para cerrar sesión
     private fun sinOut() {
         firebaseAuth.signOut()
