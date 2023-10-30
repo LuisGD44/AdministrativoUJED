@@ -1,6 +1,7 @@
 package com.example.administrativoujed
 
 import android.os.Bundle
+import android.widget.TextView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -10,13 +11,23 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.administrativoujed.databinding.ActivityMainBinding
 import com.example.administrativoujed.databinding.ActivityPerfilBinding
+import com.example.administrativoujed.model.Persona
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class MainPerfil : AppCompatActivity() {
+
 
     private lateinit var binding: ActivityPerfilBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
 
         binding = ActivityPerfilBinding.inflate(layoutInflater)
@@ -46,4 +57,5 @@ class MainPerfil : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
 
         }
+
 }

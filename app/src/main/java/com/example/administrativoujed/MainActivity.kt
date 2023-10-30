@@ -1,5 +1,6 @@
 package com.example.administrativoujed
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -61,7 +62,13 @@ class MainActivity : AppCompatActivity() {
                 if (verfica==true){
 
                 Toast.makeText(baseContext,"Credenciales Correctas", Toast.LENGTH_SHORT).show()
-                //Redireccion hacia la pagina principal
+
+
+                    val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putString("correo", email)
+                    editor.apply()
+
                 val i = Intent(this, MainPerfil::class.java)
                 startActivity(i)
 

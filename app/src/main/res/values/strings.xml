@@ -12,6 +12,12 @@
     <string name="title_tramites">title_tramites</string>
     <string name="title_notificaciones">Notificaciones</string>
     <string name="title_calendario">calendario</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellidoP">Apellido Paterno</string>
+    <string name="apellidoM">Apellido Materno</string>
+    <string name="matricula">Matricula</string>
+    <string name="turno">Turno</string>
+    <string name="rama">Rama</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_nav_up">nav_up</string>
@@ -19,6 +25,11 @@
     <string name="title_activity_navegacion">Navegacion</string>
     <string name="UJED"><font fgcolor="#FFFFFF">UJED MOVILE</font></string>
     <string name="title_activity_navegation">navegation_activity</string>
-
+    <string name="turnos">dropDownMenuExample</string>
+    <string-array name="turno">
+        <item>Mañana</item>
+        <item>Intermedio</item>
+        <item>Tarde</item>
+    </string-array>
 
 </resources>
