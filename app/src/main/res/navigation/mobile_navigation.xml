@@ -11,7 +11,6 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home"
         android:icon="@drawable/ic_home"
-
         />
 
     <fragment
@@ -30,4 +29,13 @@
         android:name="com.example.administrativoujed.ui.calendario.CalendarioFragment"
         android:label="@string/title_calendario"
         tools:layout="@layout/fragment_calendario" />
+
+    <fragment
+        android:id="@+id/exentohijo"
+        android:name="com.example.administrativoujed.exentohijo"
+        android:label="Exentohijo"
+        tools:layout="@layout/fragment_exentohijo" />
+
+
+
 </navigation>

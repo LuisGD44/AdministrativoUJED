@@ -6,37 +6,31 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.administrativoujed.databinding.FragmentNotificationsBinding
+import com.example.administrativoujed.R
+import com.example.administrativoujed.ui.calendario.CalendarioFragment
+import com.example.administrativoujed.ui.notifications.NotificationsFragment
+
 
 class NotificationsFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+    ): View? {
+        val rootView = inflater.inflate(R.layout.fragment_notifications, container, false)
+        val notificationTextView = rootView.findViewById<TextView>(R.id.text_notifications)
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        val eventosMarcados = arguments?.getSerializable("eventosMarcados") as? MutableList<CalendarioFragment.EventoMarcado>
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        if (eventosMarcados != null) {
+            // Convierte la lista de eventos en un texto
+            val notificationText = eventosMarcados.joinToString("\n") { it.descripcion }
+
+            // Muestra las notificaciones en el TextView
+            notificationTextView.text = notificationText
         }
-        return root
-    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        return rootView
     }
 }

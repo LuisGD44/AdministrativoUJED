@@ -26,10 +26,22 @@
     <string name="UJED"><font fgcolor="#FFFFFF">UJED MOVILE</font></string>
     <string name="title_activity_navegation">navegation_activity</string>
     <string name="turnos">dropDownMenuExample</string>
+    <string name="lentes">Prestacion valida cada 2 años</string>
+    <string name="dental">Aplica para la pareja del trabajador (Con copia del acta de matrimonio) e hijos
+    del trabajador (Con copia del acta de nacimiento y menores de 18 años).</string>
     <string-array name="turno">
         <item>Mañana</item>
         <item>Intermedio</item>
         <item>Tarde</item>
+    </string-array>
+
+    <string-array name="presencial">
+        <item>Presencial</item>
+        <item>Virtual</item>
+    </string-array>
+    <string-array name="Escolarizado">
+        <item>Escolarizado</item>
+        <item>Semiescolarizado</item>
     </string-array>
 
 </resources>

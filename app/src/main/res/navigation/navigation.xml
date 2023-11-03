@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/exentohijoFragment">
+
+    <!-- Define el fragmento de inicio (exentohijoFragment) y el fragmento al que quieres navegar (otroFragment) -->
+    <fragment
+        android:id="@+id/exentohijoFragment"
+        android:name="com.example.administrativoujed.exentohijo"
+        android:label="Exentohijo"
+        tools:layout="@layout/fragment_exentohijo">
+
+        <!-- Agrega un botón o cualquier vista que puedas usar para activar la navegación -->
+        <action
+            android:id="@+id/action_exentohijo_to_otroFragment"
+            app:destination="@id/otroFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/otroFragment"
+        android:name="com.example.administrativoujed.exentohijo"
+        android:label="Otro Fragment"
+        tools:layout="@layout/activity_exentos" />
+
+</navigation>

@@ -23,8 +23,8 @@
 
     <Button
         android:id="@+id/registar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="55dp"
         android:backgroundTint="@color/red"
         android:text="Completar registro"
         app:layout_constraintBottom_toTopOf="@+id/btnCerrar"
@@ -36,8 +36,8 @@
 
     <Button
         android:id="@+id/btnCerrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="284dp"
         android:backgroundTint="@color/red"
         android:text="Cerrar Sesion"

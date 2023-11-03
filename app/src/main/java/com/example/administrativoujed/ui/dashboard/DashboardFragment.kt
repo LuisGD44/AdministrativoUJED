@@ -1,13 +1,20 @@
 package com.example.administrativoujed.ui.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.administrativoujed.canastilla
 import com.example.administrativoujed.databinding.FragmentDashboardBinding
+import com.example.administrativoujed.descuentos
+import com.example.administrativoujed.exentos
+import com.example.administrativoujed.permiso
+import com.example.administrativoujed.vacantes
 
 class DashboardFragment : Fragment() {
 
@@ -31,6 +38,31 @@ class DashboardFragment : Fragment() {
         val textView: TextView = binding.textDashboard
         dashboardViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
+        }
+        val btnExento: Button = binding.btnExento
+        btnExento.setOnClickListener{
+            val intent = Intent(requireContext(), exentos::class.java)
+            startActivity(intent)
+        }
+        val btnCanasta: Button = binding.btncanasta
+        btnCanasta.setOnClickListener{
+            val intent = Intent(requireContext(), canastilla::class.java)
+            startActivity(intent)
+        }
+        val btnDescuentos: Button = binding.btnDescuentos
+        btnDescuentos.setOnClickListener{
+            val intent = Intent(requireContext(), descuentos::class.java)
+            startActivity(intent)
+        }
+        val btnPermisos: Button = binding.btnPermiso
+        btnPermisos.setOnClickListener{
+            val intent = Intent(requireContext(), permiso::class.java)
+            startActivity(intent)
+        }
+        val btnVacantes: Button = binding.btnMaterial
+        btnVacantes.setOnClickListener{
+            val intent = Intent(requireContext(), vacantes::class.java)
+            startActivity(intent)
         }
         return root
     }
