@@ -19,7 +19,7 @@ import com.example.administrativoujed.model.Persona
 class MainCompletar : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainCompletarBinding
-
+    private var formularioEnviado = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_completar)
@@ -81,6 +81,10 @@ class MainCompletar : AppCompatActivity() {
                 correo
             )
 
+            val database = FirebaseDatabase.getInstance()
+            val reference = database.getReference("usuarios")
+
+            reference.child(matricula).setValue(usuario)
 
             val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
             val correoMainActivity = sharedPreferences.getString("correo", null)
@@ -98,9 +102,14 @@ class MainCompletar : AppCompatActivity() {
 
                 if (key != null) {
                     myRef.child(key).setValue(usuario)
+
                 }
+                formularioEnviado = true
+
+
 
             Toast.makeText(baseContext,"Se completo tu registro con exito", Toast.LENGTH_SHORT).show()
+
             val intent = Intent(this, MainPerfil::class.java)
             startActivity(intent)}else{
                 Toast.makeText(baseContext, "El correo debe ser el mismo que usaste para iniciar sesión", Toast.LENGTH_SHORT).show()

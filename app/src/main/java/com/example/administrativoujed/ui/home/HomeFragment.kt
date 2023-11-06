@@ -29,6 +29,7 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private var formularioEnviado = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,12 +46,22 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
-        //Nevegar a la pagina de registro
+
         val registarButton: Button = binding.registar
+
+        if (formularioEnviado) {
+            registarButton.visibility = View.GONE // Oculta el botón si el formulario ya se ha enviado
+        } else {
+            registarButton.visibility = View.VISIBLE
+        }
+
+        //Nevegar a la pagina de registro
+
         registarButton.setOnClickListener {
             val intent = Intent(requireContext(), MainCompletar::class.java)
             startActivity(intent)
         }
+
         //Funcion Cerrar sesion
         val btnCerrar: Button = binding.btnCerrar
         btnCerrar.setOnClickListener {

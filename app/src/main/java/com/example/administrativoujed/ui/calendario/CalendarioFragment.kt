@@ -20,12 +20,10 @@ class CalendarioFragment : Fragment() {
 
     private lateinit var gridView: GridView
     private val eventosMarcados = mutableListOf(
-        //Esto en un futuro se puede hacer desde un formulario en la aplicacion web
+        //Esto en un futuro se puede hacer desde un formulario en la aplicación web
         EventoMarcado("2", "Dia de muertos"),
         EventoMarcado("20", "Revolucion Mexicana"),
     )
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,35 +32,53 @@ class CalendarioFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_calendario, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         gridView = view.findViewById(R.id.gridViewCalendar)
 
+
+        val firstDayOfWeek = Calendar.getInstance().firstDayOfWeek
+
         val currentDate = getCurrentDate()
-        // Llena la lista de días con los días del mes
-        val days = getDaysOfMonth(currentDate)
+
+        val days = getDaysOfMonth(currentDate, firstDayOfWeek)
 
         val calendarAdapter = CalendarAdapter(requireContext(), days)
         gridView.adapter = calendarAdapter
 
-        // Muestra notificaciones de eventos marcados
+
         showEventNotifications(currentDate)
     }
-
 
     private fun getCurrentDate(): Date {
         return Date()
     }
 
-    private fun getDaysOfMonth(currentDate: Date): List<String> {
+    private fun getDaysOfMonth(currentDate: Date, firstDayOfWeek: Int): List<String> {
         val calendar = Calendar.getInstance()
-        calendar.time = Date()
+        calendar.time = currentDate
+
+        calendar.firstDayOfWeek = firstDayOfWeek
 
         val daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
+        val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
+        calendar.set(Calendar.DAY_OF_MONTH, 1)
+        val firstDayOfMonth = calendar.get(Calendar.DAY_OF_WEEK)
+        val emptySpaces = (firstDayOfMonth - firstDayOfWeek + 7) % 7
 
-        return (1..daysInMonth).map { it.toString() }
+        val daysList = mutableListOf<String>()
+
+        for (i in 1..emptySpaces) {
+
+            daysList.add("")
+        }
+
+        for (i in 1..daysInMonth) {
+            daysList.add(i.toString())
+        }
+
+        return daysList
     }
 
     private fun showEventNotifications(currentDate: Date) {
@@ -76,19 +92,16 @@ class CalendarioFragment : Fragment() {
             }
         }
     }
+
     private fun showNotification(message: String) {
-        // Implementa aquí la lógica para mostrar notificaciones en tu aplicación.
-        // Puedes utilizar el sistema de notificaciones de Android, como las notificaciones locales o FCM.
-        // Aquí deberías mostrar la notificación en el NotificationFragment, pero necesitas establecer la comunicación
-        // entre fragmentos para hacerlo.
+      //Esta funcion sirve para mostrar las notificaciones, solo falta implemntar la logica
     }
 
-    // Resto del código de tu fragmento...
+    // Resto del código...
 
     data class EventoMarcado(val fecha: String, val descripcion: String)
 
     class CalendarAdapter(context: Context, days: List<String>) : BaseAdapter() {
-
         private val mContext: Context = context
         private val mDays: List<String> = days
 
@@ -113,25 +126,26 @@ class CalendarioFragment : Fragment() {
                 gravity = Gravity.CENTER
                 setPadding(8, 8, 8, 8)
 
-                if (day == getCurrentDay()) {
+                if (day.isEmpty()) {
+                    // Día vacío
+                    setBackgroundColor(Color.TRANSPARENT)
+                    setTextColor(Color.BLACK)
+                } else if (day == getCurrentDay()) {
+                    // Día actual
                     setBackgroundColor(Color.BLUE)
                     setTextColor(Color.WHITE)
+                } else {
+                    // Otros días
+                    setBackgroundColor(Color.TRANSPARENT)
+                    setTextColor(Color.BLACK)
                 }
-
-                if (day == "2") {
-                    text = "2 \uD83D\uDC80"
-                }
-                if (day == "20") {
-                    text = "20 \uD83C\uDDF2\uD83C\uDDFD"
-                }
-
             }
 
             return cell
         }
 
         private fun getCurrentDay(): String {
-            val dateFormat = SimpleDateFormat("dd")
+            val dateFormat = SimpleDateFormat("d")
             return dateFormat.format(Date())
         }
     }

@@ -6,14 +6,110 @@
     android:layout_height="match_parent"
     tools:context=".permiso">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tolbar"
+        style="@style/BottomNavigationTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/red"
+        android:text="Solicitar tratamiento dental"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Esta es la vista de permisos, pero se buguio el android Studio"
+    <EditText
+        android:id="@+id/txt_matriculaPermiso"
+        android:layout_width="357dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Matricula"
+        android:inputType="number"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tolbar" />
+
+
+    <EditText
+        android:id="@+id/txt_puesto"
+        android:layout_width="357dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="Puesto"
+        android:inputType="number"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_matriculaPermiso" />
+
+    <EditText
+        android:id="@+id/txt_fecha"
+        android:layout_width="357dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="44dp"
+        android:ems="10"
+        android:hint="Fecha de permiso"
+        android:inputType="date"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_puesto" />
+
+    <EditText
+        android:id="@+id/txt_dias"
+        android:layout_width="357dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Numero de dias"
+        android:inputType="date"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_fecha" />
+
+    <EditText
+        android:id="@+id/txt_observaciones"
+        android:layout_width="357dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:hint="Observaciones"
+        android:inputType="date"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_dias" />
+
+    <EditText
+        android:id="@+id/txt_permiso"
+        android:layout_width="357dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="56dp"
+        android:ems="10"
+        android:hint="Tipo de permiso"
+        android:inputType="date"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_observaciones" />
+
+    <Button
+        android:id="@+id/btnpermisos"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/red"
+        android:text="Enviar datos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_permiso"
+        app:rippleColor="@color/white" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

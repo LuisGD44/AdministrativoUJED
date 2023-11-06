@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.782" />
 
-    <EditText
+    <Button
         android:id="@+id/btnPreosu"
         android:layout_width="357dp"
         android:layout_height="45dp"
@@ -46,7 +46,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <Button
         android:id="@+id/btntalondental"
         android:layout_width="357dp"
         android:layout_height="45dp"
@@ -59,7 +59,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnPreosu" />
 
-    <EditText
+    <Button
         android:id="@+id/btnActamatrimonio"
         android:layout_width="357dp"
         android:layout_height="45dp"
@@ -84,7 +84,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topTextView"
-        app:rippleColor="@color/white" />
+        app:rippleColor="@color/white"
+        android:onClick="enviarDatos" />
 
 
     <TextView
