@@ -24,6 +24,12 @@
         android:theme="@style/Theme.AdministrativoUJED"
         tools:targetApi="31">
         <activity
+            android:name=".decendientesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".exentonieto"
+            android:exported="false" />
+        <activity
             android:name=".vacantes"
             android:exported="false" />
         <activity

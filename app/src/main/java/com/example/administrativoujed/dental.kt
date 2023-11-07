@@ -105,8 +105,8 @@ class dental : AppCompatActivity() {
         val informacionDentalRef = db.collection("informacionDental")
         val nuevoDocumento = hashMapOf(
             "matricula" to matricula,
-            "presupuestoUri" to "URL_DEL_PRESUPUESTO",  //debo de jalar la url del preosupuesto
-            "talonUri" to "URL_DEL_TALON",  // Debo de jalar el url del talon
+            "presupuestoUri" to presupuestoUri,  //debo de jalar la url del preosupuesto
+            "talonUri" to talonUri,  // Debo de jalar el url del talon
         )
 
         informacionDentalRef.add(nuevoDocumento)

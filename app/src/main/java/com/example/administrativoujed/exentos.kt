@@ -33,6 +33,16 @@ class exentos : AppCompatActivity() {
             val intent = Intent(this, exentoTrabajador::class.java)
             startActivity(intent)
         }
+        val btnnieto: Button = findViewById(R.id.btnNieto)
+        btnnieto.setOnClickListener {
+            val intent = Intent(this, exentonieto::class.java)
+            startActivity(intent)
+        }
+        val btndependiente: Button = findViewById(R.id.btnDependientes)
+        btndependiente.setOnClickListener {
+            val intent = Intent(this, decendientesActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 

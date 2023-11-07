@@ -15,16 +15,19 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.util.UUID
 
-class exentohijo : AppCompatActivity() {
-    private lateinit var txtPresencialSpinner: Spinner
-    private lateinit var txtEscolarizadoSpinner: Spinner
-    private lateinit var actaUri: Uri
+class decendientesActivity : AppCompatActivity() {
+    private lateinit var txtPresencialde: Spinner
+    private lateinit var txtEscolarizadode: Spinner
     private lateinit var talonUri: Uri
+    private lateinit var actaHijoUri: Uri
+    private lateinit var actaCartaUri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_exentohijo)
+        setContentView(R.layout.activity_decendientes)
 
+        txtPresencialde = findViewById(R.id.txtPresencialde)
+        txtEscolarizadode = findViewById(R.id.txtEscolarizadode)
 
         val presencialAdapter = ArrayAdapter.createFromResource(
             this,
@@ -32,6 +35,7 @@ class exentohijo : AppCompatActivity() {
             android.R.layout.simple_spinner_item
         )
         presencialAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        txtPresencialde.adapter = presencialAdapter
 
         val escolarizadoAdapter = ArrayAdapter.createFromResource(
             this,
@@ -39,26 +43,25 @@ class exentohijo : AppCompatActivity() {
             android.R.layout.simple_spinner_item
         )
         escolarizadoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        txtEscolarizadode.adapter = escolarizadoAdapter
 
-
-        txtPresencialSpinner = findViewById(R.id.txtPresencial)
-        txtEscolarizadoSpinner = findViewById(R.id.txtEscolarizado)
-
-        // Agregar un OnClickListener al botón para seleccionar el talón de pago
         val btnTalon = findViewById<Button>(R.id.btnTalon)
         btnTalon.setOnClickListener {
             seleccionarArchivo(PICK_IMAGE_REQUEST_TALON)
         }
 
-        // Agregar un OnClickListener al botón para seleccionar el acta de nacimiento
         val btnActa = findViewById<Button>(R.id.btnActa)
         btnActa.setOnClickListener {
-            seleccionarArchivo(PICK_IMAGE_REQUEST_ACTA)
+            seleccionarArchivo(PICK_IMAGE_REQUEST_ACTA_HIJO)
         }
 
-        // Agregar un OnClickListener al botón para enviar datos
-        val btnExentoHijo = findViewById<Button>(R.id.btnExentoHijo)
-        btnExentoHijo.setOnClickListener {
+        val btnCarta = findViewById<Button>(R.id.btnCarta)
+        btnCarta.setOnClickListener {
+            seleccionarArchivo(PICK_IMAGE_REQUEST_ACTA_CARTA)
+        }
+
+        val btnExentoDec = findViewById<Button>(R.id.btnexentoDec)
+        btnExentoDec.setOnClickListener {
             enviarDatos()
         }
     }
@@ -76,43 +79,56 @@ class exentohijo : AppCompatActivity() {
                 PICK_IMAGE_REQUEST_TALON -> {
                     talonUri = data.data!!
                 }
-                PICK_IMAGE_REQUEST_ACTA -> {
-                    actaUri = data.data!!
+                PICK_IMAGE_REQUEST_ACTA_HIJO -> {
+                    actaHijoUri = data.data!!
+                }
+                PICK_IMAGE_REQUEST_ACTA_CARTA -> {
+                    actaCartaUri = data.data!!
                 }
             }
         }
     }
 
     private fun enviarDatos() {
-        val matricula = findViewById<EditText>(R.id.txt_matricula).text.toString()
-        val presencial = txtPresencialSpinner.selectedItem.toString()
-        val escolarizado = txtEscolarizadoSpinner.selectedItem.toString()
+        val matriculaTrabajador = findViewById<EditText>(R.id.txt_matriculaTrabajador).text.toString()
+        val matriculaAlumno = findViewById<EditText>(R.id.txt_matriculaAlunmo).text.toString()
+        val semestre = findViewById<EditText>(R.id.txt_semestre).text.toString()
+        val escuela = findViewById<EditText>(R.id.txtEscuela).text.toString()
+        val presencialDec = txtPresencialde.selectedItem.toString()
+        val escolarizadoDec = txtEscolarizadode.selectedItem.toString()
 
-        if (matricula.isEmpty() || actaUri == null) {
+        if (matriculaTrabajador.isEmpty() || matriculaAlumno.isEmpty() || semestre.isEmpty() || escuela.isEmpty() || talonUri == null || actaHijoUri == null || actaCartaUri == null) {
             Toast.makeText(this, "Por favor, complete todos los campos.", Toast.LENGTH_SHORT).show()
             return
         }
 
-
-        val actaFileName = "acta_${UUID.randomUUID()}"
         val talonFileName = "talon_${UUID.randomUUID()}"
+        val actaHijoFileName = "acta_hijo_${UUID.randomUUID()}"
+        val actaCartaFileName = "acta_carta_${UUID.randomUUID()}"
 
-        subirArchivo(actaUri, actaFileName)
         subirArchivo(talonUri, talonFileName)
+        subirArchivo(actaHijoUri, actaHijoFileName)
+        subirArchivo(actaCartaUri, actaCartaFileName)
 
         val db = FirebaseFirestore.getInstance()
-        val informacionHijosRef = db.collection("informacionHijos")
+        val informacionExentoDecRef = db.collection("informacionExentoDec")
         val nuevoDocumento = hashMapOf(
-            "matricula" to matricula,
-            "actaUri" to actaUri,
-            "talonUri" to talonUri,
-            "presencial" to presencial,
-            "escolarizado" to escolarizado
+            "matriculaTrabajador" to matriculaTrabajador,
+            "matriculaAlumno" to matriculaAlumno,
+            "semestre" to semestre,
+            "escuela" to escuela,
+            "presencialDec" to presencialDec,
+            "escolarizadoDec" to escolarizadoDec,
+            "talonUri" to talonUri.toString(),
+            "actaHijoUri" to actaHijoUri.toString(),
+            "actaCartaUri" to actaCartaUri.toString()
         )
 
-        informacionHijosRef.add(nuevoDocumento)
+        informacionExentoDecRef.add(nuevoDocumento)
             .addOnSuccessListener { documentReference ->
                 Toast.makeText(this, "Datos enviados con éxito.", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, exentos::class.java)
+                startActivity(intent)
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Error al guardar en Firestore: $e", Toast.LENGTH_SHORT).show()
@@ -122,7 +138,7 @@ class exentohijo : AppCompatActivity() {
     private fun subirArchivo(uri: Uri, fileName: String) {
         val storage = FirebaseStorage.getInstance()
         val storageReference = storage.reference
-        val fileReference: StorageReference = storageReference.child("exentohijo/$fileName")
+        val fileReference: StorageReference = storageReference.child("exentoDependiente/$fileName")
 
         fileReference.putFile(uri)
             .addOnSuccessListener { taskSnapshot ->
@@ -135,6 +151,7 @@ class exentohijo : AppCompatActivity() {
 
     companion object {
         private const val PICK_IMAGE_REQUEST_TALON = 1
-        private const val PICK_IMAGE_REQUEST_ACTA = 2
+        private const val PICK_IMAGE_REQUEST_ACTA_HIJO = 2
+        private const val PICK_IMAGE_REQUEST_ACTA_CARTA = 3
     }
 }
