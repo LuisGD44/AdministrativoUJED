@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -93,14 +94,14 @@ class exentonieto : AppCompatActivity() {
     }
 
     private fun enviarDatos() {
-        val matriculaTrabajador = findViewById<EditText>(R.id.txt_matriculaTrabajador).text.toString()
+        val matricula = findViewById<EditText>(R.id.txt_matriculaTrabajador).text.toString()
         val matriculaAlumno = findViewById<EditText>(R.id.txt_matriculaAlunmo).text.toString()
         val semestre = findViewById<EditText>(R.id.txt_semestre).text.toString()
         val escuela = findViewById<EditText>(R.id.txtEscuela).text.toString()
         val presencialNieto = txtPresencialNieto.selectedItem.toString()
         val escolarizadoNieto = txtEscolarizadoNieto.selectedItem.toString()
 
-        if (matriculaTrabajador.isEmpty() || matriculaAlumno.isEmpty() || semestre.isEmpty() || escuela.isEmpty() || actaHijoUri == null || actaNietoUri == null || talonUri == null) {
+        if (matricula.isEmpty() || matriculaAlumno.isEmpty() || semestre.isEmpty() || escuela.isEmpty() || actaHijoUri == null || actaNietoUri == null || talonUri == null) {
             Toast.makeText(this, "Por favor, complete todos los campos y seleccione los archivos.", Toast.LENGTH_SHORT).show()
             return
         }
@@ -109,22 +110,72 @@ class exentonieto : AppCompatActivity() {
         val actaNietoFileName = "acta_nieto_${UUID.randomUUID()}"
         val talonFileName = "talon_${UUID.randomUUID()}"
 
-        subirArchivo(actaHijoUri, actaHijoFileName)
-        subirArchivo(actaNietoUri, actaNietoFileName)
-        subirArchivo(talonUri, talonFileName)
+        // Subir todas las imágenes
+        val urls = mutableListOf<String>()
 
+        // Subir actaHijo
+        subirArchivo(actaHijoUri, actaHijoFileName) { url ->
+            urls.add(url)
+
+            // Subir actaNieto
+            subirArchivo(actaNietoUri, actaNietoFileName) { url ->
+                urls.add(url)
+
+                // Subir talon
+                subirArchivo(talonUri, talonFileName) { url ->
+                    urls.add(url)
+
+                    // Después de subir todas las imágenes, agregar los datos a Firestore
+                    agregarDatosFirestore(matricula, matriculaAlumno, semestre, escuela, presencialNieto, escolarizadoNieto, urls)
+                }
+            }
+        }
+    }
+
+    private fun subirArchivo(uri: Uri, fileName: String, onSuccess: (String) -> Unit) {
+        val storage = FirebaseStorage.getInstance()
+        val storageReference = storage.reference
+        val fileReference: StorageReference = storageReference.child("exentonieto/$fileName")
+
+        fileReference.putFile(uri)
+            .addOnSuccessListener { taskSnapshot ->
+                // Obtener la URL de la imagen después de que se haya subido con éxito
+                taskSnapshot.storage.downloadUrl.addOnSuccessListener { downloadUri ->
+                    val imageUrl = downloadUri.toString()
+                    // Llamar a la función onSuccess con la URL de la imagen
+                    onSuccess(imageUrl)
+                }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(this, "Error al obtener la URL de la imagen: $e", Toast.LENGTH_SHORT).show()
+                    }
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Error al subir el archivo: $e", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun agregarDatosFirestore(
+        matricula: String,
+        matriculaAlumno: String,
+        semestre: String,
+        escuela: String,
+        presencialNieto: String,
+        escolarizadoNieto: String,
+        urls: List<String>
+    ) {
         val db = FirebaseFirestore.getInstance()
         val informacionExentoNietoRef = db.collection("informacionExentoNieto")
+
         val nuevoDocumento = hashMapOf(
-            "matriculaTrabajador" to matriculaTrabajador,
+            "matricula" to matricula,
             "matriculaAlumno" to matriculaAlumno,
             "semestre" to semestre,
             "escuela" to escuela,
             "presencialNieto" to presencialNieto,
             "escolarizadoNieto" to escolarizadoNieto,
-            "actaHijoUri" to actaHijoUri.toString(),
-            "actaNietoUri" to actaNietoUri.toString(),
-            "talonUri" to talonUri.toString()
+            "actaHijoUri" to urls.getOrNull(0),
+            "actaNietoUri" to urls.getOrNull(1),
+            "talonUri" to urls.getOrNull(2)
         )
 
         informacionExentoNietoRef.add(nuevoDocumento)
@@ -133,26 +184,13 @@ class exentonieto : AppCompatActivity() {
 
                 val intent = Intent(this, exentos::class.java)
                 startActivity(intent)
-
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Error al guardar en Firestore: $e", Toast.LENGTH_SHORT).show()
             }
     }
 
-    private fun subirArchivo(uri: Uri, fileName: String) {
-        val storage = FirebaseStorage.getInstance()
-        val storageReference = storage.reference
-        val fileReference: StorageReference = storageReference.child("exentonieto/$fileName")
 
-        fileReference.putFile(uri)
-            .addOnSuccessListener { taskSnapshot ->
-                Toast.makeText(this, "Archivo subido con éxito.", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Error al subir el archivo: $e", Toast.LENGTH_SHORT).show()
-            }
-    }
 
     companion object {
         private const val PICK_IMAGE_REQUEST_ACTA_HIJO = 1

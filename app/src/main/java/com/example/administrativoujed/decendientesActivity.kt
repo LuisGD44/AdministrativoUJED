@@ -90,14 +90,14 @@ class decendientesActivity : AppCompatActivity() {
     }
 
     private fun enviarDatos() {
-        val matriculaTrabajador = findViewById<EditText>(R.id.txt_matriculaTrabajador).text.toString()
+        val matricula = findViewById<EditText>(R.id.txt_matriculaTrabajador).text.toString()
         val matriculaAlumno = findViewById<EditText>(R.id.txt_matriculaAlunmo).text.toString()
         val semestre = findViewById<EditText>(R.id.txt_semestre).text.toString()
         val escuela = findViewById<EditText>(R.id.txtEscuela).text.toString()
         val presencialDec = txtPresencialde.selectedItem.toString()
         val escolarizadoDec = txtEscolarizadode.selectedItem.toString()
 
-        if (matriculaTrabajador.isEmpty() || matriculaAlumno.isEmpty() || semestre.isEmpty() || escuela.isEmpty() || talonUri == null || actaHijoUri == null || actaCartaUri == null) {
+        if (matricula.isEmpty() || matriculaAlumno.isEmpty() || semestre.isEmpty() || escuela.isEmpty() || talonUri == null || actaHijoUri == null || actaCartaUri == null) {
             Toast.makeText(this, "Por favor, complete todos los campos.", Toast.LENGTH_SHORT).show()
             return
         }
@@ -106,43 +106,48 @@ class decendientesActivity : AppCompatActivity() {
         val actaHijoFileName = "acta_hijo_${UUID.randomUUID()}"
         val actaCartaFileName = "acta_carta_${UUID.randomUUID()}"
 
-        subirArchivo(talonUri, talonFileName)
-        subirArchivo(actaHijoUri, actaHijoFileName)
-        subirArchivo(actaCartaUri, actaCartaFileName)
+        subirArchivo(talonUri, talonFileName) { talonUrl ->
+            subirArchivo(actaHijoUri, actaHijoFileName) { actaHijoUrl ->
+                subirArchivo(actaCartaUri, actaCartaFileName) { actaCartaUrl ->
+                    val db = FirebaseFirestore.getInstance()
+                    val informacionExentoDecRef = db.collection("informacionExentoDec")
+                    val nuevoDocumento = hashMapOf(
+                        "matricula" to matricula,
+                        "matriculaAlumno" to matriculaAlumno,
+                        "semestre" to semestre,
+                        "escuela" to escuela,
+                        "presencialDec" to presencialDec,
+                        "escolarizadoDec" to escolarizadoDec,
+                        "talonUri" to talonUrl,
+                        "actaHijoUri" to actaHijoUrl,
+                        "actaCartaUri" to actaCartaUrl
+                    )
 
-        val db = FirebaseFirestore.getInstance()
-        val informacionExentoDecRef = db.collection("informacionExentoDec")
-        val nuevoDocumento = hashMapOf(
-            "matriculaTrabajador" to matriculaTrabajador,
-            "matriculaAlumno" to matriculaAlumno,
-            "semestre" to semestre,
-            "escuela" to escuela,
-            "presencialDec" to presencialDec,
-            "escolarizadoDec" to escolarizadoDec,
-            "talonUri" to talonUri.toString(),
-            "actaHijoUri" to actaHijoUri.toString(),
-            "actaCartaUri" to actaCartaUri.toString()
-        )
-
-        informacionExentoDecRef.add(nuevoDocumento)
-            .addOnSuccessListener { documentReference ->
-                Toast.makeText(this, "Datos enviados con éxito.", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, exentos::class.java)
-                startActivity(intent)
+                    informacionExentoDecRef.add(nuevoDocumento)
+                        .addOnSuccessListener { documentReference ->
+                            Toast.makeText(this, "Datos enviados con éxito.", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this, exentos::class.java)
+                            startActivity(intent)
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(this, "Error al guardar en Firestore: $e", Toast.LENGTH_SHORT).show()
+                        }
+                }
             }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Error al guardar en Firestore: $e", Toast.LENGTH_SHORT).show()
-            }
+        }
     }
 
-    private fun subirArchivo(uri: Uri, fileName: String) {
+    private fun subirArchivo(uri: Uri, fileName: String, onComplete: (String) -> Unit) {
         val storage = FirebaseStorage.getInstance()
         val storageReference = storage.reference
         val fileReference: StorageReference = storageReference.child("exentoDependiente/$fileName")
 
         fileReference.putFile(uri)
             .addOnSuccessListener { taskSnapshot ->
-                Toast.makeText(this, "Archivo subido con éxito.", Toast.LENGTH_SHORT).show()
+                // Obtener la URL del archivo subido
+                fileReference.downloadUrl.addOnSuccessListener { uri ->
+                    onComplete(uri.toString())
+                }
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Error al subir el archivo: $e", Toast.LENGTH_SHORT).show()
@@ -155,3 +160,4 @@ class decendientesActivity : AppCompatActivity() {
         private const val PICK_IMAGE_REQUEST_ACTA_CARTA = 3
     }
 }
+

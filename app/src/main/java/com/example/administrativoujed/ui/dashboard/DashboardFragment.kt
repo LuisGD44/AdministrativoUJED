@@ -14,7 +14,7 @@ import com.example.administrativoujed.databinding.FragmentDashboardBinding
 import com.example.administrativoujed.descuentos
 import com.example.administrativoujed.exentos
 import com.example.administrativoujed.permiso
-import com.example.administrativoujed.vacantes
+import com.example.administrativoujed.vacantesActivity
 
 class DashboardFragment : Fragment() {
 
@@ -61,7 +61,7 @@ class DashboardFragment : Fragment() {
         }
         val btnVacantes: Button = binding.btnMaterial
         btnVacantes.setOnClickListener{
-            val intent = Intent(requireContext(), vacantes::class.java)
+            val intent = Intent(requireContext(), vacantesActivity::class.java)
             startActivity(intent)
         }
         return root

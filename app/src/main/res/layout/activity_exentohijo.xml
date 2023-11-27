@@ -21,20 +21,31 @@
         android:layout_height="match_parent"
         android:padding="16dp">
 
+        <EditText
+            android:id="@+id/txt_matriculaTrabajador"
+            android:layout_width="357dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:hint="Matricula Trabajador"
+            android:inputType="number"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_matricula" />
 
         <EditText
             android:id="@+id/txt_matricula"
             android:layout_width="357dp"
             android:layout_height="45dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="68dp"
             android:ems="10"
-            android:hint="Matricula"
+            android:hint="Matricula Alumno"
             android:inputType="number"
             android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.462"
+            app:layout_constraintHorizontal_bias="0.518"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtPresencial"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
@@ -47,7 +58,7 @@
             android:inputType="number"
             android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.407"
+            app:layout_constraintHorizontal_bias="0.518"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_matricula"
             app:layout_constraintTop_toTopOf="parent" />

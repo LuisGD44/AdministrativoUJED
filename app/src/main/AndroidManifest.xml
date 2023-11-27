@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -24,13 +26,16 @@
         android:theme="@style/Theme.AdministrativoUJED"
         tools:targetApi="31">
         <activity
+            android:name=".opticas"
+            android:exported="false" />
+        <activity
             android:name=".decendientesActivity"
             android:exported="false" />
         <activity
             android:name=".exentonieto"
             android:exported="false" />
         <activity
-            android:name=".vacantes"
+            android:name=".vacantesActivity"
             android:exported="false" />
         <activity
             android:name=".permiso"

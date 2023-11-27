@@ -7,26 +7,27 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.DashboardFragment">
 
+
     <TextView
         android:id="@+id/text_dashboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toBottomOf="@+id/topView"
+        app:layout_constraintVertical_bias="0.234" />
 
     <Button
         android:id="@+id/btnPermiso"
         style="@style/bottonGreen"
-        android:layout_width="165dp"
-        android:layout_height="50dp"
+        android:layout_width="173dp"
+        android:layout_height="54dp"
         android:layout_marginTop="76dp"
         android:text="Solicitar Permiso"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,20 +53,18 @@
         style="@style/bottonGreen"
         android:layout_width="165dp"
         android:layout_height="50dp"
+        android:layout_marginTop="296dp"
         android:gravity="center"
         android:text="Vacantes "
-        app:layout_constraintBottom_toTopOf="@+id/text_dashboard"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.891" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnExento"
         style="@style/bottonGreen"
-        android:layout_width="165dp"
-        android:layout_height="50dp"
+        android:layout_width="168dp"
+        android:layout_height="61dp"
         android:layout_marginTop="60dp"
         android:gravity="center"
         android:text="Exentos de Inscripcion"
@@ -77,13 +76,13 @@
     <Button
         android:id="@+id/btnDescuentos"
         style="@style/bottonGreen"
-        android:layout_width="165dp"
-        android:layout_height="50dp"
+        android:layout_width="157dp"
+        android:layout_height="54dp"
         android:layout_marginTop="76dp"
         android:gravity="center"
         android:text="Descuentos "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.112"
+        app:layout_constraintHorizontal_bias="0.129"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -91,26 +90,12 @@
         android:id="@+id/topView"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:layout_marginTop="120dp"
         android:background="@color/blue"
-        app:layout_constraintBottom_toTopOf="@+id/btnCambiar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.722" />
-
-    <Button
-        android:id="@+id/btnCambiar"
-        android:layout_width="160dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/red"
-        android:text="Cambiar ahorro"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_dashboard"
-        app:layout_constraintVertical_bias="0.486"
-        app:rippleColor="@color/white" />
+        app:layout_constraintTop_toBottomOf="@+id/btnMaterial" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

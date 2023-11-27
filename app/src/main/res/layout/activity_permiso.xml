@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/red"
-        android:text="Solicitar tratamiento dental"
+        android:text="Solicitar Permiso"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -25,24 +25,22 @@
         android:id="@+id/txt_matriculaPermiso"
         android:layout_width="357dp"
         android:layout_height="45dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Matricula"
         android:inputType="number"
         android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tolbar" />
 
-    <EditText
+    <Spinner
         android:id="@+id/txt_puesto"
         android:layout_width="357dp"
         android:layout_height="45dp"
         android:layout_marginTop="36dp"
         android:ems="10"
         android:hint="Puesto"
-        android:inputType="text"
         android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,11 +85,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_dias" />
 
-    <EditText
+    <Spinner
         android:id="@+id/txt_permiso"
         android:layout_width="357dp"
         android:layout_height="45dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="Tipo de permiso"
         android:inputType="date"
@@ -109,8 +107,31 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_permiso"
         app:rippleColor="@color/white" />
+
+
+    <Spinner
+        android:id="@+id/UA"
+        android:layout_width="357dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="36dp"
+        android:hint="Unidad academica"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_permiso" />
+
+    <Spinner
+        android:id="@+id/Turno"
+        android:layout_width="357dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:hint="Funcion"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UA" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

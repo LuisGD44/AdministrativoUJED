@@ -11,15 +11,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
-import com.google.firebase.database.FirebaseDatabase
-
-import com.example.administrativoujed.databinding.ActivityMainCompletarBinding
+import com.google.firebase.firestore.FirebaseFirestore
 import com.example.administrativoujed.model.Persona
 
 class MainCompletar : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainCompletarBinding
-    private var formularioEnviado = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_completar)
@@ -42,11 +38,11 @@ class MainCompletar : AppCompatActivity() {
         // Define un listener para manejar la selección del usuario
         spinnerTurno.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                // No necesitas guardar la selección del Spinner aquí
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Aquí puedes manejar el caso en el que no se haya seleccionado nada
+
             }
         }
 
@@ -60,62 +56,32 @@ class MainCompletar : AppCompatActivity() {
             val turno = spinnerTurno.selectedItem.toString()
             val rama = findViewById<EditText>(R.id.txtRama).text.toString()
 
-            val usuario = Persona(nombre, apellidoPaterno, apellidoMaterno,correo, matricula, turno, rama)
-            usuario.nombre = nombre
-            usuario.apellidoPaterno = apellidoPaterno
-            usuario.apellidoMaterno = apellidoMaterno
-            usuario.correo = correo
-            usuario.matricula = matricula
-            usuario.turno = turno
-            usuario.rama = rama
+            // Guardar los datos en Cloud Firestore
+            val db = FirebaseFirestore.getInstance()
+            val usuariosRef = db.collection("usuarios")
 
-
-
-            val usere = Persona(
-                nombre,
-                apellidoPaterno,
-                apellidoMaterno,
-                matricula,
-                turno,
-                rama,
-                correo
+            val nuevoUsuario = hashMapOf(
+                "nombre" to nombre,
+                "apellidoPaterno" to apellidoPaterno,
+                "apellidoMaterno" to apellidoMaterno,
+                "correo" to correo,
+                "matricula" to matricula,
+                "turno" to turno,
+                "rama" to rama
+                // Puedes agregar más campos según tus necesidades
             )
 
-            val database = FirebaseDatabase.getInstance()
-            val reference = database.getReference("usuarios")
+            usuariosRef.document(matricula).set(nuevoUsuario)
+                .addOnSuccessListener {
+                    Toast.makeText(baseContext, "Datos guardados en Firestore con éxito", Toast.LENGTH_SHORT).show()
 
-            reference.child(matricula).setValue(usuario)
-
-            val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-            val correoMainActivity = sharedPreferences.getString("correo", null)
-
-            val correoIngresado = correo
-            if (correoMainActivity != null && correoMainActivity == correoIngresado) {
-                // Los correos coinciden, puedes guardar los datos en Firebase
-                val usuario = Persona(nombre, apellidoPaterno, apellidoMaterno, correo, matricula, turno, rama)
-
-                // Guardar los datos en Firebase
-                val database = FirebaseDatabase.getInstance()
-                val myRef = database.getReference("usuarios")
-
-                val key = myRef.push().key
-
-                if (key != null) {
-                    myRef.child(key).setValue(usuario)
-
+                    // Pasar a la siguiente actividad si es necesario
+                    val intent = Intent(this, MainPerfil::class.java)
+                    startActivity(intent)
                 }
-                formularioEnviado = true
-
-
-
-            Toast.makeText(baseContext,"Se completo tu registro con exito", Toast.LENGTH_SHORT).show()
-
-            val intent = Intent(this, MainPerfil::class.java)
-            startActivity(intent)}else{
-                Toast.makeText(baseContext, "El correo debe ser el mismo que usaste para iniciar sesión", Toast.LENGTH_SHORT).show()
-
-            }
+                .addOnFailureListener { e ->
+                    Toast.makeText(baseContext, "Error al guardar en Firestore: $e", Toast.LENGTH_SHORT).show()
+                }
         }
-
     }
 }

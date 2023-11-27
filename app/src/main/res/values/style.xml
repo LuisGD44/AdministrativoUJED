@@ -8,8 +8,8 @@
     </style>
 
     <style name="BottomNavigationTextStyleSmall">
-        <item name="android:textSize">8sp</item> <!-- Tamaño de texto más pequeño -->
-        <item name="android:layout_marginTop">2dp</item> <!-- Margen superior ajustado -->
+        <item name="android:textSize">8sp</item>
+        <item name="android:layout_marginTop">2dp</item>
     </style>
 
     <style name="BottonNavigation">

@@ -10,6 +10,7 @@
         app:labelVisibilityMode="labeled"
         app:layout_constraintWidth_percent="1"
         android:layout_weight="1"
+        app:itemTextColor="@color/white"
         />
 
     <item
@@ -20,7 +21,8 @@
         android:title="Tramites"
         app:labelVisibilityMode="labeled"
         app:layout_constraintWidth_percent="1"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        app:itemTextColor="@color/white"/>
 
     <item
         android:id="@+id/notificaciones"
@@ -31,7 +33,8 @@
         app:labelVisibilityMode="labeled"
         app:itemTextAppearanceActive="@style/BottonNavigation"
         app:layout_constraintWidth_percent="1"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        app:itemTextColor="@color/white"/>
     <item
         android:id="@+id/calendario"
         android:layout_width="0dp"
@@ -41,7 +44,8 @@
         app:labelVisibilityMode="labeled"
         app:itemTextAppearanceActive="@style/BottonNavigation"
         app:layout_constraintWidth_percent="1"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        app:itemTextColor="@color/white"/>
 
 
     </menu>

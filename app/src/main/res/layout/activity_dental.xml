@@ -88,11 +88,14 @@
         android:onClick="enviarDatos" />
 
 
+
+
+
     <TextView
         android:id="@+id/topTextView"
-        android:layout_width="411dp"
-        android:layout_height="101dp"
-        android:layout_marginBottom="332dp"
+        android:layout_width="0dp"
+        android:layout_height="113dp"
+        android:layout_marginBottom="172dp"
         android:background="@color/blue"
         android:gravity="center"
         android:text="@string/dental"
@@ -101,7 +104,6 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

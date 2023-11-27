@@ -23,13 +23,11 @@ class exentoTrabajador : AppCompatActivity() {
 
         txtMatricula = findViewById(R.id.txt_matriculaTra)
 
-        // Agregar un OnClickListener al botón para seleccionar el acta de nacimiento
         val btnActaNacimiento = findViewById<Button>(R.id.btnActatra)
         btnActaNacimiento.setOnClickListener {
             seleccionarArchivo(PICK_IMAGE_REQUEST_ACTA)
         }
 
-        // Agregar un OnClickListener al botón para enviar datos
         val btnExentoHijo = findViewById<Button>(R.id.btnExentoHijo)
         btnExentoHijo.setOnClickListener {
             enviarDatos()
@@ -62,38 +60,48 @@ class exentoTrabajador : AppCompatActivity() {
             return
         }
 
-        // Subir el archivo de acta de nacimiento a Firebase Storage
         val actaFileName = "acta_${UUID.randomUUID()}"
-        subirArchivo(actaUri, actaFileName)
-
-        // Continúa con el código para guardar la información en Firebase Firestore
-        val db = FirebaseFirestore.getInstance()
-        val informacionExentosRef = db.collection("informacionExentos")
-        val nuevoDocumento = hashMapOf(
-            "matricula" to matricula,
-            "actaUri" to actaUri,
-        )
-
-        informacionExentosRef.add(nuevoDocumento)
-            .addOnSuccessListener { documentReference ->
-                Toast.makeText(this, "Datos enviados con éxito.", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Error al guardar en Firestore: $e", Toast.LENGTH_SHORT).show()
-            }
+        subirArchivo(actaUri, actaFileName) { actaUrl ->
+            agregarDatosFirestore(matricula, actaUrl)
+        }
     }
 
-    private fun subirArchivo(uri: Uri, fileName: String) {
+    private fun subirArchivo(uri: Uri, fileName: String, onSuccess: (String) -> Unit) {
         val storage = FirebaseStorage.getInstance()
         val storageReference = storage.reference
         val fileReference: StorageReference = storageReference.child("exentos/$fileName")
 
         fileReference.putFile(uri)
             .addOnSuccessListener { taskSnapshot ->
-                Toast.makeText(this, "Archivo subido con éxito.", Toast.LENGTH_SHORT).show()
+                taskSnapshot.storage.downloadUrl.addOnSuccessListener { downloadUri ->
+                    val imageUrl = downloadUri.toString()
+                    onSuccess(imageUrl)
+                }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(this, "Error al obtener la URL de la imagen: $e", Toast.LENGTH_SHORT).show()
+                    }
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Error al subir el archivo: $e", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun agregarDatosFirestore(matricula: String, actaUrl: String) {
+        val db = FirebaseFirestore.getInstance()
+        val informacionExentosRef = db.collection("informacionExentos")
+        val nuevoDocumento = hashMapOf(
+            "matricula" to matricula,
+            "actaUrl" to actaUrl
+        )
+
+        informacionExentosRef.add(nuevoDocumento)
+            .addOnSuccessListener { documentReference ->
+                Toast.makeText(this, "Datos enviados con éxito.", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, exentos::class.java)
+                startActivity(intent)
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Error al guardar en Firestore: $e", Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -101,5 +109,3 @@ class exentoTrabajador : AppCompatActivity() {
         private const val PICK_IMAGE_REQUEST_ACTA = 1
     }
 }
-
-

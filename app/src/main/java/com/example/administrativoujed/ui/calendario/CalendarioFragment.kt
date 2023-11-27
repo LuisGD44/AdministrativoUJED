@@ -20,7 +20,7 @@ class CalendarioFragment : Fragment() {
 
     private lateinit var gridView: GridView
     private val eventosMarcados = mutableListOf(
-        //Esto en un futuro se puede hacer desde un formulario en la aplicación web
+        // Esto en un futuro se puede hacer desde un formulario en la aplicación web
         EventoMarcado("2", "Dia de muertos"),
         EventoMarcado("20", "Revolucion Mexicana"),
     )
@@ -37,16 +37,11 @@ class CalendarioFragment : Fragment() {
 
         gridView = view.findViewById(R.id.gridViewCalendar)
 
-
         val firstDayOfWeek = Calendar.getInstance().firstDayOfWeek
-
         val currentDate = getCurrentDate()
-
         val days = getDaysOfMonth(currentDate, firstDayOfWeek)
-
         val calendarAdapter = CalendarAdapter(requireContext(), days)
         gridView.adapter = calendarAdapter
-
 
         showEventNotifications(currentDate)
     }
@@ -58,7 +53,6 @@ class CalendarioFragment : Fragment() {
     private fun getDaysOfMonth(currentDate: Date, firstDayOfWeek: Int): List<String> {
         val calendar = Calendar.getInstance()
         calendar.time = currentDate
-
         calendar.firstDayOfWeek = firstDayOfWeek
 
         val daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
@@ -70,7 +64,6 @@ class CalendarioFragment : Fragment() {
         val daysList = mutableListOf<String>()
 
         for (i in 1..emptySpaces) {
-
             daysList.add("")
         }
 
@@ -87,17 +80,13 @@ class CalendarioFragment : Fragment() {
 
         for (evento in eventosMarcados) {
             if (evento.fecha == currentDay) {
-                // Mostrar notificación para el evento marcado
                 showNotification(evento.descripcion)
             }
         }
     }
 
     private fun showNotification(message: String) {
-      //Esta funcion sirve para mostrar las notificaciones, solo falta implemntar la logica
     }
-
-    // Resto del código...
 
     data class EventoMarcado(val fecha: String, val descripcion: String)
 
@@ -135,9 +124,17 @@ class CalendarioFragment : Fragment() {
                     setBackgroundColor(Color.BLUE)
                     setTextColor(Color.WHITE)
                 } else {
-                    // Otros días
+
                     setBackgroundColor(Color.TRANSPARENT)
                     setTextColor(Color.BLACK)
+                }
+
+                //En futuras actualizaciones, se puede implementar un formulario en el apartado web
+                //En el cual se ingresen los eventos o festividades
+                when (day) {
+                    "2" -> text = "2 \uD83D\uDC80"
+                    "20" -> text = "20 \uD83C\uDDF2\uD83C\uDDFD"
+                    "30" -> text = "30 \uD83D\uDCBC"
                 }
             }
 
@@ -150,6 +147,3 @@ class CalendarioFragment : Fragment() {
         }
     }
 }
-
-
-

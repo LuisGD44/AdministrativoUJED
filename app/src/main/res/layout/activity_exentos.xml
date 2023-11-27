@@ -36,8 +36,8 @@
     <Button
         android:id="@+id/btnDependientes"
         style="@style/bottonGreen"
-        android:layout_width="165dp"
-        android:layout_height="60dp"
+        android:layout_width="170dp"
+        android:layout_height="96dp"
         android:layout_marginBottom="108dp"
         android:gravity="center"
         android:text="Exento para dependientes economicos "
@@ -78,8 +78,8 @@
     <Button
         android:id="@+id/btnNieto"
         style="@style/bottonGreen"
-        android:layout_width="160dp"
-        android:layout_height="65dp"
+        android:layout_width="165dp"
+        android:layout_height="105dp"
         android:layout_marginBottom="108dp"
         android:gravity="center"
         android:text="Exentos para nietos de trabajadores"

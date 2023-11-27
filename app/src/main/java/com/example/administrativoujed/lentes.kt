@@ -38,6 +38,11 @@ class lentes : AppCompatActivity() {
         btnExentoHijo.setOnClickListener {
             enviarDatos()
         }
+        val opticas: Button = findViewById(R.id.btnOpticas)
+        opticas.setOnClickListener {
+            val intent = Intent(this, opticas::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun seleccionarArchivo(pickImageRequest: Int) {
@@ -76,37 +81,41 @@ class lentes : AppCompatActivity() {
 
         // Subir el archivo de presupuesto
         val presupuestoFileName = "presupuesto_${UUID.randomUUID()}"
-        subirArchivo(presupuestoUri, storageReference, presupuestoFileName)
+        subirArchivo(presupuestoUri, storageReference, presupuestoFileName) { presupuestoUrl ->
+            // Subir el archivo de talón de pago
+            val talonFileName = "talon_${UUID.randomUUID()}"
+            subirArchivo(talonUri, storageReference, talonFileName) { talonUrl ->
+                // Continúa con el código para guardar la información en Firebase Firestore
+                val db = FirebaseFirestore.getInstance()
+                val informacionLentesRef = db.collection("informacionLentes")
+                val nuevoDocumento = hashMapOf(
+                    "matricula" to matricula,
+                    "presupuestoUri" to presupuestoUrl,
+                    "talonUri" to talonUrl
+                )
 
-        // Subir el archivo de talón de pago
-        val talonFileName = "talon_${UUID.randomUUID()}"
-        subirArchivo(talonUri, storageReference, talonFileName)
-
-        // Continúa con el código para guardar la información en Firebase Firestore
-        val db = FirebaseFirestore.getInstance()
-        val informacionLentesRef = db.collection("informacionLentes")
-        val nuevoDocumento = hashMapOf(
-            "matricula" to matricula,
-            "presupuestoUri" to presupuestoUri,  // Aqui debemos remplazar por la url del preouspuesto
-            "talonUri" to talonUri,  // igual que lo de arriba
-        )
-
-        informacionLentesRef.add(nuevoDocumento)
-            .addOnSuccessListener { documentReference ->
-                Toast.makeText(this, "Datos enviados con éxito.", Toast.LENGTH_SHORT).show()
+                informacionLentesRef.add(nuevoDocumento)
+                    .addOnSuccessListener { documentReference ->
+                        Toast.makeText(this, "Datos enviados con éxito.", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, MainPerfil::class.java)
+                        startActivity(intent)
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(this, "Error al guardar en Firestore: $e", Toast.LENGTH_SHORT).show()
+                    }
             }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Error al guardar en Firestore: $e", Toast.LENGTH_SHORT).show()
-            }
+        }
     }
 
-
-    private fun subirArchivo(uri: Uri, storageReference: StorageReference, fileName: String) {
+    private fun subirArchivo(uri: Uri, storageReference: StorageReference, fileName: String, onComplete: (String) -> Unit) {
         val fileReference: StorageReference = storageReference.child("lentes/$fileName")
 
         fileReference.putFile(uri)
             .addOnSuccessListener { taskSnapshot ->
-                Toast.makeText(this, "Archivo subido con éxito.", Toast.LENGTH_SHORT).show()
+                // Obtener la URL del archivo subido
+                fileReference.downloadUrl.addOnSuccessListener { uri ->
+                    onComplete(uri.toString())
+                }
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Error al subir el archivo: $e", Toast.LENGTH_SHORT).show()

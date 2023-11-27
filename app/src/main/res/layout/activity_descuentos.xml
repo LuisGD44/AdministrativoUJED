@@ -19,7 +19,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
@@ -39,8 +39,8 @@
     <Button
         android:id="@+id/btnDental"
         style="@style/bottonGreen"
-        android:layout_width="165dp"
-        android:layout_height="50dp"
+        android:layout_width="170dp"
+        android:layout_height="64dp"
         android:gravity="center"
         android:text="Tratamiento dental "
         app:layout_constraintBottom_toTopOf="@+id/topTextView"
@@ -52,8 +52,8 @@
     <Button
         android:id="@+id/btnLentes"
         style="@style/bottonGreen"
-        android:layout_width="165dp"
-        android:layout_height="55dp"
+        android:layout_width="175dp"
+        android:layout_height="81dp"
         android:layout_marginTop="152dp"
         android:gravity="center"
         android:text="Solicitar descuento lentes "

@@ -4,46 +4,44 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toolbar
 import com.example.administrativoujed.databinding.ActivityExentosBinding
-import com.example.administrativoujed.databinding.ActivityPerfilBinding
-import com.example.administrativoujed.databinding.FragmentDashboardBinding
-
 
 class exentos : AppCompatActivity() {
     private var _binding: ActivityExentosBinding? = null
-
-
     private val binding get() = _binding!!
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_exentos)
+        _binding = ActivityExentosBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-
-        val btnHijo: Button = findViewById(R.id.btnHijo)
+        val btnHijo: Button = binding.btnHijo
         btnHijo.setOnClickListener {
             val intent = Intent(this, exentohijo::class.java)
             startActivity(intent)
         }
-        val btnTrabajador: Button = findViewById(R.id.btnTrabajador)
+
+        val btnTrabajador: Button = binding.btnTrabajador
         btnTrabajador.setOnClickListener {
             val intent = Intent(this, exentoTrabajador::class.java)
             startActivity(intent)
         }
-        val btnnieto: Button = findViewById(R.id.btnNieto)
-        btnnieto.setOnClickListener {
+
+        val btnNieto: Button = binding.btnNieto
+        btnNieto.setOnClickListener {
             val intent = Intent(this, exentonieto::class.java)
             startActivity(intent)
         }
-        val btndependiente: Button = findViewById(R.id.btnDependientes)
-        btndependiente.setOnClickListener {
+
+        val btnDependientes: Button = binding.btnDependientes
+        btnDependientes.setOnClickListener {
             val intent = Intent(this, decendientesActivity::class.java)
             startActivity(intent)
         }
     }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

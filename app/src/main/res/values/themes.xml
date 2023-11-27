@@ -2,7 +2,10 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.AdministrativoUJED" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+      <item name="colorPrimary">@color/red</item>
+        <item name="itemIconTint">@color/white</item>
+        <item name="itemTextColor">@color/white</item>
+
     </style>
 
     <style name="Theme.AdministrativoUJED" parent="Base.Theme.AdministrativoUJED" />

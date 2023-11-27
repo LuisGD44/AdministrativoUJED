@@ -119,7 +119,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
                 android:onClick="seleccionarArchivo"
-                android:text="Acta de nacimiento del hijo"
+                android:text="Carta"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.407"
                 app:layout_constraintStart_toStartOf="parent"
