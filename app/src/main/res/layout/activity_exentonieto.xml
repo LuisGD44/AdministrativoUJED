@@ -86,7 +86,6 @@
             android:inputType="text"
             android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.296"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtEscolarizadoNieto" />
 
@@ -121,7 +120,6 @@
             android:onClick="seleccionarArchivo"
             android:text="Acta de nacimiento del hijo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.407"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtEscuela" />
 
@@ -134,7 +132,6 @@
             android:onClick="seleccionarArchivo"
             android:text="Acta de nacimiento del nieto"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.407"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/actaHijo" />
 
@@ -142,15 +139,30 @@
             android:id="@+id/btnExentoHijo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="@color/green"
             android:text="Enviar datos"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/actaNieto"
-            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintVertical_bias="0.812"
             app:rippleColor="@color/white" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="364dp"
+            android:layout_height="47dp"
+            android:text="Exento de inscripcion para nietos"
+            android:textColor="@color/white"
+            android:textSize="23sp"
+            android:typeface="sans"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.005"
+            app:layout_constraintStart_toStartOf="parent"
+
+            tools:layout_editor_absoluteY="2dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </FrameLayout>

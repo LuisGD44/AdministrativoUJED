@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".lentes">
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tolbar"
         style="@style/BottomNavigationTextStyle"
@@ -17,48 +18,45 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <EditText
         android:id="@+id/txt_matriculaLen"
         android:layout_width="357dp"
         android:layout_height="45dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Matricula"
         android:inputType="number"
         android:padding="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnPreosu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.592"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.73" />
+        app:layout_constraintTop_toBottomOf="@+id/tolbar" />
 
     <Button
         android:id="@+id/btnPreosu"
         android:layout_width="357dp"
         android:layout_height="45dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="204dp"
+        android:layout_marginTop="36dp"
         android:onClick="seleccionarArchivo"
         android:text="Preosupueesto "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.592"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_matriculaLen" />
 
     <Button
         android:id="@+id/btntalondental"
         android:layout_width="357dp"
         android:layout_height="45dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="40dp"
         android:onClick="seleccionarArchivo"
         android:text="Talon de pago"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.592"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnPreosu" />
 
@@ -67,43 +65,56 @@
         style="@style/bottonGreen"
         android:layout_width="169dp"
         android:layout_height="82dp"
+        android:layout_marginTop="48dp"
         android:gravity="center"
         android:text="Ver listado de opticas  "
-        app:layout_constraintBottom_toTopOf="@+id/topTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btntalondental" />
-
 
     <Button
         android:id="@+id/btnExentoHijo"
         android:layout_width="160dp"
         android:layout_height="50dp"
-        android:layout_marginTop="64dp"
-        android:backgroundTint="@color/red"
+        android:backgroundTint="@color/green"
         android:text="Enviar datos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topTextView"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.555"
         app:rippleColor="@color/white" />
 
     <TextView
         android:id="@+id/topTextView"
         android:layout_width="0dp"
         android:layout_height="113dp"
-        android:layout_marginBottom="172dp"
+        android:layout_marginTop="36dp"
         android:background="@color/blue"
         android:gravity="center"
         android:text="@string/lentes"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnOpticas" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="373dp"
+        android:layout_height="60dp"
+        android:text="Decuentos en optica"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        android:typeface="sans"
+        app:layout_constraintBottom_toBottomOf="@+id/tolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tolbar"
+        app:layout_constraintVertical_bias="0.411" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

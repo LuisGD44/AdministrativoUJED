@@ -11,51 +11,53 @@
         style="@style/BottomNavigationTextStyle"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="4dp"
         android:background="@color/red"
         android:text="Solicitar Canastilla"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txt_matricula"
         android:layout_width="357dp"
         android:layout_height="45dp"
+        android:layout_marginTop="140dp"
         android:ems="10"
         android:hint="Matricula"
         android:inputType="number"
         android:padding="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnActatra"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintHorizontal_bias="0.703"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.734" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnActatra"
         android:layout_width="357dp"
         android:layout_height="45dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="328dp"
+        android:layout_marginTop="120dp"
         android:onClick="seleccionarArchivo"
         android:text="Subir acta de nacimiento"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.703"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_matricula" />
 
     <Button
         android:id="@+id/btnCanastilla"
         android:layout_width="160dp"
         android:layout_height="50dp"
         android:layout_marginTop="112dp"
-        android:backgroundTint="@color/red"
+        android:backgroundTint="@color/green"
         android:text="Enviar datos"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topTextView"
         app:rippleColor="@color/white" />
@@ -64,17 +66,31 @@
         android:id="@+id/topTextView"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginBottom="248dp"
+        android:layout_marginTop="108dp"
         android:background="@color/blue"
         android:gravity="center"
         android:text="Se depositan $4,815.35 pesos mexicanos"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnActatra" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="378dp"
+        android:layout_height="46dp"
+        android:text="Canastilla de maternidad"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        android:typeface="sans"
+        app:layout_constraintBottom_toBottomOf="@+id/tolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tolbar"
+        app:layout_constraintVertical_bias="0.411" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.administrativoujed"
+    namespace = "com.tramites.administrativoujed"
     compileSdk = 34
 
     buildFeatures {
@@ -17,7 +17,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.administrativoujed"
+        applicationId = "com.tramites.administrativoujed"
         minSdk = 21
         targetSdk = 33
         versionCode = 1

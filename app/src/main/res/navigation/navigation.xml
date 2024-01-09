@@ -8,7 +8,7 @@
     <!-- Define el fragmento de inicio (exentohijoFragment) y el fragmento al que quieres navegar (otroFragment) -->
     <fragment
         android:id="@+id/exentohijoFragment"
-        android:name="com.example.administrativoujed.exentohijo"
+        android:name="com.tramites.administrativoujed.exentohijo"
         android:label="Exentohijo"
         tools:layout="@layout/fragment_exentohijo">
 
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/otroFragment"
-        android:name="com.example.administrativoujed.exentohijo"
+        android:name="com.tramites.administrativoujed.exentohijo"
         android:label="Otro Fragment"
         tools:layout="@layout/activity_exentos" />
 

@@ -31,40 +31,54 @@
             android:id="@+id/txt_matriculaTra"
             android:layout_width="388dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="148dp"
             android:ems="10"
             android:hint="Matricula"
             android:inputType="number"
             android:padding="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/btnActatra"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.478"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.702" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnActatra"
             android:layout_width="357dp"
             android:layout_height="45dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="212dp"
+            android:layout_marginTop="80dp"
             android:onClick="seleccionarArchivo"
             android:text="Subir acta de nacimiento"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_matriculaTra" />
 
         <Button
             android:id="@+id/btnExentoHijo"
             android:layout_width="160dp"
             android:layout_height="50dp"
             android:layout_marginTop="116dp"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="@color/green"
             android:text="Enviar datos"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnActatra"
             app:rippleColor="@color/white" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="294dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="4dp"
+            android:text="Exento trabajador"
+            android:textColor="@color/white"
+            android:textSize="35sp"
+            android:typeface="sans"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.021"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

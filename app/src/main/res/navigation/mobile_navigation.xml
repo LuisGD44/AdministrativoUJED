@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.administrativoujed.ui.home.HomeFragment"
+        android:name="com.tramites.administrativoujed.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home"
         android:icon="@drawable/ic_home"
@@ -15,24 +15,24 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.administrativoujed.ui.dashboard.DashboardFragment"
+        android:name="com.tramites.administrativoujed.ui.dashboard.DashboardFragment"
         android:label="Tramites"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.administrativoujed.ui.notifications.NotificationsFragment"
+        android:name="com.tramites.administrativoujed.ui.notifications.NotificationsFragment"
         android:label="@string/title_notificaciones"
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/navigation_calendario"
-        android:name="com.example.administrativoujed.ui.calendario.CalendarioFragment"
+        android:name="com.tramites.administrativoujed.ui.calendario.CalendarioFragment"
         android:label="@string/title_calendario"
         tools:layout="@layout/fragment_calendario" />
 
     <fragment
         android:id="@+id/exentohijo"
-        android:name="com.example.administrativoujed.exentohijo"
+        android:name="com.tramites.administrativoujed.exentohijo"
         android:label="Exentohijo"
         tools:layout="@layout/fragment_exentohijo" />
 

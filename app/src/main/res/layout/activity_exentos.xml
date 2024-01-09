@@ -29,75 +29,91 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.716" />
 
     <Button
         android:id="@+id/btnDependientes"
         style="@style/bottonGreen"
         android:layout_width="170dp"
         android:layout_height="96dp"
-        android:layout_marginBottom="108dp"
+        android:layout_marginBottom="384dp"
         android:gravity="center"
         android:text="Exento para dependientes economicos "
-        app:layout_constraintBottom_toTopOf="@+id/text_dashboard"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.895"
+        app:layout_constraintHorizontal_bias="0.892"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnTrabajador"
-        style="@style/bottonGreen"
-        android:layout_width="165dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="56dp"
-        android:text="Exento trabajador"
-        app:layout_constraintBottom_toTopOf="@+id/btnDependientes"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.857"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tolbar"
-        app:layout_constraintVertical_bias="0.994" />
-
-    <Button
-        android:id="@+id/btnHijo"
-        style="@style/bottonGreen"
-        android:layout_width="165dp"
-        android:layout_height="65dp"
-        android:layout_marginBottom="44dp"
-        android:gravity="center"
-        android:text="Exento Hijo de trabajador "
-        app:layout_constraintBottom_toTopOf="@+id/btnNieto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.107"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.988" />
 
     <Button
         android:id="@+id/btnNieto"
         style="@style/bottonGreen"
         android:layout_width="165dp"
         android:layout_height="105dp"
-        android:layout_marginBottom="108dp"
+        android:layout_marginBottom="376dp"
         android:gravity="center"
         android:text="Exentos para nietos de trabajadores"
-        app:layout_constraintBottom_toTopOf="@+id/text_dashboard"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.112"
+        app:layout_constraintHorizontal_bias="0.109"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnHijo"
+        style="@style/bottonGreen"
+        android:layout_width="165dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="68dp"
+        android:gravity="center"
+        android:text="Exento Hijo de trabajador "
+        app:layout_constraintBottom_toTopOf="@+id/btnNieto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.109"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tolbar"
+        app:layout_constraintVertical_bias="0.076" />
+
+    <Button
+        android:id="@+id/btnTrabajador"
+        style="@style/bottonGreen"
+        android:layout_width="165dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="68dp"
+        android:text="Exento trabajador"
+        app:layout_constraintBottom_toTopOf="@+id/btnDependientes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tolbar"
+        app:layout_constraintVertical_bias="0.098" />
 
     <View
         android:id="@+id/topView"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginBottom="436dp"
+        android:layout_marginBottom="240dp"
         android:background="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="214dp"
+        android:layout_height="47dp"
+        android:text="Exentos"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        android:typeface="sans"
+        app:layout_constraintBottom_toBottomOf="@+id/tolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tolbar"
+        app:layout_constraintVertical_bias="0.411" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

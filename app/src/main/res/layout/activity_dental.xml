@@ -24,40 +24,39 @@
         android:id="@+id/txt_matriculaTra"
         android:layout_width="357dp"
         android:layout_height="45dp"
+        android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="Matricula"
         android:inputType="number"
         android:padding="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnPreosu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.782" />
+        app:layout_constraintTop_toBottomOf="@+id/tolbar" />
 
     <Button
         android:id="@+id/btnPreosu"
         android:layout_width="357dp"
         android:layout_height="45dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="192dp"
+        android:layout_marginTop="20dp"
         android:onClick="seleccionarArchivo"
         android:text="Preosupueesto facultad de odontologia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_matriculaTra" />
 
     <Button
         android:id="@+id/btntalondental"
         android:layout_width="357dp"
         android:layout_height="45dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:onClick="seleccionarArchivo"
         android:text="copia de Talon de pago"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnPreosu" />
+
 
     <Button
         android:id="@+id/btnActamatrimonio"
@@ -67,43 +66,53 @@
         android:layout_marginTop="36dp"
         android:onClick="seleccionarArchivo"
         android:text="Acta de matrimonio(solo si es requerida)"
-        app:layout_constraintBottom_toTopOf="@+id/topTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btntalondental"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/btntalondental" />
 
     <Button
         android:id="@+id/btnExentoHijo"
         android:layout_width="160dp"
         android:layout_height="50dp"
-        android:layout_marginTop="112dp"
-        android:backgroundTint="@color/red"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@color/green"
+        android:onClick="enviarDatos"
         android:text="Enviar datos"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topTextView"
-        app:rippleColor="@color/white"
-        android:onClick="enviarDatos" />
-
-
-
-
+        app:rippleColor="@color/white" />
 
     <TextView
         android:id="@+id/topTextView"
         android:layout_width="0dp"
         android:layout_height="113dp"
-        android:layout_marginBottom="172dp"
+        android:layout_marginTop="48dp"
         android:background="@color/blue"
         android:gravity="center"
         android:text="@string/dental"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnActamatrimonio" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="337dp"
+        android:layout_height="54dp"
+        android:text="Descuento dental"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:typeface="sans"
+        app:layout_constraintBottom_toBottomOf="@+id/tolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.216"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tolbar"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
