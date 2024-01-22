@@ -20,6 +20,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <ImageButton
+        android:id="@+id/btnBackde"
+        android:layout_width="52dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_back_foreground"
+        app:layout_constraintBottom_toBottomOf="@+id/tolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.592" />
+
     <EditText
         android:id="@+id/txt_matriculaTra"
         android:layout_width="357dp"
@@ -102,17 +114,18 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="337dp"
-        android:layout_height="54dp"
+        android:layout_width="287dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="56dp"
         android:text="Descuento dental"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:typeface="sans"
         app:layout_constraintBottom_toBottomOf="@+id/tolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.216"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.557"
+        app:layout_constraintStart_toEndOf="@+id/btnBack"
         app:layout_constraintTop_toTopOf="@+id/tolbar"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.533" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,53 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".canastilla">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tolbar"
         style="@style/BottomNavigationTextStyle"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_marginTop="4dp"
+        android:layout_width="412dp"
+        android:layout_height="60dp"
         android:background="@color/red"
         android:text="Solicitar Canastilla"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
 
-    <EditText
-        android:id="@+id/txt_matricula"
+        <ImageButton
+            android:id="@+id/btnBackca"
+            android:layout_width="54dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="4dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_back_foreground"
+            app:layout_constraintBottom_toBottomOf="@+id/tolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.444" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="336dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="16dp"
+            android:text="Canastilla de maternidad"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:typeface="sans"
+            app:layout_constraintBottom_toBottomOf="@+id/tolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/btnBackca"
+            app:layout_constraintTop_toTopOf="@+id/tolbar"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/txt_matricula"
+            android:layout_width="357dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="44dp"
+            android:ems="10"
+            android:hint="Matricula"
+            android:inputType="number"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+        android:id="@+id/txtSexo"
         android:layout_width="357dp"
         android:layout_height="45dp"
-        android:layout_marginTop="140dp"
-        android:ems="10"
-        android:hint="Matricula"
-        android:inputType="number"
+        android:layout_marginTop="44dp"
+        android:hint="SEXO"
         android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.703"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_matricula" />
+
+    <EditText
+        android:id="@+id/txtfecha"
+        android:layout_width="357dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="44dp"
+        android:ems="10"
+        android:hint="Fecha de nacimiento del infante"
+        android:inputType="date"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.685"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSexo" />
 
     <Button
         android:id="@+id/btnActatra"
         android:layout_width="357dp"
         android:layout_height="45dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="52dp"
         android:onClick="seleccionarArchivo"
-        android:text="Subir acta de nacimiento"
+        android:text="Subir acta de nacimiento del nacido"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.703"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_matricula" />
+        app:layout_constraintTop_toBottomOf="@+id/txtfecha" />
 
     <Button
         android:id="@+id/btnCanastilla"
@@ -62,11 +128,12 @@
         app:layout_constraintTop_toBottomOf="@+id/topTextView"
         app:rippleColor="@color/white" />
 
+
     <TextView
         android:id="@+id/topTextView"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="112dp"
         android:background="@color/blue"
         android:gravity="center"
         android:text="Se depositan $4,815.35 pesos mexicanos"
@@ -78,19 +145,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnActatra" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="378dp"
-        android:layout_height="46dp"
-        android:text="Canastilla de maternidad"
-        android:textColor="@color/white"
-        android:textSize="28sp"
-        android:typeface="sans"
-        app:layout_constraintBottom_toBottomOf="@+id/tolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.04"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tolbar"
-        app:layout_constraintVertical_bias="0.411" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

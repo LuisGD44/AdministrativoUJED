@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.tramites.administrativoujed.canastilla
+import com.tramites.administrativoujed.cuotasActivity
 import com.tramites.administrativoujed.databinding.FragmentDashboardBinding
 import com.tramites.administrativoujed.descuentos
 import com.tramites.administrativoujed.exentos
@@ -62,6 +63,12 @@ class DashboardFragment : Fragment() {
         val btnVacantes: Button = binding.btnMaterial
         btnVacantes.setOnClickListener{
             val intent = Intent(requireContext(), vacantesActivity::class.java)
+            startActivity(intent)
+        }
+
+        val btnCuota: Button = binding.btnCuota
+        btnCuota.setOnClickListener{
+            val intent = Intent(requireContext(), cuotasActivity::class.java)
             startActivity(intent)
         }
         return root

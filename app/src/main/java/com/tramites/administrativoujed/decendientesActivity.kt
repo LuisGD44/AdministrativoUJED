@@ -16,17 +16,21 @@ import com.google.firebase.storage.StorageReference
 import java.util.UUID
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.os.Build
+import android.widget.ImageButton
 import androidx.core.app.NotificationCompat
 
 
 class decendientesActivity : AppCompatActivity() {
     private lateinit var txtPresencialde: Spinner
     private lateinit var txtEscolarizadode: Spinner
+    private lateinit var txtEscuelade: Spinner
     private lateinit var talonUri: Uri
     private lateinit var actaHijoUri: Uri
     private lateinit var actaCartaUri: Uri
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +38,7 @@ class decendientesActivity : AppCompatActivity() {
 
         txtPresencialde = findViewById(R.id.txtPresencialde)
         txtEscolarizadode = findViewById(R.id.txtEscolarizadode)
+        txtEscuelade = findViewById(R.id.txtEscuelade)
 
         val presencialAdapter = ArrayAdapter.createFromResource(
             this,
@@ -50,6 +55,15 @@ class decendientesActivity : AppCompatActivity() {
         )
         escolarizadoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         txtEscolarizadode.adapter = escolarizadoAdapter
+
+
+        val escuelaAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.Escuela,
+            android.R.layout.simple_spinner_item
+        )
+        escuelaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        txtEscuelade.adapter = escuelaAdapter
 
         val btnTalon = findViewById<Button>(R.id.btnTalon)
         btnTalon.setOnClickListener {
@@ -69,6 +83,10 @@ class decendientesActivity : AppCompatActivity() {
         val btnExentoDec = findViewById<Button>(R.id.btnexentoDec)
         btnExentoDec.setOnClickListener {
             enviarDatos()
+        }
+        val btnBack: ImageButton = findViewById(R.id.btnBackexDependientes)
+        btnBack.setOnClickListener {
+            onBackPressed()
         }
     }
 
@@ -99,11 +117,12 @@ class decendientesActivity : AppCompatActivity() {
         val matricula = findViewById<EditText>(R.id.txt_matriculaTrabajador).text.toString()
         val matriculaAlumno = findViewById<EditText>(R.id.txt_matriculaAlunmo).text.toString()
         val semestre = findViewById<EditText>(R.id.txt_semestre).text.toString()
-        val escuela = findViewById<EditText>(R.id.txtEscuela).text.toString()
+        val nombreDependiente = findViewById<EditText>(R.id.txtDependiente).text.toString()
         val presencialDec = txtPresencialde.selectedItem.toString()
         val escolarizadoDec = txtEscolarizadode.selectedItem.toString()
+        val escuela = txtEscuelade.selectedItem.toString()
 
-        if (matricula.isEmpty() || matriculaAlumno.isEmpty() || semestre.isEmpty() || escuela.isEmpty() || talonUri == null || actaHijoUri == null || actaCartaUri == null) {
+        if (matricula.isEmpty() || matriculaAlumno.isEmpty() || semestre.isEmpty()  || talonUri == null || actaHijoUri == null || actaCartaUri == null) {
             Toast.makeText(this, "Por favor, complete todos los campos.", Toast.LENGTH_SHORT).show()
             return
         }
@@ -123,6 +142,7 @@ class decendientesActivity : AppCompatActivity() {
                         "semestre" to semestre,
                         "escuela" to escuela,
                         "presencialDec" to presencialDec,
+                        "nombreDependiente" to nombreDependiente,
                         "escolarizadoDec" to escolarizadoDec,
                         "talonUri" to talonUrl,
                         "actaHijoUri" to actaHijoUrl,
@@ -130,14 +150,44 @@ class decendientesActivity : AppCompatActivity() {
                     )
 
                     informacionExentoDecRef.add(nuevoDocumento)
-                        .addOnSuccessListener { documentReference ->
-                            Toast.makeText(this, "Datos enviados con éxito.", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this, exentos::class.java)
+                        .addOnSuccessListener {
+
+                            val intent = Intent(this, MainPerfil::class.java)
+                            val pendingIntent = PendingIntent.getActivity(this, 0, intent,
+                                PendingIntent.FLAG_IMMUTABLE)
+
+                            // Crear un NotificationCompat.Builder
+                            val builder = NotificationCompat.Builder(this, "Notificacion_dependiente")
+                                .setSmallIcon(R.drawable.ic_notification)
+                                .setContentTitle("Solicitud de exento de inscripcion enviada con éxito.")
+                                .setContentText("Haz clic para ver el status de este tramite.")
+                                .setContentIntent(pendingIntent)
+                                .setAutoCancel(true) // Cierra la notificación al hacer clic en ella
+
+                            // Verificar la versión de Android y crear un canal de notificación si es necesario
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                val channel = NotificationChannel(
+                                    "Notificacion_dependiente",
+                                    "Nombre del canal",
+                                    NotificationManager.IMPORTANCE_DEFAULT
+                                )
+                                val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                                notificationManager.createNotificationChannel(channel)
+                            }
+
+                            // Obtener el NotificationManager y mostrar la notificación
+                            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                            notificationManager.notify(1, builder.build())
+
+                            Toast.makeText(this, "Solicitud de exento  enviada con éxito.", Toast.LENGTH_SHORT).show()
+
+                            // Iniciar la nueva actividad
                             startActivity(intent)
                         }
                         .addOnFailureListener { e ->
                             Toast.makeText(this, "Error al guardar en Firestore: $e", Toast.LENGTH_SHORT).show()
                         }
+                    
                 }
             }
         }

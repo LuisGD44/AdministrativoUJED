@@ -1,17 +1,22 @@
 package com.tramites.administrativoujed
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class vacantesActivity : AppCompatActivity() {
     private val unidadesAcademicas = listOf(
-        "ABOGADO GENERAL", "BIBLIOTECA CENTRAL SGA", "BUFETE JURIDICO", "CENTRO DE DESARROLLO CULTURAL",
+       "Unidad Academica", "ABOGADO GENERAL", "BIBLIOTECA CENTRAL SGA", "BUFETE JURIDICO", "CENTRO DE DESARROLLO CULTURAL",
         "CENTRO DE DESARROLLO DEPORTE UNIV. (NUEVO)", "CENTRO DE GRADUADOS", "COLEGIO DE CIENCIAS Y HUMANIDADES",
         "COMPRAS SGAD", "COMUNICACION SOCIAL (NUEVA)", "CONTRALORIA", "COORD TELECOMUNICACION INFORMATICA SGAD",
         "COORDINACION DE OBRAS SGAD", "CORRESPONDENCIA Y MENSAJERIA SGAD", "DIR. DE EXTENSION Y VINCULACION S.(NUEVA)",
@@ -34,6 +39,7 @@ class vacantesActivity : AppCompatActivity() {
     )
 
     private val comentarios = listOf(
+        "Comentarios",
         "Ascenso en la misma unidad académica",
         "Moverme de Unidad académica",
         "Cambio de actividad"
@@ -46,9 +52,14 @@ class vacantesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vacantes)
 
+        val txtFecha = findViewById<EditText>(R.id.editTextFecha)
         val spinnerUnidadAcademica = findViewById<Spinner>(R.id.spinnerUnidadAcademica)
         val spinnerComentario = findViewById<Spinner>(R.id.spinnerComentario)
         val btnEnviar = findViewById<Button>(R.id.btnExentoHijo)
+
+        txtFecha.setOnClickListener{
+            mostrarDatePicker()
+        }
 
         // Crear un ArrayAdapter para el Spinner de Unidad Académica
         val adapterUA = ArrayAdapter(this, android.R.layout.simple_spinner_item, unidadesAcademicas)
@@ -62,6 +73,10 @@ class vacantesActivity : AppCompatActivity() {
 
         btnEnviar.setOnClickListener {
             enviarDatos()
+        }
+        val btnBack: ImageButton = findViewById(R.id.btnBackVacantes)
+        btnBack.setOnClickListener {
+            onBackPressed()
         }
     }
 
@@ -93,5 +108,30 @@ class vacantesActivity : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Error al guardar en Firestore: $e", Toast.LENGTH_SHORT).show()
             }
+    }
+    private fun mostrarDatePicker() {
+        val calendar = Calendar.getInstance()
+        val añoActual = calendar.get(Calendar.YEAR)
+        val mesActual = calendar.get(Calendar.MONTH)
+        val diaActual = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            DatePickerDialog.OnDateSetListener { _, año, mes, dia ->
+                val fechaSeleccionada = Calendar.getInstance()
+                fechaSeleccionada.set(año, mes, dia)
+
+                val formatoFecha = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val fechaFormateada = formatoFecha.format(fechaSeleccionada.time)
+
+                val txtFecha = findViewById<EditText>(R.id.txt_fecha)
+                txtFecha.setText(fechaFormateada)
+            },
+            añoActual,
+            mesActual,
+            diaActual
+        )
+
+        datePickerDialog.show()
     }
 }

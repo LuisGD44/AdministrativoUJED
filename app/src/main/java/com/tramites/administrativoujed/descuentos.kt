@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import com.tramites.administrativoujed.databinding.ActivityDescuentosBinding
 import com.tramites.administrativoujed.databinding.FragmentDashboardBinding
 
@@ -26,6 +27,10 @@ class descuentos : AppCompatActivity() {
         btnlentes.setOnClickListener {
             val intent = Intent(this, lentes::class.java)
             startActivity(intent)
+        }
+        val btnBack: ImageButton = findViewById(R.id.btnBackdes)
+        btnBack.setOnClickListener {
+            onBackPressed()
         }
     }
 

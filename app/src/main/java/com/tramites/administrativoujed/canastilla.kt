@@ -1,6 +1,7 @@
 package com.tramites.administrativoujed
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -17,11 +18,19 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.os.Build
+import android.widget.ArrayAdapter
+import android.widget.ImageButton
+import android.widget.Spinner
 import androidx.core.app.NotificationCompat
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 
 class canastilla : AppCompatActivity() {
     private lateinit var matricula: EditText
+    private lateinit var sexo: Spinner
+    private lateinit var txtFecha: EditText
     private lateinit var actaUri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +38,13 @@ class canastilla : AppCompatActivity() {
         setContentView(R.layout.activity_canastilla)
 
         matricula = findViewById(R.id.txt_matricula)
+        sexo = findViewById(R.id.txtSexo)
+        txtFecha = findViewById(R.id.txtfecha)
+
+        txtFecha.setOnClickListener {
+            mostrarDatePicker()
+        }
+
 
         val btnActa = findViewById<Button>(R.id.btnActatra)
         btnActa.setOnClickListener {
@@ -39,6 +55,19 @@ class canastilla : AppCompatActivity() {
         btnEnviarDatos.setOnClickListener {
             enviarDatos()
         }
+        val btnBack: ImageButton = findViewById(R.id.btnBackca)
+        btnBack.setOnClickListener {
+            onBackPressed()
+        }
+
+        val escuelaAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.sexo,
+            android.R.layout.simple_spinner_item
+        )
+        escuelaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        sexo.adapter = escuelaAdapter
     }
 
     private fun seleccionarArchivo(pickImageRequest: Int) {
@@ -60,8 +89,10 @@ class canastilla : AppCompatActivity() {
 
     private fun enviarDatos() {
         val matriculaText = matricula.text.toString()
+        val sexo = sexo.selectedItem.toString()
+        val fecha = txtFecha.text.toString()
 
-        if (matriculaText.isEmpty() || actaUri == null) {
+        if (matriculaText.isEmpty() || actaUri == null || sexo.isEmpty()) {
             Toast.makeText(this, "Por favor, complete todos los campos y seleccione el archivo.", Toast.LENGTH_SHORT).show()
             return
         }
@@ -77,6 +108,8 @@ class canastilla : AppCompatActivity() {
             val canastillaRef = db.collection("canastilla")
             val nuevoDocumento = hashMapOf(
                 "matricula" to matriculaText,
+                "sexo" to sexo,
+                "Fecha" to fecha,
                 "actaUri" to actaUrl
             )
 
@@ -88,17 +121,17 @@ class canastilla : AppCompatActivity() {
                         PendingIntent.FLAG_IMMUTABLE)
 
                     // Crear un NotificationCompat.Builder
-                    val builder = NotificationCompat.Builder(this, "mi_canal_id")
+                    val builder = NotificationCompat.Builder(this, "Notificacion_canastilla")
                         .setSmallIcon(R.drawable.ic_notification) // Puedes personalizar el ícono
                         .setContentTitle("Solicitud de canastilla enviada con éxito.")
-                        .setContentText("Haz clic para ver más detalles.")
+                        .setContentText("Haz clic para ver el status de este tramite.")
                         .setContentIntent(pendingIntent)
                         .setAutoCancel(true) // Cierra la notificación al hacer clic en ella
 
                     // Verificar la versión de Android y crear un canal de notificación si es necesario
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         val channel = NotificationChannel(
-                            "mi_canal_id",
+                            "Notificacion_canastilla",
                             "Nombre del canal",
                             NotificationManager.IMPORTANCE_DEFAULT
                         )
@@ -120,6 +153,33 @@ class canastilla : AppCompatActivity() {
                 }
         }
     }
+
+    private fun mostrarDatePicker() {
+        val calendar = Calendar.getInstance()
+        val añoActual = calendar.get(Calendar.YEAR)
+        val mesActual = calendar.get(Calendar.MONTH)
+        val diaActual = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            DatePickerDialog.OnDateSetListener { _, año, mes, dia ->
+                val fechaSeleccionada = Calendar.getInstance()
+                fechaSeleccionada.set(año, mes, dia)
+
+                val formatoFecha = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val fechaFormateada = formatoFecha.format(fechaSeleccionada.time)
+
+                val txtFecha = findViewById<EditText>(R.id.txtfecha)
+                txtFecha.setText(fechaFormateada)
+            },
+            añoActual,
+            mesActual,
+            diaActual
+        )
+
+        datePickerDialog.show()
+    }
+
 
     private fun subirArchivo(uri: Uri, storageReference: StorageReference, fileName: String, onComplete: (String) -> Unit) {
         val fileReference: StorageReference = storageReference.child("canastilla/$fileName")

@@ -1,13 +1,20 @@
 package com.tramites.administrativoujed
 
 import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -43,6 +50,11 @@ class dental : AppCompatActivity() {
         val btnExentoHijo = findViewById<Button>(R.id.btnExentoHijo)
         btnExentoHijo.setOnClickListener {
             enviarDatos()
+        }
+
+        val btnBack: ImageButton = findViewById(R.id.btnBackde)
+        btnBack.setOnClickListener {
+            onBackPressed()
         }
     }
 
@@ -96,9 +108,41 @@ class dental : AppCompatActivity() {
                             "actaMatrimonioUri" to actaMatrimonioUrl
                         )
 
+
                         informacionDentalRef.add(nuevoDocumento)
-                            .addOnSuccessListener { documentReference ->
-                                Toast.makeText(this, "Datos enviados con éxito.", Toast.LENGTH_SHORT).show()
+                            .addOnSuccessListener {
+                                // Crear un intent para la actividad a la que deseas ir
+                                val intent = Intent(this, MainPerfil::class.java)
+                                val pendingIntent = PendingIntent.getActivity(this, 0, intent,
+                                    PendingIntent.FLAG_IMMUTABLE)
+
+                                // Crear un NotificationCompat.Builder
+                                val builder = NotificationCompat.Builder(this, "Notificacion_dental")
+                                    .setSmallIcon(R.drawable.ic_notification)
+                                    .setContentTitle("Solicitud de descuento en dentista enviada con éxito.")
+                                    .setContentText("Haz clic para ver el status de este tramite.")
+                                    .setContentIntent(pendingIntent)
+                                    .setAutoCancel(true) // Cierra la notificación al hacer clic en ella
+
+                                // Verificar la versión de Android y crear un canal de notificación si es necesario
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                    val channel = NotificationChannel(
+                                        "Notificacion_dental",
+                                        "Nombre del canal",
+                                        NotificationManager.IMPORTANCE_DEFAULT
+                                    )
+                                    val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                                    notificationManager.createNotificationChannel(channel)
+                                }
+
+                                // Obtener el NotificationManager y mostrar la notificación
+                                val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                                notificationManager.notify(1, builder.build())
+
+                                Toast.makeText(this, "Solicitud de descuento en dentista  enviada con éxito.", Toast.LENGTH_SHORT).show()
+
+                                // Iniciar la nueva actividad
+                                startActivity(intent)
                             }
                             .addOnFailureListener { e ->
                                 Toast.makeText(this, "Error al guardar en Firestore: $e", Toast.LENGTH_SHORT).show()

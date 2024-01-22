@@ -22,6 +22,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="52dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_back_foreground"
+        app:layout_constraintBottom_toBottomOf="@+id/tolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.533" />
 
     <EditText
         android:id="@+id/txt_matriculaLen"
@@ -104,17 +115,18 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="373dp"
-        android:layout_height="60dp"
-        android:text="Decuentos en optica"
+        android:layout_width="308dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="16dp"
+        android:text="Decuentos en opticas"
         android:textColor="@color/white"
-        android:textSize="28sp"
+        android:textSize="25sp"
         android:typeface="sans"
         app:layout_constraintBottom_toBottomOf="@+id/tolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.04"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/btnBack"
         app:layout_constraintTop_toTopOf="@+id/tolbar"
-        app:layout_constraintVertical_bias="0.411" />
+        app:layout_constraintVertical_bias="0.608" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

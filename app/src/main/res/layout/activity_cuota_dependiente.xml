@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".decendientesActivity">
+    tools:context=".cuotaDependienteActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tolbar"
@@ -33,7 +33,7 @@
             android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Exento de inscripcion para dependites de trabajadores"
+            android:text="Exento de cuotas para dependites de trabajadores"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold"/>
@@ -51,7 +51,7 @@
 
 
             <Button
-                android:id="@+id/btnTalon"
+                android:id="@+id/btnTalonDepC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_centerHorizontal="true"
@@ -63,7 +63,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/txt_matriculaTrabajador"
+                android:id="@+id/txt_matriculaTrabajadorDepC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="28dp"
@@ -74,10 +74,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.407"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtDependiente" />
+                app:layout_constraintTop_toBottomOf="@+id/txtDependienteDepC" />
 
             <EditText
-                android:id="@+id/txt_matriculaAlunmo"
+                android:id="@+id/txt_matriculaAlunmoDepC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="40dp"
@@ -87,10 +87,10 @@
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_matriculaTrabajador" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_matriculaTrabajadorDepC" />
 
             <EditText
-                android:id="@+id/txt_semestre"
+                android:id="@+id/txt_semestreDepC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="40dp"
@@ -100,23 +100,23 @@
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_matriculaAlunmo" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_matriculaAlunmoDepC" />
 
             <Spinner
-                android:id="@+id/txtEscuelade"
+                android:id="@+id/txtEscuelaDepC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="24dp"
                 android:ems="10"
                 android:hint="Escuela o facultad"
                 android:inputType="text"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtEscolarizadode" />
+                app:layout_constraintTop_toBottomOf="@+id/txtPeridoDepC" />
 
             <Spinner
-                android:id="@+id/txtPresencialde"
+                android:id="@+id/txtPresencialDepC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="36dp"
@@ -124,10 +124,10 @@
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_semestre" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_semestreDepC" />
 
             <Spinner
-                android:id="@+id/txtEscolarizadode"
+                android:id="@+id/txtEscolarizadoDepC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="36dp"
@@ -135,10 +135,21 @@
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtPresencialde" />
+                app:layout_constraintTop_toBottomOf="@+id/txtPresencialDepC" />
+
+            <Spinner
+                android:id="@+id/txtPeridoDepC"
+                android:layout_width="357dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="16dp"
+                android:hint="Tipo de periodo"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtEscolarizadoDepC" />
 
             <Button
-                android:id="@+id/btnActa"
+                android:id="@+id/btnActaDepC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_centerHorizontal="true"
@@ -147,10 +158,10 @@
                 android:text="Acta de nacimiento del dependiente"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtEscuelade" />
+                app:layout_constraintTop_toBottomOf="@+id/txtEscuelaDepC" />
 
             <Button
-                android:id="@+id/btnCarta"
+                android:id="@+id/btnCartaDepC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_centerHorizontal="true"
@@ -159,10 +170,10 @@
                 android:text="Carta notariada"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnActa" />
+                app:layout_constraintTop_toBottomOf="@+id/btnActaDepC" />
 
             <Button
-                android:id="@+id/btnexentoDec"
+                android:id="@+id/btnexentoDepC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -171,11 +182,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnCarta"
+                app:layout_constraintTop_toBottomOf="@+id/btnCartaDepC"
                 app:rippleColor="@color/white" />
 
             <EditText
-                android:id="@+id/txtDependiente"
+                android:id="@+id/txtDependienteDepC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="28dp"
@@ -184,7 +195,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.407"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnTalon" />
+                app:layout_constraintTop_toBottomOf="@+id/btnTalonDepC" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </LinearLayout>

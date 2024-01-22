@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -15,35 +16,45 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.util.UUID
 
-class exentohijo : AppCompatActivity() {
-    private lateinit var txtPresencialSpinner: Spinner
-    private lateinit var txtEscuelaSpinner: Spinner
-    private lateinit var txtEscolarizadoSpinner: Spinner
-    private lateinit var actaUri: Uri
-    private lateinit var talonUri: Uri
-
+class cuotaTrabajadorActivity : AppCompatActivity() {
+    private lateinit var txtMatriculaC: EditText
+    private lateinit var txtSemestreC: EditText
+    private  lateinit var txtMatriculaEscolarC: EditText
+    private lateinit var txtEscuelaSpinnerC: Spinner
+    private lateinit var txtEscolarizadoSpinnerC: Spinner
+    private lateinit var txtPeriodoSpinnerC: Spinner
+    private var actaUri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_exentohijo)
+        setContentView(R.layout.activity_cuota_trabajador)
 
-        txtPresencialSpinner = findViewById(R.id.txtPresencial)
-        txtEscolarizadoSpinner = findViewById(R.id.txtEscolarizado)
-        txtEscuelaSpinner = findViewById(R.id.txtEscuela)
+        txtMatriculaEscolarC = findViewById(R.id.txt_matriculaEscolarTraC)
+        txtMatriculaC = findViewById(R.id.txt_matriculaTraC)
+        txtSemestreC = findViewById(R.id.txtSemestreTraC)
+        txtEscolarizadoSpinnerC = findViewById(R.id.txtEscolarizadoTraC)
+        txtEscuelaSpinnerC = findViewById(R.id.txtEscuelaTraC)
+        txtPeriodoSpinnerC = findViewById(R.id.txt_periodoTraC)
 
-        val presencialAdapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.presencial,
-            android.R.layout.simple_spinner_item
-        )
-        presencialAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
+        val btnActaNacimiento = findViewById<Button>(R.id.btnActatraC)
+        btnActaNacimiento.setOnClickListener {
+            seleccionarArchivo(PICK_IMAGE_REQUEST_ACTA)
+        }
+
+        val btnExentoHijo = findViewById<Button>(R.id.btnExentoHijo)
+        btnExentoHijo.setOnClickListener {
+            enviarDatos()
+        }
+        val btnBack: ImageButton = findViewById(R.id.btnBackexTrabajador)
+        btnBack.setOnClickListener {
+            onBackPressed()
+        }
 
         val escuelaAdapter = ArrayAdapter.createFromResource(
             this,
@@ -52,6 +63,11 @@ class exentohijo : AppCompatActivity() {
         )
         escuelaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
+        val peridoAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.periodo,
+            android.R.layout.simple_spinner_item
+        )
 
         val escolarizadoAdapter = ArrayAdapter.createFromResource(
             this,
@@ -60,28 +76,9 @@ class exentohijo : AppCompatActivity() {
         )
         escolarizadoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
-        txtPresencialSpinner.adapter = presencialAdapter
-        txtEscolarizadoSpinner.adapter = escolarizadoAdapter
-        txtEscuelaSpinner.adapter = escuelaAdapter
-
-        val btnTalon = findViewById<Button>(R.id.btnTalon)
-        btnTalon.setOnClickListener {
-            seleccionarArchivo(PICK_IMAGE_REQUEST_TALON)
-        }
-
-        val btnActa = findViewById<Button>(R.id.btnActa)
-        btnActa.setOnClickListener {
-            seleccionarArchivo(PICK_IMAGE_REQUEST_ACTA)
-        }
-
-        val btnExentoHijo = findViewById<Button>(R.id.btnExentoHijo)
-        btnExentoHijo.setOnClickListener {
-            enviarDatos()
-        }
-        val btnBack: ImageButton = findViewById(R.id.btnBackexhijo)
-        btnBack.setOnClickListener {
-            onBackPressed()
-        }
+        txtEscolarizadoSpinnerC.adapter = escolarizadoAdapter
+        txtEscuelaSpinnerC.adapter = escuelaAdapter
+        txtPeriodoSpinnerC.adapter = peridoAdapter
     }
 
     private fun seleccionarArchivo(pickImageRequest: Int) {
@@ -94,43 +91,37 @@ class exentohijo : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && data != null) {
             when (requestCode) {
-                PICK_IMAGE_REQUEST_TALON -> {
-                    talonUri = data.data!!
-                }
                 PICK_IMAGE_REQUEST_ACTA -> {
-                    actaUri = data.data!!
+                    actaUri = data.data
                 }
             }
         }
     }
 
     private fun enviarDatos() {
-        val matricula = findViewById<EditText>(R.id.txt_matriculaTrabajador).text.toString()
-        val matriculaAlumno = findViewById<EditText>(R.id.txt_matricula).text.toString()
-        val presencial = txtPresencialSpinner.selectedItem.toString()
-        val escolarizado = txtEscolarizadoSpinner.selectedItem.toString()
-        val escuela = txtEscuelaSpinner.selectedItem.toString()
+        val matricula = txtMatriculaC.text.toString()
+        val matriculaEscolar = txtMatriculaEscolarC.text.toString()
+        val semestreTra = txtSemestreC.text.toString()
+        val escolarizado = txtEscolarizadoSpinnerC.selectedItem.toString()
+        val escuela = txtEscuelaSpinnerC.selectedItem.toString()
+        val periodo = txtPeriodoSpinnerC.selectedItem.toString()
+        val actaUri = this.actaUri
 
         if (matricula.isEmpty() || actaUri == null) {
-            Toast.makeText(this, "Por favor, complete todos los campos y seleccione el acta.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Por favor, complete todos los campos y seleccione el archivo requerido.", Toast.LENGTH_SHORT).show()
             return
         }
 
         val actaFileName = "acta_${UUID.randomUUID()}"
-        val talonFileName = "talon_${UUID.randomUUID()}"
-
         subirArchivo(actaUri, actaFileName) { actaUrl ->
-            subirArchivo(talonUri, talonFileName) { talonUrl ->
-                // Después de subir todas las imágenes, agregar los datos a Firestore
-                agregarDatosFirestore(matricula, matriculaAlumno, actaUrl, talonUrl, presencial, escuela, escolarizado)
-            }
+            agregarDatosFirestore(matricula, actaUrl, matriculaEscolar, escuela, escolarizado, semestreTra, periodo,)
         }
     }
 
     private fun subirArchivo(uri: Uri, fileName: String, onSuccess: (String) -> Unit) {
         val storage = FirebaseStorage.getInstance()
         val storageReference = storage.reference
-        val fileReference: StorageReference = storageReference.child("exentohijo/$fileName")
+        val fileReference: StorageReference = storageReference.child("exentosCuotas/$fileName")
 
         fileReference.putFile(uri)
             .addOnSuccessListener { taskSnapshot ->
@@ -147,29 +138,20 @@ class exentohijo : AppCompatActivity() {
             }
     }
 
-    private fun agregarDatosFirestore(
-        matricula: String,
-        matriculaAlumno: String,
-        actaUrl: String,
-        talonUrl: String,
-        presencial: String,
-        escolarizado: String,
-        escuela: String
-    ) {
+    private fun agregarDatosFirestore(matricula: String, actaUrl: String, matriculaEscolar: String, escuela: String, escolarizado: String, semestreTra: String, periodo: String) {
         val db = FirebaseFirestore.getInstance()
-        val informacionHijosRef = db.collection("informacionHijos")
+        val informacionExentosRef = db.collection("informacionExentosCuotas")
         val nuevoDocumento = hashMapOf(
             "matricula" to matricula,
-            "matriculaAlumno" to matriculaAlumno,
-            "actaUrl" to actaUrl,
-            "talonUrl" to talonUrl,
-            "presencial" to presencial,
-            "escuela" to escolarizado,
-            "escolarizado" to escuela
-            //Por alguna razon tuve que invertir escuela y escolarizado para que se almacenara de manera correcta
+            "matriculaEscolar" to matriculaEscolar,
+            "semestreTra" to semestreTra,
+            "Periodo" to periodo,
+            "escuela" to escuela,
+            "escolarizado" to escolarizado,
+            "actaUrl" to actaUrl
         )
 
-        informacionHijosRef.add(nuevoDocumento)
+        informacionExentosRef.add(nuevoDocumento)
             .addOnSuccessListener {
                 // Crear un intent para la actividad a la que deseas ir
                 val intent = Intent(this, MainPerfil::class.java)
@@ -177,8 +159,8 @@ class exentohijo : AppCompatActivity() {
                     PendingIntent.FLAG_IMMUTABLE)
 
                 // Crear un NotificationCompat.Builder
-                val builder = NotificationCompat.Builder(this, "Notificacion_exentoHijo")
-                    .setSmallIcon(R.drawable.ic_notification) // Puedes personalizar el ícono
+                val builder = NotificationCompat.Builder(this, "Notificacion_trabajador")
+                    .setSmallIcon(R.drawable.ic_notification)
                     .setContentTitle("Solicitud de exento de inscripcion enviada con éxito.")
                     .setContentText("Haz clic para ver el status de este tramite.")
                     .setContentIntent(pendingIntent)
@@ -187,7 +169,7 @@ class exentohijo : AppCompatActivity() {
                 // Verificar la versión de Android y crear un canal de notificación si es necesario
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     val channel = NotificationChannel(
-                        "Notificacion_exentoHijo",
+                        "Notificacion_trabajador",
                         "Nombre del canal",
                         NotificationManager.IMPORTANCE_DEFAULT
                     )
@@ -199,7 +181,7 @@ class exentohijo : AppCompatActivity() {
                 val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                 notificationManager.notify(1, builder.build())
 
-                Toast.makeText(this, "Exento solicitado con éxito.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Solicitud de exento de cuota enviada con éxito.", Toast.LENGTH_SHORT).show()
 
                 // Iniciar la nueva actividad
                 startActivity(intent)
@@ -210,7 +192,6 @@ class exentohijo : AppCompatActivity() {
     }
 
     companion object {
-        private const val PICK_IMAGE_REQUEST_TALON = 1
-        private const val PICK_IMAGE_REQUEST_ACTA = 2
+        private const val PICK_IMAGE_REQUEST_ACTA = 1
     }
 }

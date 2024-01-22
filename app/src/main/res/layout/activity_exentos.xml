@@ -14,8 +14,21 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnBackexe"
+        android:layout_width="54dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="4dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_back_foreground"
+        app:layout_constraintBottom_toBottomOf="@+id/tolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.444" />
 
 
     <TextView
@@ -102,18 +115,19 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="214dp"
-        android:layout_height="47dp"
-        android:text="Exentos"
+        android:layout_width="248dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="72dp"
+        android:text="Exentos Inscripción"
         android:textColor="@color/white"
-        android:textSize="35sp"
+        android:textSize="28sp"
         android:typeface="sans"
         app:layout_constraintBottom_toBottomOf="@+id/tolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.04"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/btnBackex"
         app:layout_constraintTop_toTopOf="@+id/tolbar"
-        app:layout_constraintVertical_bias="0.411" />
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

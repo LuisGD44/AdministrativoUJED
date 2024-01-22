@@ -22,30 +22,63 @@ class MainCompletar : AppCompatActivity() {
         setContentView(R.layout.activity_main_completar)
 
         val spinnerTurno: Spinner = findViewById(R.id.txt_Turno)
+        val spinnerRama: Spinner = findViewById(R.id.txtRama)
         val btnCompletar: Button = findViewById(R.id.btnCompletar)
 
+        val unidadesAcademicas = listOf(
+            "Adscripcion", "ABOGADO GENERAL", "BIBLIOTECA CENTRAL SGA", "BUFETE JURIDICO", "CENTRO DE DESARROLLO CULTURAL",
+            "CENTRO DE DESARROLLO DEPORTE UNIV. (NUEVO)", "CENTRO DE GRADUADOS", "COLEGIO DE CIENCIAS Y HUMANIDADES",
+            "COMPRAS SGAD", "COMUNICACION SOCIAL (NUEVA)", "CONTRALORIA", "COORD TELECOMUNICACION INFORMATICA SGAD",
+            "COORDINACION DE OBRAS SGAD", "CORRESPONDENCIA Y MENSAJERIA SGAD", "DIR. DE EXTENSION Y VINCULACION S.(NUEVA)",
+            "DIR.DESARROLLO Y GESTION DE REC HUM SGAD", "DIRECCION INSTITUCIONAL DEL POSGRADO E INVESTIGACION",
+            "DIRECCION PLANEACION INSTITUCIONAL SGA", "DIRECCION SERVICIOS EDUCATIVOS SGA", "DIRECCION SERVICIOS ESCOLARES DSE",
+            "EDITORIAL (NUEVA)", "ESC PREPARATORIA DIURNA", "ESCUELA DE CIENCIAS Y TECNOLOGÍAS", "ESCUELA DE LENGUAS",
+            "ESCUELA DE PINTURA ESCULTURA ARTESANIAS", "ESCUELA PREPARATORIA NOCTURNA", "ESCUELA SUPERIOR DE MUSICA",
+            "FAC DE MEDICINA VETERINARIA Y ZOOTECNIA", "FACULTAD CIENCIAS QUIMICAS DURANGO",
+            "FACULTAD DE CIENCIAS DE LA CULTURA FISICA Y DEPORTE", "FACULTAD DE CIENCIAS EXACTAS",
+            "FACULTAD DE CIENCIAS FORESTALES", "FACULTAD DE DERECHO Y CIENCIAS POLITICAS",
+            "FACULTAD DE ECONOMIA, CONTADURIA Y ADMINISTRACION", "FACULTAD DE ENFERMERIA Y OBSTETRICIA",
+            "FACULTAD DE MEDICINA Y NUTRICION", "FACULTAD DE ODONTOLOGIA",
+            "FACULTAD DE PSICOLOGIA Y TERAPIA DE LA COMUNICACION HUMANA", "FACULTAD DE TRABAJO SOCIAL", "HOSPITAL VETERINARIO",
+            "INST. DE CIENCIAS SOCIALES", "INST. DE INVEST. HISTORICAS", "INST. DE INVEST. JURIDICAS",
+            "INST. DE SILVICULT. E IND. MAD", "INSTITUTO DE BELLAS ARTES", "INSTITUTO DE INVESTIGACION CIENTIFICA",
+            "LIBRERIA (NUEVA)", "MUSEO REGIONAL", "RADIO UNIVERSIDAD (NUEVA)", "RECTORIA",
+            "RELACIONES LABORALES (NUEVA)", "RELACIONES PUBLICAS SGAD", "SERVICIOS GENERALES SGAD",
+            "SISTEMA UNIVERSIDAD VIRTUAL SGA", "SPAUJED", "STAUJED", "STEUJED", "SUBSECRETARIA GENERAL ACADEMICA",
+            "SUBSECRETARIA GENERAL ADMINISTRATIVA", "TESORERIA", "TV UJED (NUEVA)"
+        )
         // Define las opciones para el Spinner
         val opciones = arrayOf("Mañana", "Intermedio", "Tarde")
 
         // Crea un adaptador para el Spinner
         val adaptador = ArrayAdapter(this, android.R.layout.simple_spinner_item, opciones)
+        val unidadesAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, unidadesAcademicas)
 
         // Especifica el diseño de la lista desplegable
         adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        unidadesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         // Asigna el adaptador al Spinner
         spinnerTurno.adapter = adaptador
+        spinnerRama.adapter = unidadesAdapter
 
         // Define un listener para manejar la selección del usuario
-        spinnerTurno.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        val spinnerListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
+                // Manejar la selección del spinnerTurno
+                if (parent == spinnerTurno) {
+                    // Lógica para spinnerTurno
+                } else if (parent == spinnerRama) {
+                    // Lógica para spinnerRama
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
+                Toast.makeText(baseContext, "Por favor selecioona una opcion", Toast.LENGTH_SHORT).show()            }
         }
+
+        spinnerTurno.onItemSelectedListener = spinnerListener
+        spinnerRama.onItemSelectedListener = spinnerListener
 
         btnCompletar.setOnClickListener {
             // Obtener los valores de los campos del formulario
@@ -55,7 +88,8 @@ class MainCompletar : AppCompatActivity() {
             val correo = findViewById<EditText>(R.id.txt_correo).text.toString()
             val matricula = findViewById<EditText>(R.id.txt_matricula).text.toString()
             val turno = spinnerTurno.selectedItem.toString()
-            val rama = findViewById<EditText>(R.id.txtRama).text.toString()
+            val adscripcion = spinnerRama.selectedItem.toString()
+
 
             // Guardar los datos en Cloud Firestore
             val db = FirebaseFirestore.getInstance()
@@ -68,7 +102,7 @@ class MainCompletar : AppCompatActivity() {
                 "correo" to correo,
                 "matricula" to matricula,
                 "turno" to turno,
-                "rama" to rama
+                "adscripcion" to adscripcion
                 // Puedes agregar más campos según tus necesidades
             )
 

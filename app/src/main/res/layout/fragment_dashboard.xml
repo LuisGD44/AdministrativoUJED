@@ -51,13 +51,26 @@
     <Button
         android:id="@+id/btnMaterial"
         style="@style/bottonGreen"
-        android:layout_width="165dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="296dp"
+        android:layout_width="150dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="288dp"
         android:gravity="center"
         android:text="Vacantes "
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/btnCuota"
+        style="@style/bottonGreen"
+        android:layout_width="150dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="288dp"
+        android:gravity="center"
+        android:text="Exento de cuotas "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnMaterial"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button

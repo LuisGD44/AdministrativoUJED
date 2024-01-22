@@ -1,35 +1,46 @@
 package com.tramites.administrativoujed
 
+import android.app.DatePickerDialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import com.tramites.administrativoujed.ui.dashboard.DashboardFragment
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class permiso : AppCompatActivity() {
     private val puestos = listOf(
-        "ARCHIVISTA", "AFANADOR", "ASISTENTE DENTAL", "BIBLIOTECARIO", "CAJERO (A)",
+        "Puesto","ARCHIVISTA", "AFANADOR", "ASISTENTE DENTAL", "BIBLIOTECARIO", "CAJERO (A)",
         "CAPTURISTA", "CHOFER", "CORRALERO", "GUIA", "JARDINERO", "LABORATORISTA",
         "MENSAJERO", "ORDEÑADOR", "PASTURERO", "PEON DE CAMPO", "POLIVALENTE",
         "SECRETARIA", "SERVICIOS GENERALES", "TRACTORISTA", "VELADOR EVENTUAL", "VIGILANTE", "VIVERISTA"
     )
 
     private val tiposPermiso = listOf(
-        "PERMISO SIN GOCE DE SUELDO", "COMISIÓN SINDICAL", "CUIDADO MATERNAL", "FALTAS",
+        "Tipo de permiso",  "PERMISO SIN GOCE DE SUELDO", "COMISIÓN SINDICAL", "CUIDADO MATERNAL", "FALTAS",
         "GRAVIDEZ", "INCAPACIDAD TEMPORAL", "PERMISO ADICIONAL", "PERMISO CON GOCE DE SUELDO",
         "PERMISO ECONÓMICO", "PERMISO EXAMEN PROFESIONAL", "PERMISO FUNERALES", "PERMISO SINDICAL",
         "PERMISO ASISTENCIA", "VACACIONES LAB. INSALUBRES"
     )
 
-    private val turnos = listOf("MATUTINO", "VESPERTINO", "INTERMEDIO")
+    private val turnos = listOf("Turno","MATUTINO", "VESPERTINO", "INTERMEDIO")
 
     private val unidadesAcademicas = listOf(
-        "ABOGADO GENERAL", "BIBLIOTECA CENTRAL SGA", "BUFETE JURIDICO", "CENTRO DE DESARROLLO CULTURAL",
+        "Unidad Academica",  "ABOGADO GENERAL", "BIBLIOTECA CENTRAL SGA", "BUFETE JURIDICO", "CENTRO DE DESARROLLO CULTURAL",
         "CENTRO DE DESARROLLO DEPORTE UNIV. (NUEVO)", "CENTRO DE GRADUADOS", "COLEGIO DE CIENCIAS Y HUMANIDADES",
         "COMPRAS SGAD", "COMUNICACION SOCIAL (NUEVA)", "CONTRALORIA", "COORD TELECOMUNICACION INFORMATICA SGAD",
         "COORDINACION DE OBRAS SGAD", "CORRESPONDENCIA Y MENSAJERIA SGAD", "DIR. DE EXTENSION Y VINCULACION S.(NUEVA)",
@@ -57,6 +68,13 @@ class permiso : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_permiso)
+
+        val txtFecha = findViewById<EditText>(R.id.txt_fecha)
+
+        txtFecha.setOnClickListener {
+            mostrarDatePicker()
+        }
+
 
         val spinnerPuesto = findViewById<Spinner>(R.id.txt_puesto)
         val spinnerPermiso = findViewById<Spinner>(R.id.txt_permiso)
@@ -87,6 +105,35 @@ class permiso : AppCompatActivity() {
         btnExentoDec.setOnClickListener {
             enviarDatos()
         }
+        val btnBack: ImageButton = findViewById(R.id.btnBackper)
+        btnBack.setOnClickListener {
+            onBackPressed()
+        }
+    }
+    private fun mostrarDatePicker() {
+        val calendar = Calendar.getInstance()
+        val añoActual = calendar.get(Calendar.YEAR)
+        val mesActual = calendar.get(Calendar.MONTH)
+        val diaActual = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            DatePickerDialog.OnDateSetListener { _, año, mes, dia ->
+                val fechaSeleccionada = Calendar.getInstance()
+                fechaSeleccionada.set(año, mes, dia)
+
+                val formatoFecha = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val fechaFormateada = formatoFecha.format(fechaSeleccionada.time)
+
+                val txtFecha = findViewById<EditText>(R.id.txt_fecha)
+                txtFecha.setText(fechaFormateada)
+            },
+            añoActual,
+            mesActual,
+            diaActual
+        )
+
+        datePickerDialog.show()
     }
 
     private fun enviarDatos() {
@@ -122,9 +169,38 @@ class permiso : AppCompatActivity() {
         )
 
         informacionPermisoRef.add(nuevoDocumento)
-            .addOnSuccessListener { documentReference ->
-                Toast.makeText(this, "Datos enviados con éxito.", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, DashboardFragment::class.java)
+            .addOnSuccessListener {
+                // Crear un intent para la actividad a la que deseas ir
+                val intent = Intent(this, MainPerfil::class.java)
+                val pendingIntent = PendingIntent.getActivity(this, 0, intent,
+                    PendingIntent.FLAG_IMMUTABLE)
+
+                // Crear un NotificationCompat.Builder
+                val builder = NotificationCompat.Builder(this, "Notificacion_Permiso")
+                    .setSmallIcon(R.drawable.ic_notification)
+                    .setContentTitle("Solicitud de permiso enviada con éxito.")
+                    .setContentText("Haz clic para ver el status de este tramite.")
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true) // Cierra la notificación al hacer clic en ella
+
+                // Verificar la versión de Android y crear un canal de notificación si es necesario
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    val channel = NotificationChannel(
+                        "Notificacion_Permiso",
+                        "Nombre del canal",
+                        NotificationManager.IMPORTANCE_DEFAULT
+                    )
+                    val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                    notificationManager.createNotificationChannel(channel)
+                }
+
+                // Obtener el NotificationManager y mostrar la notificación
+                val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                notificationManager.notify(1, builder.build())
+
+                Toast.makeText(this, "Solicitud de exento  enviada con éxito.", Toast.LENGTH_SHORT).show()
+
+                // Iniciar la nueva actividad
                 startActivity(intent)
             }
             .addOnFailureListener { e ->

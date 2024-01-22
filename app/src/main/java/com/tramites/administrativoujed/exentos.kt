@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import com.tramites.administrativoujed.databinding.ActivityExentosBinding
 
 class exentos : AppCompatActivity() {
@@ -38,6 +39,11 @@ class exentos : AppCompatActivity() {
             val intent = Intent(this, decendientesActivity::class.java)
             startActivity(intent)
         }
+        val btnBack: ImageButton = findViewById(R.id.btnBackexe)
+        btnBack.setOnClickListener {
+            onBackPressed()
+        }
+
     }
 
     override fun onDestroy() {

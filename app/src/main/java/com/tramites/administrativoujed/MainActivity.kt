@@ -1,25 +1,38 @@
 package com.tramites.administrativoujed
 
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.tramites.administrativoujed.ui.home.HomeFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import android.net.Uri
+import android.os.Build
+import android.provider.Settings
+import androidx.appcompat.app.AlertDialog
+
 
 class MainActivity : AppCompatActivity() {
     private  lateinit var firebaseAuth:FirebaseAuth
     private  lateinit var authStateListener: FirebaseAuth.AuthStateListener
+    private val NOTIFICATION_PERMISSION_CODE = 123
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        solicitarPermisosNotificacion()
+
         val btnIngresar : Button = findViewById(R.id.btnIngresar)
         val txtEmail : EditText = findViewById(R.id.inputEmail)
         val txtPassword : EditText = findViewById(R.id.inputPassword)
@@ -39,6 +52,10 @@ class MainActivity : AppCompatActivity() {
             {
                 //Llamado de la funcion singIn al boton de ingresar
                 signIn(txtEmail.text.toString(), txtPassword.text.toString())
+
+
+                txtEmail.text.clear()
+                txtPassword.text.clear()
             }
         }
         btnCrearCuenta.setOnClickListener()
@@ -52,6 +69,22 @@ class MainActivity : AppCompatActivity() {
             startActivity(i)
         }
     }
+    private fun solicitarPermisosNotificacion() {
+        // Verificar y solicitar permisos si es necesario
+        if (ContextCompat.checkSelfPermission(
+                this,
+                "com.google.android.c2dm.permission.RECEIVE"
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // Solicitar el permiso
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf("com.google.android.c2dm.permission.RECEIVE"),
+                NOTIFICATION_PERMISSION_CODE
+            )
+        }
+    }
+
     private fun signIn(email: String, password: String)
     {
         firebaseAuth.signInWithEmailAndPassword(email, password).
@@ -83,4 +116,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+
 }
