@@ -44,12 +44,16 @@ class cuotaHijoActivity : AppCompatActivity() {
             android.R.layout.simple_spinner_item
         )
         presencialAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        txtPresencialSpinner.adapter = presencialAdapter
 
         val periodoAdapter = ArrayAdapter.createFromResource(
             this,
             R.array.periodo,
             android.R.layout.simple_spinner_item
         )
+        periodoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        txtPeridoSpinner.adapter = periodoAdapter
+
 
         val escuelaAdapter = ArrayAdapter.createFromResource(
             this,
@@ -57,7 +61,7 @@ class cuotaHijoActivity : AppCompatActivity() {
             android.R.layout.simple_spinner_item
         )
         escuelaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
+        txtEscuelaSpinner.adapter = escuelaAdapter
 
         val escolarizadoAdapter = ArrayAdapter.createFromResource(
             this,
@@ -65,11 +69,9 @@ class cuotaHijoActivity : AppCompatActivity() {
             android.R.layout.simple_spinner_item
         )
         escolarizadoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-        txtPresencialSpinner.adapter = presencialAdapter
         txtEscolarizadoSpinner.adapter = escolarizadoAdapter
-        txtEscuelaSpinner.adapter = escuelaAdapter
-        txtPeridoSpinner.adapter = periodoAdapter
+
+
 
         val btnTalon = findViewById<Button>(R.id.btnTalonC)
         btnTalon.setOnClickListener {
@@ -163,7 +165,7 @@ class cuotaHijoActivity : AppCompatActivity() {
         periodo: String,
         presencial: String,
         escolarizado: String,
-        escuela: String
+        escuela: String,
     ) {
         val db = FirebaseFirestore.getInstance()
         val informacionHijosRef = db.collection("informacionHijosCuota")

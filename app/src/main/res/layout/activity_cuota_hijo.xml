@@ -137,7 +137,6 @@
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="44dp"
-                android:hint="Escolarizado o semiescolorizado"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.481"

@@ -23,10 +23,11 @@ class MainCompletar : AppCompatActivity() {
 
         val spinnerTurno: Spinner = findViewById(R.id.txt_Turno)
         val spinnerRama: Spinner = findViewById(R.id.txtRama)
+        val spinnerTipo: Spinner = findViewById(R.id.txtTipo)
         val btnCompletar: Button = findViewById(R.id.btnCompletar)
 
         val unidadesAcademicas = listOf(
-            "Adscripcion", "ABOGADO GENERAL", "BIBLIOTECA CENTRAL SGA", "BUFETE JURIDICO", "CENTRO DE DESARROLLO CULTURAL",
+          "Unidad Academica",  "Adscripcion", "ABOGADO GENERAL", "BIBLIOTECA CENTRAL SGA", "BUFETE JURIDICO", "CENTRO DE DESARROLLO CULTURAL",
             "CENTRO DE DESARROLLO DEPORTE UNIV. (NUEVO)", "CENTRO DE GRADUADOS", "COLEGIO DE CIENCIAS Y HUMANIDADES",
             "COMPRAS SGAD", "COMUNICACION SOCIAL (NUEVA)", "CONTRALORIA", "COORD TELECOMUNICACION INFORMATICA SGAD",
             "COORDINACION DE OBRAS SGAD", "CORRESPONDENCIA Y MENSAJERIA SGAD", "DIR. DE EXTENSION Y VINCULACION S.(NUEVA)",
@@ -48,19 +49,25 @@ class MainCompletar : AppCompatActivity() {
             "SUBSECRETARIA GENERAL ADMINISTRATIVA", "TESORERIA", "TV UJED (NUEVA)"
         )
         // Define las opciones para el Spinner
-        val opciones = arrayOf("Mañana", "Intermedio", "Tarde")
+        val opciones = arrayOf("Turno","Mañana", "Intermedio", "Tarde")
+
+        val tipo = arrayOf("Tipo trabajador","Base", "Jubilado")
 
         // Crea un adaptador para el Spinner
         val adaptador = ArrayAdapter(this, android.R.layout.simple_spinner_item, opciones)
         val unidadesAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, unidadesAcademicas)
+        val tipoTrabajador = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, tipo)
 
         // Especifica el diseño de la lista desplegable
         adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         unidadesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        tipoTrabajador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         // Asigna el adaptador al Spinner
         spinnerTurno.adapter = adaptador
         spinnerRama.adapter = unidadesAdapter
+        spinnerTipo.adapter = tipoTrabajador
+
 
         // Define un listener para manejar la selección del usuario
         val spinnerListener = object : AdapterView.OnItemSelectedListener {
@@ -79,6 +86,7 @@ class MainCompletar : AppCompatActivity() {
 
         spinnerTurno.onItemSelectedListener = spinnerListener
         spinnerRama.onItemSelectedListener = spinnerListener
+        spinnerTipo.onItemSelectedListener = spinnerListener
 
         btnCompletar.setOnClickListener {
             // Obtener los valores de los campos del formulario
@@ -89,6 +97,7 @@ class MainCompletar : AppCompatActivity() {
             val matricula = findViewById<EditText>(R.id.txt_matricula).text.toString()
             val turno = spinnerTurno.selectedItem.toString()
             val adscripcion = spinnerRama.selectedItem.toString()
+            val tipoTrabajador = spinnerTipo.selectedItem.toString()
 
 
             // Guardar los datos en Cloud Firestore
@@ -97,13 +106,13 @@ class MainCompletar : AppCompatActivity() {
 
             val nuevoUsuario = hashMapOf(
                 "nombre" to nombre,
-                "apellidoPaterno" to apellidoPaterno,
-                "apellidoMaterno" to apellidoMaterno,
+                "apellido_paterno" to apellidoPaterno,
+                "apellido_materno" to apellidoMaterno,
                 "correo" to correo,
                 "matricula" to matricula,
                 "turno" to turno,
-                "adscripcion" to adscripcion
-                // Puedes agregar más campos según tus necesidades
+                "adscripcion" to adscripcion,
+                "tipoTrabajador" to tipoTrabajador
             )
 
             usuariosRef.document(matricula).set(nuevoUsuario)
