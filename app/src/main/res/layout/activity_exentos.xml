@@ -11,10 +11,10 @@
         android:id="@+id/tolbar"
         style="@style/BottomNavigationTextStyle"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="74dp"
         android:background="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,8 +28,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.444" />
-
+        app:layout_constraintVertical_bias="0.529" />
 
     <TextView
         android:id="@+id/text_dashboard"
@@ -115,19 +114,17 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="248dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="72dp"
+        android:layout_width="333dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
         android:text="Exentos Inscripción"
         android:textColor="@color/white"
         android:textSize="28sp"
         android:typeface="sans"
-        app:layout_constraintBottom_toBottomOf="@+id/tolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/btnBackex"
-        app:layout_constraintTop_toTopOf="@+id/tolbar"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toEndOf="@+id/btnBackexe"
+        app:layout_constraintTop_toTopOf="@+id/tolbar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

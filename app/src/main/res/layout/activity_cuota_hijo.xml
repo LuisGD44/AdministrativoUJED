@@ -57,13 +57,12 @@
                 android:id="@+id/txt_matriculaTrabajadorC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="28dp"
                 android:ems="10"
                 android:hint="Matricula Trabajador"
                 android:inputType="number"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.462"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_matriculaC" />
 
@@ -71,27 +70,27 @@
                 android:id="@+id/txt_matriculaC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:ems="10"
                 android:hint="Matricula Alumno"
                 android:inputType="number"
                 android:padding="8dp"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.518"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/txtNombreAlumnoHC" />
 
             <EditText
                 android:id="@+id/txtSemestreC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="40dp"
                 android:ems="10"
                 android:hint="Semestre"
-                android:inputType="number"
+                android:inputType="text"
                 android:padding="8dp"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.481"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_matriculaTrabajadorC" />
 
@@ -99,12 +98,13 @@
                 android:id="@+id/txtEscuelaC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="52dp"
+                android:layout_marginTop="32dp"
                 android:ems="10"
                 android:hint="Escuela o Facultad"
                 android:inputType="text"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtSemestreC" />
 
@@ -116,9 +116,10 @@
                 android:hint="Precencial o virtual"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.531"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtEscuelaC" />
+
 
             <Spinner
                 android:id="@+id/txtEscolarizadoC"
@@ -128,9 +129,9 @@
                 android:hint="Escolarizado o semiescolorizado"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtPresencialC" />
-
 
             <Spinner
                 android:id="@+id/txtPeriodoHijoC"
@@ -139,7 +140,7 @@
                 android:layout_marginTop="44dp"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.481"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtEscolarizadoC" />
 
@@ -151,6 +152,7 @@
                 android:layout_marginTop="24dp"
                 android:onClick="seleccionarArchivo"
                 android:text="Subir talon de pago"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtPeriodoHijoC" />
@@ -160,7 +162,7 @@
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="24dp"
                 android:onClick="seleccionarArchivo"
                 android:text="Subir acta de nacimiento del hijo"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -178,7 +180,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btnActaC"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:rippleColor="@color/white" />
+
+            <EditText
+                android:id="@+id/txtNombreAlumnoHC"
+                android:layout_width="357dp"
+                android:layout_height="45dp"
+                android:ems="10"
+                android:hint="Nombre completo del alumno"
+                android:inputType="text"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

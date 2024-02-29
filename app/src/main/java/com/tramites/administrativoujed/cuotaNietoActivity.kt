@@ -123,6 +123,7 @@ class cuotaNietoActivity : AppCompatActivity() {
 
     private fun enviarDatos() {
         val matricula = findViewById<EditText>(R.id.txt_matriculaTrabajadorNietoC).text.toString()
+        val nombreAlumno = findViewById<EditText>(R.id.txtNombreAlumnoC).text.toString()
         val matriculaAlumno = findViewById<EditText>(R.id.txt_matriculaAlunmoNietoC).text.toString()
         val semestre = findViewById<EditText>(R.id.txt_semestreNietoC).text.toString()
         val escuela = txtEscuelaNietoC.selectedItem.toString()
@@ -150,7 +151,7 @@ class cuotaNietoActivity : AppCompatActivity() {
                 subirArchivo(talonUri, talonFileName) { url ->
                     urls.add(url)
 
-                    agregarDatosFirestore(matricula, matriculaAlumno, periodo, semestre, escuela, presencialNieto, escolarizadoNieto, urls)
+                    agregarDatosFirestore(matricula, matriculaAlumno, nombreAlumno, semestre , escuela, periodo, presencialNieto, escolarizadoNieto, urls)
                 }
             }
         }
@@ -179,6 +180,7 @@ class cuotaNietoActivity : AppCompatActivity() {
     private fun agregarDatosFirestore(
         matricula: String,
         matriculaAlumno: String,
+        nombreAlumno: String,
         semestre: String,
         escuela: String,
         periodo: String,
@@ -192,6 +194,7 @@ class cuotaNietoActivity : AppCompatActivity() {
         val nuevoDocumento = hashMapOf(
             "matricula" to matricula,
             "matriculaAlumno" to matriculaAlumno,
+            "nombreAlumno" to nombreAlumno,
             "semestre" to semestre,
             "escuela" to escuela,
             "periodo" to periodo,
@@ -206,7 +209,7 @@ class cuotaNietoActivity : AppCompatActivity() {
             .addOnSuccessListener {
 
                 mostrarNotificacion()
-                Toast.makeText(this, "Datos enviados con éxito.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Se solicito el exento con exito.", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, cuotasActivity::class.java)
                 startActivity(intent)
             }
@@ -223,7 +226,7 @@ class cuotaNietoActivity : AppCompatActivity() {
         // Crear un NotificationCompat.Builder
         val builder = NotificationCompat.Builder(this, "Notificacion_nieto")
             .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle("Solicitud de exento de inscripción para nieto enviada con éxito.")
+            .setContentTitle("Solicitud de exento de cuota para nieto enviada con éxito.")
             .setContentText("Haz clic para ver el estado de este trámite.")
             .setContentIntent(pendingIntent)
             .setAutoCancel(true) // Cierra la notificación al hacer clic en ella

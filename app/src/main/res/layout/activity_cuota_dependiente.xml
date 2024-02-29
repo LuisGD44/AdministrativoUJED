@@ -55,10 +55,10 @@
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
                 android:onClick="seleccionarArchivo"
                 android:text="Subir talon de pago"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.296"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,7 +72,7 @@
                 android:inputType="text"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.407"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtDependienteDepC" />
 
@@ -85,6 +85,7 @@
                 android:hint="Matricula del alumno"
                 android:inputType="number"
                 android:padding="8dp"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_matriculaTrabajadorDepC" />
@@ -98,6 +99,7 @@
                 android:hint="Semestr a cursar (letras)"
                 android:inputType="text"
                 android:padding="8dp"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_matriculaAlunmoDepC" />
@@ -111,6 +113,7 @@
                 android:hint="Escuela o facultad"
                 android:inputType="text"
                 android:padding="8dp"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtPeridoDepC" />
@@ -122,6 +125,7 @@
                 android:layout_marginTop="36dp"
                 android:hint="Precencial o virtual"
                 android:padding="8dp"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_semestreDepC" />
@@ -133,6 +137,7 @@
                 android:layout_marginTop="36dp"
                 android:hint="Escolarizado o semi escolarizado "
                 android:padding="8dp"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtPresencialDepC" />
@@ -144,6 +149,7 @@
                 android:layout_marginTop="16dp"
                 android:hint="Tipo de periodo"
                 android:padding="8dp"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtEscolarizadoDepC" />
@@ -156,6 +162,7 @@
                 android:layout_marginTop="40dp"
                 android:onClick="seleccionarArchivo"
                 android:text="Acta de nacimiento del dependiente"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtEscuelaDepC" />
@@ -168,6 +175,7 @@
                 android:layout_marginTop="36dp"
                 android:onClick="seleccionarArchivo"
                 android:text="Carta notariada"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnActaDepC" />
@@ -189,11 +197,10 @@
                 android:id="@+id/txtDependienteDepC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="24dp"
                 android:hint="Nombre completo del dependiente "
                 android:typeface="sans"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.407"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnTalonDepC" />
         </androidx.constraintlayout.widget.ConstraintLayout>

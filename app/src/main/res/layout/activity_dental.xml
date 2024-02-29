@@ -47,8 +47,8 @@
 
     <Button
         android:id="@+id/btnPreosu"
-        android:layout_width="357dp"
-        android:layout_height="45dp"
+        android:layout_width="351dp"
+        android:layout_height="64dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:onClick="seleccionarArchivo"
@@ -59,8 +59,8 @@
 
     <Button
         android:id="@+id/btntalondental"
-        android:layout_width="357dp"
-        android:layout_height="45dp"
+        android:layout_width="352dp"
+        android:layout_height="53dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="36dp"
         android:onClick="seleccionarArchivo"
@@ -72,8 +72,8 @@
 
     <Button
         android:id="@+id/btnActamatrimonio"
-        android:layout_width="357dp"
-        android:layout_height="45dp"
+        android:layout_width="355dp"
+        android:layout_height="58dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="36dp"
         android:onClick="seleccionarArchivo"
@@ -116,16 +116,15 @@
         android:id="@+id/textView"
         android:layout_width="287dp"
         android:layout_height="34dp"
-        android:layout_marginEnd="56dp"
-        android:text="Descuento dental"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="44dp"
+        android:text="Descuentox dentales"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:typeface="sans"
-        app:layout_constraintBottom_toBottomOf="@+id/tolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.557"
         app:layout_constraintStart_toEndOf="@+id/btnBack"
-        app:layout_constraintTop_toTopOf="@+id/tolbar"
-        app:layout_constraintVertical_bias="0.533" />
+        app:layout_constraintTop_toTopOf="@+id/tolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

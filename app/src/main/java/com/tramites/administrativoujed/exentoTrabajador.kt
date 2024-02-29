@@ -28,6 +28,7 @@ class exentoTrabajador : AppCompatActivity() {
     private  lateinit var txtMatriculaEscolar: EditText
     private lateinit var txtEscuelaSpinner: Spinner
     private lateinit var txtEscolarizadoSpinner: Spinner
+    private lateinit var txtPeriodoSpinner: Spinner
     private var actaUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +40,7 @@ class exentoTrabajador : AppCompatActivity() {
         txtSemestre = findViewById(R.id.txtSemestreTra)
         txtEscolarizadoSpinner = findViewById(R.id.txtEscolarizadoTra)
         txtEscuelaSpinner = findViewById(R.id.txtEscuelaTra)
-
+        txtPeriodoSpinner = findViewById(R.id.txtPeridoTra)
 
         val btnActaNacimiento = findViewById<Button>(R.id.btnActatra)
         btnActaNacimiento.setOnClickListener {
@@ -63,6 +64,13 @@ class exentoTrabajador : AppCompatActivity() {
         escuelaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
 
+        val peridoAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.periodo,
+            android.R.layout.simple_spinner_item
+        )
+        peridoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
         val escolarizadoAdapter = ArrayAdapter.createFromResource(
             this,
             R.array.Escolarizado,
@@ -72,6 +80,7 @@ class exentoTrabajador : AppCompatActivity() {
 
         txtEscolarizadoSpinner.adapter = escolarizadoAdapter
         txtEscuelaSpinner.adapter = escuelaAdapter
+        txtPeriodoSpinner.adapter = peridoAdapter
     }
 
     private fun seleccionarArchivo(pickImageRequest: Int) {
@@ -97,6 +106,7 @@ class exentoTrabajador : AppCompatActivity() {
         val semestreTra = txtSemestre.text.toString()
         val escolarizado = txtEscolarizadoSpinner.selectedItem.toString()
         val escuela = txtEscuelaSpinner.selectedItem.toString()
+        val periodo = txtPeriodoSpinner.selectedItem.toString()
         val actaUri = this.actaUri
 
         if (matricula.isEmpty() || actaUri == null) {
@@ -106,7 +116,7 @@ class exentoTrabajador : AppCompatActivity() {
 
         val actaFileName = "acta_${UUID.randomUUID()}"
         subirArchivo(actaUri, actaFileName) { actaUrl ->
-            agregarDatosFirestore(matricula, actaUrl, matriculaEscolar, escuela, escolarizado, semestreTra)
+            agregarDatosFirestore(matricula, actaUrl, matriculaEscolar, escuela, escolarizado, semestreTra, periodo)
         }
     }
 
@@ -130,7 +140,7 @@ class exentoTrabajador : AppCompatActivity() {
             }
     }
 
-    private fun agregarDatosFirestore(matricula: String, actaUrl: String, matriculaEscolar: String, escuela: String, escolarizado: String, semestreTra: String) {
+    private fun agregarDatosFirestore(matricula: String, actaUrl: String, matriculaEscolar: String, escuela: String, escolarizado: String, semestreTra: String, periodo: String) {
         val db = FirebaseFirestore.getInstance()
         val informacionExentosRef = db.collection("informacionExentos")
         val nuevoDocumento = hashMapOf(
@@ -139,6 +149,7 @@ class exentoTrabajador : AppCompatActivity() {
             "semestreTra" to semestreTra,
             "escuela" to escuela,
             "escolarizado" to escolarizado,
+            "periodo" to periodo,
             "actaUrl" to actaUrl
         )
 

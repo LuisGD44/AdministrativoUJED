@@ -30,9 +30,9 @@
     <string name="dental">Aplica para la pareja del trabajador (Con copia del acta de matrimonio) e hijos
     del trabajador (Con copia del acta de nacimiento y menores de 18 años).</string>
     <string-array name="turno">
-        <item>Mañana</item>
-        <item>Intermedio</item>
-        <item>Tarde</item>
+        <item>Matutino</item>
+        <item>Vespertino</item>
+        <item>Nocturno</item>
     </string-array>
     <string-array name="sexo">
         <item>Sexo</item>
@@ -53,13 +53,14 @@
         <item>Escuela o facultad</item>
         <item>COLEGIO DE CIENCIAS Y HUMANIDADES</item>
         <item>ESCUELA DE CIENCIAS Y TECNOLOGÍAS</item>
-        <item>ESC PREPARATORIA DIURNA</item>
+        <item>ESCUELA PREPARATORIA DIURNA</item>
         <item>ESCUELA DE LENGUAS</item>
         <item>ESCUELA DE PINTURA ESCULTURA ARTESANIAS</item>
         <item>ESCUELA PREPARATORIA NOCTURNA</item>
         <item>ESCUELA SUPERIOR DE MUSICA</item>
-        <item>FAC DE MEDICINA VETERINARIA Y ZOOTECNIA</item>
-        <item>FACULTAD CIENCIAS QUIMICAS DURANGO</item>
+        <item>COLEGIO DE CIENCIAS Y HUMANIDADES</item>
+        <item>FACULTAD DE MEDICINA VETERINARIA Y ZOOTECNIA</item>
+        <item>FACULTAD CIENCIAS QUIMICAS </item>
         <item>FACULTAD DE CIENCIAS DE LA CULTURA FISICA Y DEPORTE</item>
         <item>FACULTAD DE CIENCIAS EXACTAS</item>
         <item>FACULTAD DE DERECHO Y CIENCIAS POLITICAS</item>
@@ -67,8 +68,22 @@
         <item>FACULTAD DE ENFERMERIA Y OBSTETRICIA</item>
         <item>FACULTAD DE MEDICINA Y NUTRICION</item>
         <item>FACULTAD DE ODONTOLOGIA</item>
-        <item>FACULTAD DE PSICOLOGIA Y TERAPIA DE LA COMUNICACION HUMANA</item>
+        <item>PSICOLOGIA Y TERAPIA DE LA COMUNICAFACULTAD DECION HUMANA</item>
         <item>FACULTAD DE TRABAJO SOCIAL</item>
+        <item>FACULTAD DE INGENIERIA, CIENCIAS Y ARQUITECTURA</item>
+        <item>ESCUELA PREPARATORIA DIURNA</item>
+        <item>FACULTAD DE CIENCIAS FORESTALES Y AMBIENTALES</item>
+    </string-array>
+
+
+    <string-array name="opticas">
+        <item>SELECCIONE UNA OPTICA</item>
+        <item>OPTICA LAURA</item>
+        <item>OPTICA RENUEVO</item>
+        <item>OPTICA COLONIAL</item>
+        <item>ANZA OPRICOS</item>
+        <item>OPTICA NOVA</item>
+        <item>OTICA DURANGO</item>
     </string-array>
 
 

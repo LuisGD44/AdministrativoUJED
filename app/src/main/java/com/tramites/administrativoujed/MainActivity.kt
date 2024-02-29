@@ -20,6 +20,7 @@ import android.net.Uri
 import android.os.Build
 import android.provider.Settings
 import androidx.appcompat.app.AlertDialog
+import  com.tramites.administrativoujed.RecordarPassActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(baseContext, "Por favor ingrese  email y/o contraseña ", Toast.LENGTH_SHORT).show()
             }
-                else
+            else
             {
                 //Llamado de la funcion singIn al boton de ingresar
                 signIn(txtEmail.text.toString(), txtPassword.text.toString())
@@ -94,7 +95,7 @@ class MainActivity : AppCompatActivity() {
                 val verfica = user?.isEmailVerified
                 if (verfica==true){
 
-                Toast.makeText(baseContext,"Credenciales Correctas", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext,"Credenciales Correctas", Toast.LENGTH_SHORT).show()
 
 
                     val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
@@ -102,17 +103,17 @@ class MainActivity : AppCompatActivity() {
                     editor.putString("correo", email)
                     editor.apply()
 
-                val i = Intent(this, MainPerfil::class.java)
-                startActivity(i)
+                    val i = Intent(this, MainPerfil::class.java)
+                    startActivity(i)
 
                 }else{
                     Toast.makeText(baseContext,"No se autentico el correo", Toast.LENGTH_SHORT).show()
-                  }
                 }
+            }
             else
             {
                 Toast.makeText(baseContext, "Usuario y/o contraseña incorrectos", Toast.LENGTH_SHORT).show()
-            //redireccion a contraseña incorrecta
+                //redireccion a contraseña incorrecta
             }
         }
     }

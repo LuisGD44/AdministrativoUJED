@@ -37,32 +37,16 @@
 
 
     <EditText
-        android:id="@+id/inputCrearCuenta"
-        android:layout_width="350dp"
-        android:layout_height="49dp"
-        android:ems="10"
-        android:hint="Nombre"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/dowView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topView"
-        app:layout_constraintVertical_bias="0.058" />
-
-    <EditText
         android:id="@+id/inputEmail1"
         android:layout_width="350dp"
         android:layout_height="49dp"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/dowView"
+        app:layout_constraintBottom_toTopOf="@+id/inputMatricula"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.278"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputCrearCuenta"
-        app:layout_constraintVertical_bias="0.073" />
+        app:layout_constraintTop_toBottomOf="@+id/topView" />
 
     <EditText
         android:id="@+id/inputPassword1"
@@ -72,11 +56,11 @@
         android:hint="Contraseña"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/dowView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintEnd_toStartOf="@+id/inputRepetirContraseña"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmail1"
-        app:layout_constraintVertical_bias="0.401" />
+        app:layout_constraintTop_toBottomOf="@+id/inputMatricula"
+        app:layout_constraintVertical_bias="0.111" />
 
     <EditText
         android:id="@+id/inputRepetirContraseña"
@@ -87,16 +71,16 @@
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.431"
-        app:layout_constraintStart_toEndOf="@+id/inputPassword1"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmail1"
-        app:layout_constraintVertical_bias="0.401" />
+        app:layout_constraintHorizontal_bias="0.871"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputMatricula"
+        app:layout_constraintVertical_bias="0.111" />
 
     <Button
         android:id="@+id/btnRegistrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="72dp"
         android:backgroundTint="@color/red"
         android:text="Registrar"
         app:cornerRadius="@android:dimen/system_app_widget_inner_radius"
@@ -110,13 +94,12 @@
         android:id="@+id/inputMatricula"
         android:layout_width="350dp"
         android:layout_height="49dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="132dp"
         android:ems="10"
         android:hint="Matrícula"
         app:layout_constraintBottom_toTopOf="@+id/btnRegistrar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmail1" />
-
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

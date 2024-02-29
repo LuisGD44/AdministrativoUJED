@@ -11,7 +11,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tolbar"
         style="@style/BottomNavigationTextStyle"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/red"
         android:text="Solicitar Canastilla"
@@ -21,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/btnBackca"
@@ -37,7 +37,7 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="336dp"
+            android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginEnd="16dp"
             android:text="Canastilla de maternidad"
@@ -77,45 +77,42 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
-        android:id="@+id/txtSexo"
-        android:layout_width="357dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="44dp"
-        android:hint="SEXO"
-        android:padding="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.703"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_matricula" />
+            android:id="@+id/txtSexo"
+            android:layout_width="357dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="44dp"
+            android:hint="SEXO"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_matricula" />
 
-    <EditText
-        android:id="@+id/txtfecha"
-        android:layout_width="357dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="44dp"
-        android:ems="10"
-        android:hint="Fecha de nacimiento del infante"
-        android:inputType="date"
-        android:padding="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.685"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtSexo" />
+        <EditText
+            android:id="@+id/txtfecha"
+            android:layout_width="357dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="44dp"
+            android:ems="10"
+            android:hint="Fecha de nacimiento del infante"
+            android:inputType="date"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtSexo" />
 
-    <Button
-        android:id="@+id/btnActatra"
-        android:layout_width="357dp"
-        android:layout_height="45dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp"
-        android:onClick="seleccionarArchivo"
-        android:text="Subir acta de nacimiento del nacido"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.703"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtfecha" />
+        <Button
+            android:id="@+id/btnActatra"
+            android:layout_width="357dp"
+            android:layout_height="45dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="48dp"
+            android:onClick="seleccionarArchivo"
+            android:text="Subir acta de nacimiento del nacido"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtfecha" />
 
-    <Button
+        <Button
         android:id="@+id/btnCanastilla"
         android:layout_width="160dp"
         android:layout_height="50dp"

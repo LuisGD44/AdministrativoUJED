@@ -47,41 +47,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tolbar" />
 
+    <Spinner
+        android:id="@+id/txtOptica"
+        android:layout_width="357dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="48dp"
+        android:hint="Optica"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_matriculaLen" />
+
     <Button
         android:id="@+id/btnPreosu"
         android:layout_width="357dp"
         android:layout_height="45dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="40dp"
         android:onClick="seleccionarArchivo"
-        android:text="Preosupueesto "
+        android:text="Presupuesto "
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_matriculaLen" />
+        app:layout_constraintTop_toBottomOf="@+id/txtOptica" />
 
     <Button
         android:id="@+id/btntalondental"
         android:layout_width="357dp"
         android:layout_height="45dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:onClick="seleccionarArchivo"
         android:text="Talon de pago"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnPreosu" />
-
-    <Button
-        android:id="@+id/btnOpticas"
-        style="@style/bottonGreen"
-        android:layout_width="169dp"
-        android:layout_height="82dp"
-        android:layout_marginTop="48dp"
-        android:gravity="center"
-        android:text="Ver listado de opticas  "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btntalondental" />
 
     <Button
         android:id="@+id/btnExentoHijo"
@@ -94,14 +94,14 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topTextView"
-        app:layout_constraintVertical_bias="0.555"
+        app:layout_constraintVertical_bias="0.367"
         app:rippleColor="@color/white" />
 
     <TextView
         android:id="@+id/topTextView"
         android:layout_width="0dp"
         android:layout_height="113dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="84dp"
         android:background="@color/blue"
         android:gravity="center"
         android:text="@string/lentes"
@@ -109,16 +109,16 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnOpticas" />
+        app:layout_constraintTop_toBottomOf="@+id/btntalondental" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="308dp"
         android:layout_height="41dp"
         android:layout_marginEnd="16dp"
-        android:text="Decuentos en opticas"
+        android:text="Descuentos en opticas"
         android:textColor="@color/white"
         android:textSize="25sp"
         android:typeface="sans"

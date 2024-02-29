@@ -33,7 +33,7 @@
             android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Exento de inscripcion para nietos de trabajadores"
+            android:text="Exento de cuota para nietos de trabajadores"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold"/>
@@ -54,36 +54,51 @@
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="4dp"
                 android:onClick="seleccionarArchivo"
                 android:text="Subir talon de pago"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.518"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/txt_matriculaTrabajadorNietoC"
+                android:id="@+id/txtNombreAlumnoC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="32dp"
                 android:ems="10"
-                android:hint="Matricula del trabajador"
-                android:inputType="number"
+                android:hint="Nombre del alumno"
+                android:inputType="text"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnTalonNietoC" />
 
             <EditText
+                android:id="@+id/txt_matriculaTrabajadorNietoC"
+                android:layout_width="357dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:hint="Matricula del trabajador"
+                android:inputType="number"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtNombreAlumnoC" />
+
+            <EditText
                 android:id="@+id/txt_matriculaAlunmoNietoC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 android:ems="10"
                 android:hint="Matricula del alumno"
                 android:inputType="number"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.518"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_matriculaTrabajadorNietoC" />
 
@@ -91,12 +106,13 @@
                 android:id="@+id/txt_semestreNietoC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="32dp"
                 android:ems="10"
-                android:hint="Semestre a cursar"
+                android:hint="Semestre a cursar (Letras)"
                 android:inputType="text"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.518"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_matriculaAlunmoNietoC" />
 
@@ -104,7 +120,7 @@
                 android:id="@+id/txtEscuelaNietoC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="44dp"
                 android:ems="10"
                 android:hint="Escuela o facultad"
                 android:inputType="text"
@@ -113,23 +129,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtPeriodoNietoC" />
 
+
             <Spinner
                 android:id="@+id/txtPresencialNietoC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:hint="Precencial o virtual"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_semestreNietoC" />
 
-
             <Spinner
                 android:id="@+id/txtEscolarizadoNietoC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="36dp"
                 android:hint="Escolarizado o semi escolarizado "
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -140,7 +156,7 @@
                 android:id="@+id/txtPeriodoNietoC"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="48dp"
                 android:hint="Periodo "
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -152,7 +168,7 @@
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:onClick="seleccionarArchivo"
                 android:text="Acta de nacimiento del hijo"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -164,11 +180,10 @@
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="32dp"
                 android:onClick="seleccionarArchivo"
                 android:text="Acta de nacimiento del nieto"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.703"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/actaHijoNietoC" />
 
@@ -177,6 +192,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/green"
+                android:layout_marginTop="32dp"
                 android:text="Enviar datos"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

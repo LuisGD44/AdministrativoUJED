@@ -124,14 +124,32 @@ class vacantesActivity : AppCompatActivity() {
                 val formatoFecha = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                 val fechaFormateada = formatoFecha.format(fechaSeleccionada.time)
 
-                val txtFecha = findViewById<EditText>(R.id.txt_fecha)
-                txtFecha.setText(fechaFormateada)
+                val editTextFecha = findViewById<EditText>(R.id.editTextFecha)
+                editTextFecha.setText(fechaFormateada) // Establece el texto en el EditText
             },
             añoActual,
             mesActual,
             diaActual
         )
 
+        // Personalizar el DatePickerDialog para mostrar un spinner para el año
+        datePickerDialog.datePicker.calendarViewShown = false
+        datePickerDialog.datePicker.spinnersShown = true
+
+        // Establecer el rango de años que se mostrará en el spinner
+        val añoMinimo = 1940
+        datePickerDialog.datePicker.minDate = getFechaEnMilisegundos(añoMinimo, 0, 1)
+        datePickerDialog.datePicker.maxDate = System.currentTimeMillis() // Fecha actual como máximo
+
         datePickerDialog.show()
     }
+
+    // Función auxiliar para obtener la fecha en milisegundos
+    private fun getFechaEnMilisegundos(año: Int, mes: Int, dia: Int): Long {
+        val calendar = Calendar.getInstance()
+        calendar.set(año, mes, dia)
+        return calendar.timeInMillis
+    }
+
+
 }

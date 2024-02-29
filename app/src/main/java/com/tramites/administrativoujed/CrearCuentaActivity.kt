@@ -12,17 +12,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.database.FirebaseDatabase
 
-data class Usuario(
-
-    val matricula: String,
-    val email: String,
-    val nombre: String? = null,
-    val apellidoPaterno: String? = null,
-    val apellidoMaterno: String? = null,
-    val turno: String? = null,
-    val rama: String? = null
-
-)
 
 
 class CrearCuentaActivity : AppCompatActivity() {
@@ -32,7 +21,6 @@ class CrearCuentaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crear_cuenta)
 
-        val txtNombre_nuevo : TextView = findViewById(R.id.inputCrearCuenta)
         val txtEmail_nuevo : TextView = findViewById(R.id.inputEmail1)
         val txtMatricula: TextView = findViewById(R.id.inputMatricula)
         val txtPassword1 : TextView = findViewById(R.id.inputPassword1)
@@ -46,19 +34,17 @@ class CrearCuentaActivity : AppCompatActivity() {
         {
             val pass1 = txtPassword1.text.toString()
             val pass2 = txtPassword2.text.toString()
-            val nombre2 = txtNombre_nuevo.text.toString()
             val email = txtEmail_nuevo.text.toString()
             val matricula = txtMatricula.text.toString()
 
 
-            if (nombre2.isEmpty() || email.isEmpty() || pass1.isEmpty() || pass2.isEmpty() || matricula.isEmpty())
+            if ( email.isEmpty() || pass1.isEmpty() || pass2.isEmpty() || matricula.isEmpty())
                 {
                     Toast.makeText(baseContext, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show()
                 }
                 else if (pass1 == pass2)
             {
                 crearCuenta(email, pass1, matricula)
-                Toast.makeText(baseContext, "Se creo el usuario exitosamente", Toast.LENGTH_SHORT).show()
 
             }
             else {
@@ -106,6 +92,17 @@ class CrearCuentaActivity : AppCompatActivity() {
         // Utiliza la matrícula como clave para guardar el usuario
         reference.child(usuario.matricula).setValue(usuario)
     }
+    data class Usuario(
+
+        val matricula: String,
+        val email: String,
+        val nombre: String? = null,
+        val apellidoPaterno: String? = null,
+        val apellidoMaterno: String? = null,
+        val turno: String? = null,
+        val rama: String? = null
+
+    )
 
     private fun sendEmailVerification()
     {
@@ -120,7 +117,6 @@ class CrearCuentaActivity : AppCompatActivity() {
                 Toast.makeText(baseContext, "Algo salio mal", Toast.LENGTH_SHORT).show()
             }
         }
-
 
     }
 }

@@ -9,9 +9,11 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
@@ -22,12 +24,16 @@ import java.util.UUID
 
 class lentes : AppCompatActivity() {
     private lateinit var txtMatricula: EditText
+    private lateinit var txtOptica: Spinner
     private var presupuestoUri: Uri? = null
     private var talonUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lentes)
+
+
+        txtOptica = findViewById(R.id.txtOptica)
 
         txtMatricula = findViewById(R.id.txt_matriculaLen)
 
@@ -45,11 +51,14 @@ class lentes : AppCompatActivity() {
         btnExentoHijo.setOnClickListener {
             enviarDatos()
         }
-        val opticas: Button = findViewById(R.id.btnOpticas)
-        opticas.setOnClickListener {
-            val intent = Intent(this, opticas::class.java)
-            startActivity(intent)
-        }
+
+        val opticaAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.opticas,
+            android.R.layout.simple_spinner_item
+        )
+        opticaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        txtOptica.adapter = opticaAdapter
 
         val btnBack: ImageButton = findViewById(R.id.btnBack)
         btnBack.setOnClickListener {
@@ -80,6 +89,7 @@ class lentes : AppCompatActivity() {
 
     private fun enviarDatos() {
         val matricula = txtMatricula.text.toString()
+        val optica = txtOptica.selectedItem.toString()
         val presupuestoUri = this.presupuestoUri
         val talonUri = this.talonUri
 
@@ -103,6 +113,7 @@ class lentes : AppCompatActivity() {
                 val informacionLentesRef = db.collection("informacionLentes")
                 val nuevoDocumento = hashMapOf(
                     "matricula" to matricula,
+                    "optica" to optica,
                     "presupuestoUri" to presupuestoUrl,
                     "talonUri" to talonUrl
                 )

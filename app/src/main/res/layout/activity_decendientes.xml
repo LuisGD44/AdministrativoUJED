@@ -33,7 +33,7 @@
             android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Exento de inscripcion para dependites de trabajadores"
+            android:text="Exento de inscripción para dependites de trabajadores"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold"/>
@@ -55,10 +55,11 @@
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="44dp"
                 android:onClick="seleccionarArchivo"
                 android:text="Subir talon de pago"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.296"
+                app:layout_constraintHorizontal_bias="0.407"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,7 +67,7 @@
                 android:id="@+id/txt_matriculaTrabajador"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="32dp"
                 android:ems="10"
                 android:hint="Matricula del trabajador"
                 android:inputType="text"
@@ -80,12 +81,13 @@
                 android:id="@+id/txt_matriculaAlunmo"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:ems="10"
                 android:hint="Matricula del alumno"
                 android:inputType="number"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.407"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_matriculaTrabajador" />
 
@@ -93,13 +95,14 @@
                 android:id="@+id/txt_semestre"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:ems="10"
-                android:hint="Semestr a cursar (letras)"
+                android:hint="Semestre a cursar (letras)"
                 android:inputType="text"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.407"
                 app:layout_constraintTop_toBottomOf="@+id/txt_matriculaAlunmo" />
 
             <Spinner
@@ -113,41 +116,58 @@
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.407"
                 app:layout_constraintTop_toBottomOf="@+id/txtEscolarizadode" />
 
             <Spinner
                 android:id="@+id/txtPresencialde"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="32dp"
                 android:hint="Precencial o virtual"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.407"
                 app:layout_constraintTop_toBottomOf="@+id/txt_semestre" />
 
             <Spinner
                 android:id="@+id/txtEscolarizadode"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="32dp"
                 android:hint="Escolarizado o semi escolarizado "
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.407"
                 app:layout_constraintTop_toBottomOf="@+id/txtPresencialde" />
+
+
+            <Spinner
+                android:id="@+id/txtPeriodoHijoD"
+                android:layout_width="357dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="32dp"
+                android:hint="Periodo "
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.407"
+                app:layout_constraintTop_toBottomOf="@+id/txtEscuelade" />
 
             <Button
                 android:id="@+id/btnActa"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:onClick="seleccionarArchivo"
                 android:text="Acta de nacimiento del dependiente"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtEscuelade" />
+                app:layout_constraintHorizontal_bias="0.407"
+                app:layout_constraintTop_toBottomOf="@+id/txtPeriodoHijoD" />
 
             <Button
                 android:id="@+id/btnCarta"
@@ -159,6 +179,7 @@
                 android:text="Carta notariada"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.407"
                 app:layout_constraintTop_toBottomOf="@+id/btnActa" />
 
             <Button
@@ -169,9 +190,10 @@
                 android:backgroundTint="@color/green"
                 android:text="Enviar datos"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintHorizontal_bias="0.407"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnCarta"
+
                 app:rippleColor="@color/white" />
 
             <EditText

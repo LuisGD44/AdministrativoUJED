@@ -26,6 +26,7 @@ import androidx.core.app.NotificationCompat
 class decendientesActivity : AppCompatActivity() {
     private lateinit var txtPresencialde: Spinner
     private lateinit var txtEscolarizadode: Spinner
+    private lateinit var txtPeriodoHijoD: Spinner
     private lateinit var txtEscuelade: Spinner
     private lateinit var talonUri: Uri
     private lateinit var actaHijoUri: Uri
@@ -38,7 +39,9 @@ class decendientesActivity : AppCompatActivity() {
 
         txtPresencialde = findViewById(R.id.txtPresencialde)
         txtEscolarizadode = findViewById(R.id.txtEscolarizadode)
+        txtPeriodoHijoD = findViewById(R.id.txtPeriodoHijoD)
         txtEscuelade = findViewById(R.id.txtEscuelade)
+
 
         val presencialAdapter = ArrayAdapter.createFromResource(
             this,
@@ -55,6 +58,15 @@ class decendientesActivity : AppCompatActivity() {
         )
         escolarizadoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         txtEscolarizadode.adapter = escolarizadoAdapter
+
+        val periodoAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.periodo,
+            android.R.layout.simple_spinner_dropdown_item
+        )
+        periodoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        txtPeriodoHijoD.adapter = periodoAdapter
+
 
 
         val escuelaAdapter = ArrayAdapter.createFromResource(
@@ -120,6 +132,7 @@ class decendientesActivity : AppCompatActivity() {
         val nombreDependiente = findViewById<EditText>(R.id.txtDependiente).text.toString()
         val presencialDec = txtPresencialde.selectedItem.toString()
         val escolarizadoDec = txtEscolarizadode.selectedItem.toString()
+        val periodoDec = txtPeriodoHijoD.selectedItem.toString()
         val escuela = txtEscuelade.selectedItem.toString()
 
         if (matricula.isEmpty() || matriculaAlumno.isEmpty() || semestre.isEmpty()  || talonUri == null || actaHijoUri == null || actaCartaUri == null) {
@@ -142,6 +155,7 @@ class decendientesActivity : AppCompatActivity() {
                         "semestre" to semestre,
                         "escuela" to escuela,
                         "presencialDec" to presencialDec,
+                        "periodo" to periodoDec,
                         "nombreDependiente" to nombreDependiente,
                         "escolarizadoDec" to escolarizadoDec,
                         "talonUri" to talonUrl,

@@ -61,92 +61,93 @@
 
             <EditText
                 android:id="@+id/txt_matriculaTraC"
-                android:layout_width="388dp"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="24dp"
                 android:ems="10"
                 android:hint="Matricula de trabajador"
                 android:inputType="number"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.695"
+                app:layout_constraintHorizontal_bias="0.505"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/txt_matriculaEscolarTraC"
-                android:layout_width="388dp"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="52dp"
+                android:layout_marginTop="44dp"
                 android:ems="10"
                 android:hint="Matricula de alumno"
                 android:inputType="number"
                 android:padding="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/txt_matriculaTraC"
-                tools:layout_editor_absoluteX="-5dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_matriculaTraC" />
 
             <EditText
                 android:id="@+id/txtSemestreTraC"
-                android:layout_width="376dp"
+                android:layout_width="320dp"
                 android:layout_height="48dp"
-                android:layout_marginTop="52dp"
+                android:layout_marginTop="32dp"
                 android:ems="10"
                 android:hint="Semestre, cuatrimeste o nivel (Con letras)"
                 android:inputType="text"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_matriculaEscolarTraC" />
 
+
             <Spinner
                 android:id="@+id/txtEscuelaTraC"
-                android:layout_width="357dp"
+                android:layout_width="320dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="56dp"
+                android:layout_marginTop="44dp"
                 android:ems="10"
                 android:hint="Escuela o Facultad"
                 android:inputType="text"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtSemestreTraC" />
 
             <Spinner
                 android:id="@+id/txtEscolarizadoTraC"
-                android:layout_width="357dp"
+                android:layout_width="320dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="56dp"
+                android:layout_marginTop="40dp"
                 android:hint="Escolarizado o semiescolorizado"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.388"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtEscuelaTraC" />
 
-
             <Spinner
                 android:id="@+id/txt_periodoTraC"
-                android:layout_width="357dp"
+                android:layout_width="320dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="44dp"
+                android:layout_marginTop="40dp"
                 android:hint="Periodo"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.425"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtEscolarizadoTraC" />
 
             <Button
                 android:id="@+id/btnActatraC"
-                android:layout_width="357dp"
+                android:layout_width="320dp"
                 android:layout_height="45dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="52dp"
                 android:onClick="seleccionarArchivo"
                 android:text="Subir talon de pago"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.314"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_periodoTraC" />
 

@@ -114,8 +114,10 @@ class cuotaHijoActivity : AppCompatActivity() {
     }
 
     private fun enviarDatos() {
+        val nombreAlumno = findViewById<EditText>(R.id.txtNombreAlumnoHC).text.toString()
         val matricula = findViewById<EditText>(R.id.txt_matriculaTrabajadorC).text.toString()
         val matriculaAlumno = findViewById<EditText>(R.id.txt_matriculaC).text.toString()
+        val semestre = findViewById<EditText>(R.id.txtSemestreC).text.toString()
         val presencial = txtPresencialSpinner.selectedItem.toString()
         val escolarizado = txtEscolarizadoSpinner.selectedItem.toString()
         val escuela = txtEscuelaSpinner.selectedItem.toString()
@@ -132,7 +134,7 @@ class cuotaHijoActivity : AppCompatActivity() {
         subirArchivo(actaUri, actaFileName) { actaUrl ->
             subirArchivo(talonUri, talonFileName) { talonUrl ->
                 // Después de subir todas las imágenes, agregar los datos a Firestore
-                agregarDatosFirestore(matricula, matriculaAlumno, actaUrl, talonUrl, presencial, escuela, escolarizado, periodo)
+                agregarDatosFirestore(nombreAlumno,matricula, matriculaAlumno,semestre, presencial, escolarizado, escuela , periodo,actaUrl, talonUrl,)
             }
         }
     }
@@ -158,26 +160,30 @@ class cuotaHijoActivity : AppCompatActivity() {
     }
 
     private fun agregarDatosFirestore(
+        nombreAlumno: String,
         matricula: String,
         matriculaAlumno: String,
-        actaUrl: String,
-        talonUrl: String,
-        periodo: String,
+        semestre: String,
         presencial: String,
         escolarizado: String,
         escuela: String,
+        periodo: String,
+        actaUrl: String,
+        talonUrl: String,
     ) {
         val db = FirebaseFirestore.getInstance()
         val informacionHijosRef = db.collection("informacionHijosCuota")
         val nuevoDocumento = hashMapOf(
+            "nombreAlumno" to nombreAlumno,
             "matricula" to matricula,
             "matriculaAlumno" to matriculaAlumno,
+            "semestre" to semestre,
+            "presencial" to presencial,
+            "escolarizado" to escolarizado,
+            "escuela" to escuela,
             "periodo" to periodo,
             "actaUrl" to actaUrl,
             "talonUrl" to talonUrl,
-            "presencial" to presencial,
-            "escuela" to escolarizado,
-            "escolarizado" to escuela
             //Por alguna razon tuve que invertir escuela y escolarizado para que se almacenara de manera correcta
         )
 

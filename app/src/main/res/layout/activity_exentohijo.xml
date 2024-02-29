@@ -41,6 +41,7 @@
             android:textStyle="bold"/>
 
     </androidx.appcompat.widget.Toolbar>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -53,7 +54,19 @@
 
 
             <EditText
-                android:id="@+id/txt_matriculaTrabajador"
+                android:id="@+id/txtNombreAlumnoH"
+                android:layout_width="357dp"
+                android:layout_height="45dp"
+                android:ems="10"
+                android:hint="Nombre completo Alumno"
+                android:inputType="text"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/txt_matriculaTrabajadorHijo"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="40dp"
@@ -64,38 +77,38 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.462"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_matricula" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_matriculaEH" />
 
             <EditText
-                android:id="@+id/txt_matricula"
+                android:id="@+id/txt_matriculaEH"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="40dp"
                 android:ems="10"
                 android:hint="Matricula Alumno"
                 android:inputType="number"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.518"
+                app:layout_constraintHorizontal_bias="0.481"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/txtNombreAlumnoH" />
 
             <EditText
-                android:id="@+id/txtSemestre"
+                android:id="@+id/txtSemestreH"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="48dp"
                 android:ems="10"
-                android:hint="Semestre"
-                android:inputType="number"
+                android:hint="Semestre (Letras)"
+                android:inputType="text"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.481"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_matriculaTrabajador" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_matriculaTrabajadorHijo" />
 
             <Spinner
-                android:id="@+id/txtEscuela"
+                android:id="@+id/txtEscuelaH"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="52dp"
@@ -105,10 +118,10 @@
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtSemestre" />
+                app:layout_constraintTop_toBottomOf="@+id/txtSemestreH" />
 
             <Spinner
-                android:id="@+id/txtPresencial"
+                android:id="@+id/txtPresencialH"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="28dp"
@@ -117,21 +130,34 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.531"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtEscuela" />
+                app:layout_constraintTop_toBottomOf="@+id/txtEscuelaH" />
 
             <Spinner
-                android:id="@+id/txtEscolarizado"
+                android:id="@+id/txtEscolarizadoH"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="36dp"
                 android:hint="Escolarizado o semiescolorizado"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.518"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtPresencial" />
+                app:layout_constraintTop_toBottomOf="@+id/txtPresencialH" />
+
+            <Spinner
+                android:id="@+id/txtPeridoDepH"
+                android:layout_width="357dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="52dp"
+                android:hint="Periodo"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.518"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtEscolarizadoH" />
 
             <Button
-                android:id="@+id/btnTalon"
+                android:id="@+id/btnTalonH"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_centerHorizontal="true"
@@ -139,22 +165,21 @@
                 android:onClick="seleccionarArchivo"
                 android:text="Subir talon de pago"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtEscolarizado" />
+                app:layout_constraintTop_toBottomOf="@+id/txtPeridoDepH" />
 
             <Button
-                android:id="@+id/btnActa"
+                android:id="@+id/btnActaH"
                 android:layout_width="357dp"
                 android:layout_height="45dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="116dp"
+                android:layout_marginTop="24dp"
                 android:onClick="seleccionarArchivo"
                 android:text="Subir acta de nacimiento del hijo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/txtEscolarizado"
-                app:layout_constraintTop_toBottomOf="@+id/txtEscolarizado" />
+                app:layout_constraintStart_toStartOf="@+id/txtEscolarizadoH"
+                app:layout_constraintTop_toBottomOf="@+id/btnTalonH" />
 
             <Button
                 android:id="@+id/btnExentoHijo"
@@ -165,7 +190,7 @@
                 android:text="Enviar datos"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnActa"
+                app:layout_constraintTop_toBottomOf="@id/btnActaH"
                 app:rippleColor="@color/white" />
 
 

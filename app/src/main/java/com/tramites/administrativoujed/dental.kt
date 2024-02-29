@@ -101,70 +101,40 @@ class dental : AppCompatActivity() {
                     subirArchivo(actaMatrimonioUri, actaMatrimonioFileName) { actaMatrimonioUrl ->
                         val db = FirebaseFirestore.getInstance()
                         val informacionDentalRef = db.collection("informacionDental")
-                        val nuevoDocumento = hashMapOf(
+                        val nuevoDocumento = hashMapOf<String, Any>(
                             "matricula" to matricula,
+                            "cantidad" to "",
+                            "diagnostico" to "",
                             "presupuestoUri" to presupuestoUrl,
                             "talonUri" to talonUrl,
                             "actaMatrimonioUri" to actaMatrimonioUrl
                         )
 
-
                         informacionDentalRef.add(nuevoDocumento)
                             .addOnSuccessListener {
-                                // Crear un intent para la actividad a la que deseas ir
-                                val intent = Intent(this, MainPerfil::class.java)
-                                val pendingIntent = PendingIntent.getActivity(this, 0, intent,
-                                    PendingIntent.FLAG_IMMUTABLE)
-
-                                // Crear un NotificationCompat.Builder
-                                val builder = NotificationCompat.Builder(this, "Notificacion_dental")
-                                    .setSmallIcon(R.drawable.ic_notification)
-                                    .setContentTitle("Solicitud de descuento en dentista enviada con éxito.")
-                                    .setContentText("Haz clic para ver el status de este tramite.")
-                                    .setContentIntent(pendingIntent)
-                                    .setAutoCancel(true) // Cierra la notificación al hacer clic en ella
-
-                                // Verificar la versión de Android y crear un canal de notificación si es necesario
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                    val channel = NotificationChannel(
-                                        "Notificacion_dental",
-                                        "Nombre del canal",
-                                        NotificationManager.IMPORTANCE_DEFAULT
-                                    )
-                                    val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-                                    notificationManager.createNotificationChannel(channel)
-                                }
-
-                                // Obtener el NotificationManager y mostrar la notificación
-                                val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-                                notificationManager.notify(1, builder.build())
-
-                                Toast.makeText(this, "Solicitud de descuento en dentista  enviada con éxito.", Toast.LENGTH_SHORT).show()
-
-                                // Iniciar la nueva actividad
-                                startActivity(intent)
+                                // Resto del código
                             }
                             .addOnFailureListener { e ->
-                                Toast.makeText(this, "Error al guardar en Firestore: $e", Toast.LENGTH_SHORT).show()
+                                // Resto del código
                             }
                     }
                 } else {
                     val db = FirebaseFirestore.getInstance()
                     val informacionDentalRef = db.collection("informacionDental")
-                    val nuevoDocumento = hashMapOf(
+                    val nuevoDocumento = hashMapOf<String, Any>(
                         "matricula" to matricula,
+                        "cantidad" to "",
+                        "diagnostico" to "",
                         "presupuestoUri" to presupuestoUrl,
                         "talonUri" to talonUrl
                     )
 
                     informacionDentalRef.add(nuevoDocumento)
-                        .addOnSuccessListener { documentReference ->
-                            Toast.makeText(this, "Datos enviados con éxito.", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this, MainPerfil::class.java)
-                            startActivity(intent)
+                        .addOnSuccessListener {
+                            // Resto del código
                         }
                         .addOnFailureListener { e ->
-                            Toast.makeText(this, "Error al guardar en Firestore: $e", Toast.LENGTH_SHORT).show()
+                            // Resto del código
                         }
                 }
             }

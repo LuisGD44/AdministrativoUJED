@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-        <View
+    <View
         android:id="@+id/dowView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -29,47 +29,100 @@
         android:id="@+id/imageView"
         android:layout_width="323dp"
         android:layout_height="124dp"
-        app:layout_constraintBottom_toBottomOf="@+id/topView"
+        android:layout_marginTop="84dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/topView"
         app:srcCompat="@mipmap/logo" />
 
     <EditText
         android:id="@+id/inputEmail"
-        android:layout_width="257dp"
-        android:layout_height="60dp"
+        android:layout_width="301dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="Correo"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/inputPassword"
+        android:hint="@string/email_hint"
+        android:inputType="text"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topView"
-        app:layout_constraintVertical_bias="0.444" />
+        app:layout_constraintTop_toBottomOf="@+id/topView" />
 
     <EditText
         android:id="@+id/inputPassword"
-        android:layout_width="258dp"
-        android:layout_height="66dp"
-        android:layout_marginBottom="84dp"
+        android:layout_width="301dp"
+        android:layout_height="49dp"
         android:ems="10"
-        android:hint="Contraseña"
+        android:hint="@string/password_hint"
         android:inputType="textPassword"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/btnIngresar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputEmail"
+        app:layout_constraintVertical_bias="0.186" />
 
     <Button
         android:id="@+id/btnIngresar"
-        android:layout_width="124dp"
-        android:layout_height="65dp"
-        android:layout_marginBottom="44dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="96dp"
+        android:backgroundTint="@color/red"
         android:text="Ingresar"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:cornerRadius="@android:dimen/system_app_widget_inner_radius"
+        app:layout_constraintBottom_toTopOf="@+id/dowView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="@color/white" />
+
+    <TextView
+        android:id="@+id/btnOlvidar"
+        android:layout_width="197dp"
+        android:layout_height="21dp"
+        android:clickable="true"
+        android:text="@string/strOlvidaste"
+        android:textColor="#1635DF"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnIngresar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
+
+    <TextView
+        android:id="@+id/btnCrearCuenta"
+        android:layout_width="107dp"
+        android:layout_height="36dp"
+        android:clickable="true"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/strCrear_cuenta"
+        android:textColor="#1635DF"
+        android:textColorHint="#838080"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/dowView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnIngresar"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="133dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="52dp"
+        android:text="¿Eres nuevo?"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnCrearCuenta"
+        app:layout_constraintHorizontal_bias="0.842"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnIngresar"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

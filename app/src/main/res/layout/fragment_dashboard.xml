@@ -23,15 +23,16 @@
         app:layout_constraintTop_toBottomOf="@+id/topView"
         app:layout_constraintVertical_bias="0.234" />
 
+
     <Button
         android:id="@+id/btnPermiso"
         style="@style/bottonGreen"
-        android:layout_width="173dp"
+        android:layout_width="157dp"
         android:layout_height="54dp"
         android:layout_marginTop="76dp"
         android:text="Solicitar Permiso"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintHorizontal_bias="0.881"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,11 +41,11 @@
         style="@style/bottonGreen"
         android:layout_width="150dp"
         android:layout_height="56dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="72dp"
         android:gravity="center"
         android:text="Solicitar canasta "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintHorizontal_bias="0.126"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnDescuentos" />
 
@@ -53,36 +54,37 @@
         style="@style/bottonGreen"
         android:layout_width="150dp"
         android:layout_height="46dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="288dp"
+        android:layout_marginTop="60dp"
         android:gravity="center"
         android:text="Vacantes "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.126"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toBottomOf="@+id/btncanasta" />
 
     <Button
         android:id="@+id/btnCuota"
         style="@style/bottonGreen"
-        android:layout_width="150dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="288dp"
+        android:layout_width="167dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="60dp"
         android:gravity="center"
         android:text="Exento de cuotas "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnMaterial"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.885"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnExento" />
 
     <Button
         android:id="@+id/btnExento"
         style="@style/bottonGreen"
-        android:layout_width="168dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="150dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="72dp"
         android:gravity="center"
         android:text="Exentos de Inscripcion"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.878"
+        app:layout_constraintHorizontal_bias="0.885"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnPermiso" />
 

@@ -1,8 +1,13 @@
 package com.tramites.administrativoujed
 
 import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -12,6 +17,7 @@ import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -19,6 +25,8 @@ import java.util.UUID
 
 class exentonieto : AppCompatActivity() {
     private lateinit var txtPresencialNieto: Spinner
+    private lateinit var txtPeriodo: Spinner
+    private lateinit var txtEscuela: Spinner
     private lateinit var txtEscolarizadoNieto: Spinner
     private lateinit var actaHijoUri: Uri
     private lateinit var actaNietoUri: Uri
@@ -30,6 +38,8 @@ class exentonieto : AppCompatActivity() {
 
         txtPresencialNieto = findViewById(R.id.txtPresencialNieto)
         txtEscolarizadoNieto = findViewById(R.id.txtEscolarizadoNieto)
+        txtPeriodo = findViewById(R.id.txtPeriodoNieto)
+        txtEscuela = findViewById(R.id.txtEscuelaN)
 
         val presencialAdapter = ArrayAdapter.createFromResource(
             this,
@@ -38,6 +48,23 @@ class exentonieto : AppCompatActivity() {
         )
         presencialAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         txtPresencialNieto.adapter = presencialAdapter
+
+        val periodoAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.periodo,
+            android.R.layout.simple_spinner_item
+        )
+        periodoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        txtPeriodo.adapter = periodoAdapter
+
+        val escuelaAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.Escuela,
+            android.R.layout.simple_spinner_item
+        )
+        escuelaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        txtEscuela.adapter = presencialAdapter
+
 
         val escolarizadoAdapter = ArrayAdapter.createFromResource(
             this,
@@ -101,8 +128,10 @@ class exentonieto : AppCompatActivity() {
     private fun enviarDatos() {
         val matricula = findViewById<EditText>(R.id.txt_matriculaTrabajador).text.toString()
         val matriculaAlumno = findViewById<EditText>(R.id.txt_matriculaAlunmo).text.toString()
+        val nombreAlumno = findViewById<EditText>(R.id.txt_NombreAlumno).text.toString()
         val semestre = findViewById<EditText>(R.id.txt_semestre).text.toString()
-        val escuela = findViewById<EditText>(R.id.txtEscuela).text.toString()
+        val escuela = txtEscuela.selectedItem.toString()
+        val periodo = txtPeriodo.selectedItem.toString()
         val presencialNieto = txtPresencialNieto.selectedItem.toString()
         val escolarizadoNieto = txtEscolarizadoNieto.selectedItem.toString()
 
@@ -131,7 +160,7 @@ class exentonieto : AppCompatActivity() {
                     urls.add(url)
 
                     // Después de subir todas las imágenes, agregar los datos a Firestore
-                    agregarDatosFirestore(matricula, matriculaAlumno, semestre, escuela, presencialNieto, escolarizadoNieto, urls)
+                    agregarDatosFirestore(matricula, matriculaAlumno, nombreAlumno,semestre, escuela,periodo, presencialNieto, escolarizadoNieto,  urls)
                 }
             }
         }
@@ -162,8 +191,10 @@ class exentonieto : AppCompatActivity() {
     private fun agregarDatosFirestore(
         matricula: String,
         matriculaAlumno: String,
+        nombreAlumno: String,
         semestre: String,
         escuela: String,
+        periodo: String,
         presencialNieto: String,
         escolarizadoNieto: String,
         urls: List<String>
@@ -174,8 +205,10 @@ class exentonieto : AppCompatActivity() {
         val nuevoDocumento = hashMapOf(
             "matricula" to matricula,
             "matriculaAlumno" to matriculaAlumno,
+            "nombreAlumno" to nombreAlumno,
             "semestre" to semestre,
             "escuela" to escuela,
+            "periodo" to periodo,
             "presencialNieto" to presencialNieto,
             "escolarizadoNieto" to escolarizadoNieto,
             "actaHijoUri" to urls.getOrNull(0),
@@ -184,10 +217,38 @@ class exentonieto : AppCompatActivity() {
         )
 
         informacionExentoNietoRef.add(nuevoDocumento)
-            .addOnSuccessListener { documentReference ->
-                Toast.makeText(this, "Datos enviados con éxito.", Toast.LENGTH_SHORT).show()
-
+            .addOnSuccessListener {
+                // Crear un intent para la actividad a la que deseas ir
                 val intent = Intent(this, exentos::class.java)
+                val pendingIntent = PendingIntent.getActivity(this, 0, intent,
+                    PendingIntent.FLAG_IMMUTABLE)
+
+                // Crear un NotificationCompat.Builder
+                val builder = NotificationCompat.Builder(this, "Notificacion_trabajador")
+                    .setSmallIcon(R.drawable.ic_notification)
+                    .setContentTitle("Solicitud de exento de cuota enviada con éxito.")
+                    .setContentText("Haz clic para ver el status de este tramite.")
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true) // Cierra la notificación al hacer clic en ella
+
+                // Verificar la versión de Android y crear un canal de notificación si es necesario
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    val channel = NotificationChannel(
+                        "Notificacion_trabajador",
+                        "Nombre del canal",
+                        NotificationManager.IMPORTANCE_DEFAULT
+                    )
+                    val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                    notificationManager.createNotificationChannel(channel)
+                }
+
+                // Obtener el NotificationManager y mostrar la notificación
+                val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                notificationManager.notify(1, builder.build())
+
+                Toast.makeText(this, "Solicitud de exento  enviada con éxito.", Toast.LENGTH_SHORT).show()
+
+                // Iniciar la nueva actividad
                 startActivity(intent)
             }
             .addOnFailureListener { e ->

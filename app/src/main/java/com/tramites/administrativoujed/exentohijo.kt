@@ -1,6 +1,7 @@
 package com.tramites.administrativoujed
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -21,21 +22,26 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.util.UUID
+import android.provider.Settings
 
 class exentohijo : AppCompatActivity() {
     private lateinit var txtPresencialSpinner: Spinner
     private lateinit var txtEscuelaSpinner: Spinner
     private lateinit var txtEscolarizadoSpinner: Spinner
+    private lateinit var txtPeriodoSpinner: Spinner
     private lateinit var actaUri: Uri
     private lateinit var talonUri: Uri
+    private lateinit var notificationManager: NotificationManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exentohijo)
 
-        txtPresencialSpinner = findViewById(R.id.txtPresencial)
-        txtEscolarizadoSpinner = findViewById(R.id.txtEscolarizado)
-        txtEscuelaSpinner = findViewById(R.id.txtEscuela)
+        // Inicializar vistas y adaptadores
+        txtPresencialSpinner = findViewById(R.id.txtPresencialH)
+        txtEscolarizadoSpinner = findViewById(R.id.txtEscolarizadoH)
+        txtEscuelaSpinner = findViewById(R.id.txtEscuelaH)
+        txtPeriodoSpinner = findViewById(R.id.txtPeridoDepH)
 
         val presencialAdapter = ArrayAdapter.createFromResource(
             this,
@@ -44,6 +50,12 @@ class exentohijo : AppCompatActivity() {
         )
         presencialAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
+        val periodoAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.periodo,
+            android.R.layout.simple_spinner_item
+        )
+        periodoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         val escuelaAdapter = ArrayAdapter.createFromResource(
             this,
@@ -51,7 +63,6 @@ class exentohijo : AppCompatActivity() {
             android.R.layout.simple_spinner_item
         )
         escuelaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
 
         val escolarizadoAdapter = ArrayAdapter.createFromResource(
             this,
@@ -63,13 +74,15 @@ class exentohijo : AppCompatActivity() {
         txtPresencialSpinner.adapter = presencialAdapter
         txtEscolarizadoSpinner.adapter = escolarizadoAdapter
         txtEscuelaSpinner.adapter = escuelaAdapter
+        txtPeriodoSpinner.adapter = periodoAdapter
 
-        val btnTalon = findViewById<Button>(R.id.btnTalon)
+        // Configurar botones
+        val btnTalon = findViewById<Button>(R.id.btnTalonH)
         btnTalon.setOnClickListener {
             seleccionarArchivo(PICK_IMAGE_REQUEST_TALON)
         }
 
-        val btnActa = findViewById<Button>(R.id.btnActa)
+        val btnActa = findViewById<Button>(R.id.btnActaH)
         btnActa.setOnClickListener {
             seleccionarArchivo(PICK_IMAGE_REQUEST_ACTA)
         }
@@ -78,17 +91,46 @@ class exentohijo : AppCompatActivity() {
         btnExentoHijo.setOnClickListener {
             enviarDatos()
         }
+
         val btnBack: ImageButton = findViewById(R.id.btnBackexhijo)
         btnBack.setOnClickListener {
             onBackPressed()
         }
+
+        // Inicializar notificationManager
+        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        // Solicitar permisos para notificaciones
+        solicitarPermisosNotificaciones()
     }
+
+
+
+
 
     private fun seleccionarArchivo(pickImageRequest: Int) {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"
         startActivityForResult(intent, pickImageRequest)
     }
+
+    private fun mostrarDialogoPermisosNotificaciones() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Permisos de Notificaciones")
+        builder.setMessage("No tienes permiso para mostrar notificaciones. Por favor, actívalo en la configuración.")
+        builder.setPositiveButton("Ir a Configuración") { dialog, which ->
+            val intent = Intent()
+            intent.action = "android.settings.APP_NOTIFICATION_SETTINGS"
+            intent.putExtra("android.provider.extra.APP_PACKAGE", packageName)
+            startActivity(intent)
+        }
+        builder.setNegativeButton("Cancelar") { dialog, which ->
+            // Acción al cancelar el diálogo
+        }
+        builder.setCancelable(false) // No permite cancelar el diálogo tocando fuera de él
+        builder.show()
+    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -104,12 +146,41 @@ class exentohijo : AppCompatActivity() {
         }
     }
 
+
+    private fun seMostroMensajeNotificaciones(): Boolean {
+        val sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE)
+        return sharedPreferences.getBoolean("mostrado", false)
+    }
+
+    private fun marcarMensajeNotificacionesMostrado() {
+        val sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("mostrado", true)
+        editor.apply()
+    }
+
+    private fun solicitarPermisosNotificaciones() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!notificationManager.isNotificationPolicyAccessGranted && !seMostroMensajeNotificaciones()) {
+                mostrarDialogoPermisosNotificaciones()
+                marcarMensajeNotificacionesMostrado()
+            }
+        }
+    }
+
+
+
+
     private fun enviarDatos() {
-        val matricula = findViewById<EditText>(R.id.txt_matriculaTrabajador).text.toString()
-        val matriculaAlumno = findViewById<EditText>(R.id.txt_matricula).text.toString()
+        val nombreAlumno = findViewById<EditText>(R.id.txtNombreAlumnoH).text.toString()
+        val semestre = findViewById<EditText>(R.id.txtSemestreH).text.toString()
+        val matricula = findViewById<EditText>(R.id.txt_matriculaTrabajadorHijo).text.toString()
+        val matriculaAlumno = findViewById<EditText>(R.id.txt_matriculaEH).text.toString()
         val presencial = txtPresencialSpinner.selectedItem.toString()
         val escolarizado = txtEscolarizadoSpinner.selectedItem.toString()
+        val periodo = txtPeriodoSpinner.selectedItem.toString()
         val escuela = txtEscuelaSpinner.selectedItem.toString()
+
 
         if (matricula.isEmpty() || actaUri == null) {
             Toast.makeText(this, "Por favor, complete todos los campos y seleccione el acta.", Toast.LENGTH_SHORT).show()
@@ -122,7 +193,7 @@ class exentohijo : AppCompatActivity() {
         subirArchivo(actaUri, actaFileName) { actaUrl ->
             subirArchivo(talonUri, talonFileName) { talonUrl ->
                 // Después de subir todas las imágenes, agregar los datos a Firestore
-                agregarDatosFirestore(matricula, matriculaAlumno, actaUrl, talonUrl, presencial, escuela, escolarizado)
+                agregarDatosFirestore(nombreAlumno, semestre, matricula, matriculaAlumno, presencial, escolarizado, periodo, escuela, actaUrl, talonUrl)
             }
         }
     }
@@ -148,25 +219,30 @@ class exentohijo : AppCompatActivity() {
     }
 
     private fun agregarDatosFirestore(
+        nombreAlumno: String,
+        semestre: String,
         matricula: String,
         matriculaAlumno: String,
-        actaUrl: String,
-        talonUrl: String,
         presencial: String,
         escolarizado: String,
-        escuela: String
+        periodo: String,
+        escuela: String,
+        actaUrl: String,
+        talonUrl: String
     ) {
         val db = FirebaseFirestore.getInstance()
         val informacionHijosRef = db.collection("informacionHijos")
         val nuevoDocumento = hashMapOf(
+            "nombreAlumno" to nombreAlumno,
+            "semestre" to semestre,
             "matricula" to matricula,
             "matriculaAlumno" to matriculaAlumno,
-            "actaUrl" to actaUrl,
-            "talonUrl" to talonUrl,
             "presencial" to presencial,
-            "escuela" to escolarizado,
-            "escolarizado" to escuela
-            //Por alguna razon tuve que invertir escuela y escolarizado para que se almacenara de manera correcta
+            "escolarizado" to escolarizado,
+            "periodo" to periodo,
+            "escuela" to escuela,
+            "actaUrl" to actaUrl,
+            "talonUrl" to talonUrl
         )
 
         informacionHijosRef.add(nuevoDocumento)

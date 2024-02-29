@@ -13,7 +13,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,55 +30,55 @@
 
     <EditText
         android:id="@+id/matricula"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
         android:layout_marginTop="44dp"
-        android:hint="@string/nombre"
+        android:hint="@string/matricula"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <EditText
         android:id="@+id/editTextFecha"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
         android:hint="Fecha Ingreso"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/matricula" />
 
     <EditText
         android:id="@+id/editTextPerfil"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="44dp"
         android:hint="Perfil del puesto "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextFecha" />
 
     <Spinner
         android:id="@+id/spinnerUnidadAcademica"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
         android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPerfil" />
 
     <Spinner
         android:id="@+id/spinnerComentario"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
         android:layout_marginTop="68dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerUnidadAcademica" />
 
@@ -92,21 +92,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerComentario"
+        app:layout_constraintVertical_bias="0.508"
         app:rippleColor="@color/white" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="328dp"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:text="Postulacion vacantes"
         android:textColor="@color/white"
-        android:textSize="25sp"
 
+        android:textSize="25sp"
         android:typeface="sans"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/btnBackex"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
