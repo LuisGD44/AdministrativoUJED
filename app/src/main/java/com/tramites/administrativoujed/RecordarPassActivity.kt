@@ -2,6 +2,8 @@ package com.tramites.administrativoujed
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -16,6 +18,12 @@ class RecordarPassActivity : AppCompatActivity() {
         binding = ActivityRecordarPassBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Accede a la vista a través de 'binding'
+        binding.btnBackRecordar?.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+        }
+
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.btnEnviar.setOnClickListener {
@@ -27,6 +35,7 @@ class RecordarPassActivity : AppCompatActivity() {
             }
         }
     }
+
 
     private fun sendPasswordReset(email: String) {
         firebaseAuth.sendPasswordResetEmail(email)

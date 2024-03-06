@@ -26,28 +26,12 @@ class MainCompletar : AppCompatActivity() {
         val spinnerTipo: Spinner = findViewById(R.id.txtTipo)
         val btnCompletar: Button = findViewById(R.id.btnCompletar)
 
-        val unidadesAcademicas = listOf(
-          "Unidad Academica",  "Adscripcion", "ABOGADO GENERAL", "BIBLIOTECA CENTRAL SGA", "BUFETE JURIDICO", "CENTRO DE DESARROLLO CULTURAL",
-            "CENTRO DE DESARROLLO DEPORTE UNIV. (NUEVO)", "CENTRO DE GRADUADOS", "COLEGIO DE CIENCIAS Y HUMANIDADES",
-            "COMPRAS SGAD", "COMUNICACION SOCIAL (NUEVA)", "CONTRALORIA", "COORD TELECOMUNICACION INFORMATICA SGAD",
-            "COORDINACION DE OBRAS SGAD", "CORRESPONDENCIA Y MENSAJERIA SGAD", "DIR. DE EXTENSION Y VINCULACION S.(NUEVA)",
-            "DIR.DESARROLLO Y GESTION DE REC HUM SGAD", "DIRECCION INSTITUCIONAL DEL POSGRADO E INVESTIGACION",
-            "DIRECCION PLANEACION INSTITUCIONAL SGA", "DIRECCION SERVICIOS EDUCATIVOS SGA", "DIRECCION SERVICIOS ESCOLARES DSE",
-            "EDITORIAL (NUEVA)", "ESC PREPARATORIA DIURNA", "ESCUELA DE CIENCIAS Y TECNOLOGÍAS", "ESCUELA DE LENGUAS",
-            "ESCUELA DE PINTURA ESCULTURA ARTESANIAS", "ESCUELA PREPARATORIA NOCTURNA", "ESCUELA SUPERIOR DE MUSICA",
-            "FAC DE MEDICINA VETERINARIA Y ZOOTECNIA", "FACULTAD CIENCIAS QUIMICAS DURANGO",
-            "FACULTAD DE CIENCIAS DE LA CULTURA FISICA Y DEPORTE", "FACULTAD DE CIENCIAS EXACTAS",
-            "FACULTAD DE CIENCIAS FORESTALES", "FACULTAD DE DERECHO Y CIENCIAS POLITICAS",
-            "FACULTAD DE ECONOMIA, CONTADURIA Y ADMINISTRACION", "FACULTAD DE ENFERMERIA Y OBSTETRICIA",
-            "FACULTAD DE MEDICINA Y NUTRICION", "FACULTAD DE ODONTOLOGIA",
-            "FACULTAD DE PSICOLOGIA Y TERAPIA DE LA COMUNICACION HUMANA", "FACULTAD DE TRABAJO SOCIAL", "HOSPITAL VETERINARIO",
-            "INST. DE CIENCIAS SOCIALES", "INST. DE INVEST. HISTORICAS", "INST. DE INVEST. JURIDICAS",
-            "INST. DE SILVICULT. E IND. MAD", "INSTITUTO DE BELLAS ARTES", "INSTITUTO DE INVESTIGACION CIENTIFICA",
-            "LIBRERIA (NUEVA)", "MUSEO REGIONAL", "RADIO UNIVERSIDAD (NUEVA)", "RECTORIA",
-            "RELACIONES LABORALES (NUEVA)", "RELACIONES PUBLICAS SGAD", "SERVICIOS GENERALES SGAD",
-            "SISTEMA UNIVERSIDAD VIRTUAL SGA", "SPAUJED", "STAUJED", "STEUJED", "SUBSECRETARIA GENERAL ACADEMICA",
-            "SUBSECRETARIA GENERAL ADMINISTRATIVA", "TESORERIA", "TV UJED (NUEVA)"
-        )
+
+        val unidadesAcademicasArray = resources.getStringArray(R.array.unidadAcademica)
+        val unidadesAcademicasList = unidadesAcademicasArray.toList()
+
+
+
         // Define las opciones para el Spinner
         val opciones = arrayOf("Turno","Mañana", "Intermedio", "Tarde")
 
@@ -55,7 +39,7 @@ class MainCompletar : AppCompatActivity() {
 
         // Crea un adaptador para el Spinner
         val adaptador = ArrayAdapter(this, android.R.layout.simple_spinner_item, opciones)
-        val unidadesAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, unidadesAcademicas)
+        val unidadesAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, unidadesAcademicasList)
         val tipoTrabajador = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, tipo)
 
         // Especifica el diseño de la lista desplegable
@@ -126,6 +110,12 @@ class MainCompletar : AppCompatActivity() {
                 .addOnFailureListener { e ->
                     Toast.makeText(baseContext, "Error al guardar en Firestore: $e", Toast.LENGTH_SHORT).show()
                 }
+
+            val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putBoolean("registroCompleto", true)
+            editor.apply()
+
         }
     }
 }

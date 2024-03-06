@@ -132,9 +132,14 @@ class CalendarioFragment : Fragment() {
                 //En futuras actualizaciones, se puede implementar un formulario en el apartado web
                 //En el cual se ingresen los eventos o festividades
                 when (day) {
-                    "2" -> text = "2 \uD83D\uDC80"
-                    "20" -> text = "20 \uD83C\uDDF2\uD83C\uDDFD"
-                    "30" -> text = "30 \uD83D\uDCBC"
+                    "8" -> text = "7 ♀️"
+                    "18" -> text = "18 \uD83C\uDDF2\uD83C\uDDFD"
+                    "24" -> text = "34 \uD83D\uDC90"
+                    "28" -> text = "28 ✝️"
+                    "29" -> text = "29 ✝️"
+                    "30" -> text = "30 ✝️"
+                    "31" -> text = "31 ✝️"
+
                 }
             }
 

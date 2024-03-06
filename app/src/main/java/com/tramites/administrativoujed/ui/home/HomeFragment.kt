@@ -1,81 +1,68 @@
 package com.tramites.administrativoujed.ui.home
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.appcompat.app.AppCompatActivity
-import android.content.Intent
-import android.widget.Button
-import androidx.navigation.fragment.findNavController
-import com.tramites.administrativoujed.CrearCuentaActivity
-import com.tramites.administrativoujed.MainActivity
 import com.tramites.administrativoujed.MainCompletar
 import com.tramites.administrativoujed.R
 import com.tramites.administrativoujed.databinding.FragmentHomeBinding
-import com.tramites.administrativoujed.ui.home.HomeViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.tramites.administrativoujed.MainActivity
+import com.tramites.administrativoujed.editarDatos
 
 class HomeFragment : Fragment() {
 
-    private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var navegation: BottomNavigationView
     private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
-    private var formularioEnviado = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        // Leer el estado de la bandera de registro completo
+        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val registroCompleto = sharedPreferences.getBoolean("registroCompleto", false)
 
-        val registarButton: Button = binding.registar
-
-        if (formularioEnviado) {
-            registarButton.visibility = View.GONE // Oculta el botón si el formulario ya se ha enviado
+        if (registroCompleto) {
+            // Si el formulario de registro está completo, mostramos el botón "Editar datos"
+            binding.registrar.visibility = View.VISIBLE
+            binding.registrar.text = "Editar datos"
         } else {
-            registarButton.visibility = View.VISIBLE
+            // Si el formulario de registro no está completo, mostramos el botón de registro
+            binding.registrar.visibility = View.VISIBLE
+            binding.registrar.text = "Completar Registro"
         }
 
-        //Nevegar a la pagina de registro
-
-        registarButton.setOnClickListener {
-            val intent = Intent(requireContext(), MainCompletar::class.java)
-            startActivity(intent)
+        binding.registrar.setOnClickListener {
+            if (registroCompleto) {
+                // Navegar a la página de edición de datos
+                val intent = Intent(requireActivity(), editarDatos::class.java)
+                startActivity(intent)
+            } else {
+                // Navegar a la página de completar registro
+                val intent = Intent(requireActivity(), MainCompletar::class.java)
+                startActivity(intent)
+            }
         }
 
-        //Funcion Cerrar sesion
-        val btnCerrar: Button = binding.btnCerrar
-        btnCerrar.setOnClickListener {
+        binding.btnCerrar.setOnClickListener {
+            // Cerrar sesión y volver a la actividad de inicio de sesión
             FirebaseAuth.getInstance().signOut()
-
-
-            val loginIntent = Intent(requireContext(), MainActivity::class.java)
+            val loginIntent = Intent(requireActivity(), MainActivity::class.java)
             startActivity(loginIntent)
+            requireActivity().finish()
         }
-
 
         return root
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

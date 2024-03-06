@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,110 +6,102 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.DashboardFragment">
 
-
-    <TextView
-        android:id="@+id/text_dashboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topView"
-        app:layout_constraintVertical_bias="0.234" />
-
-
-    <Button
-        android:id="@+id/btnPermiso"
-        style="@style/bottonGreen"
-        android:layout_width="157dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="76dp"
-        android:text="Solicitar Permiso"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.881"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btncanasta"
-        style="@style/bottonGreen"
-        android:layout_width="150dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="72dp"
-        android:gravity="center"
-        android:text="Solicitar canasta "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.126"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDescuentos" />
-
-    <Button
-        android:id="@+id/btnMaterial"
-        style="@style/bottonGreen"
-        android:layout_width="150dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="60dp"
-        android:gravity="center"
-        android:text="Vacantes "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.126"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btncanasta" />
-
-    <Button
-        android:id="@+id/btnCuota"
-        style="@style/bottonGreen"
-        android:layout_width="167dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="60dp"
-        android:gravity="center"
-        android:text="Exento de cuotas "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.885"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnExento" />
-
-    <Button
-        android:id="@+id/btnExento"
-        style="@style/bottonGreen"
-        android:layout_width="150dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="72dp"
-        android:gravity="center"
-        android:text="Exentos de Inscripcion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.885"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPermiso" />
-
-    <Button
-        android:id="@+id/btnDescuentos"
-        style="@style/bottonGreen"
-        android:layout_width="157dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="76dp"
-        android:gravity="center"
-        android:text="Descuentos "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.129"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <View
         android:id="@+id/topView"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginTop="120dp"
+        android:layout_height="4dp"
         android:background="@color/blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnMaterial" />
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Guía vertical en el centro del layout -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/text_dashboard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/topView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:text="Menu" />
+
+    <!-- Botones -->
+    <Button
+        android:id="@+id/btnPermiso"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guidelineCenter"
+        app:layout_constraintTop_toBottomOf="@+id/text_dashboard"
+        android:text="Solicitar Permiso" />
+
+    <Button
+        android:id="@+id/btncanasta"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        app:layout_constraintStart_toEndOf="@id/guidelineCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_dashboard"
+        android:text="Solicitar Canasta" />
+
+    <Button
+        android:id="@+id/btnMaterial"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        app:layout_constraintStart_toEndOf="@id/guidelineCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDescuentos"
+        android:text="Vacantes" />
+
+    <Button
+        android:id="@+id/btnCuota"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guidelineCenter"
+        app:layout_constraintTop_toBottomOf="@+id/btnPermiso"
+        android:text="Exento de Cuotas" />
+
+    <Button
+        android:id="@+id/btnExento"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Exentos de Inscripción"
+        app:layout_constraintEnd_toStartOf="@id/guidelineCenter"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCuota" />
+
+    <Button
+        android:id="@+id/btnDescuentos"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        app:layout_constraintStart_toEndOf="@id/guidelineCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btncanasta"
+        android:text="Descuentos" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -17,6 +17,7 @@
     <string name="apellidoM">Apellido Materno</string>
     <string name="matricula">Matricula</string>
     <string name="turno">Turno</string>
+    <string name="no_notifications">No hay notificaciones disponibles</string>
     <string name="rama">Rama</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -38,6 +39,12 @@
         <item>Sexo</item>
         <item>Niño</item>
         <item>Niña</item>
+    </string-array>
+
+    <string-array name="tipoTrabajador">
+        <item>Tipo trabajador</item>
+        <item>Base</item>
+        <item>Jubilado</item>
     </string-array>
     <string-array name="presencial">
         <item>Presencial o Virtual</item>
@@ -75,6 +82,71 @@
         <item>FACULTAD DE CIENCIAS FORESTALES Y AMBIENTALES</item>
     </string-array>
 
+    <string-array name="unidadAcademica">
+        <item>Unidad Academica</item>
+        <item>Adscripcion</item>
+        <item>ABOGADO GENERAL</item>
+        <item>BIBLIOTECA CENTRAL SGA</item>
+        <item>BUFETE JURIDICO</item>
+        <item>CENTRO DE DESARROLLO CULTURAL</item>
+        <item>CENTRO DE DESARROLLO DEPORTE UNIV. (NUEVO)</item>
+        <item>CENTRO DE GRADUADOS</item>
+        <item>COMUNICACION SOCIAL (NUEVA)</item>
+        <item>COMPRAS SGAD</item>
+        <item>CONTRALORIA</item>
+        <item>COORD TELECOMUNICACION INFORMATICA SGAD</item>
+        <item>COORDINACION DE OBRAS SGAD</item>
+        <item>CORRESPONDENCIA Y MENSAJERIA SGAD</item>
+        <item>DIR. DE EXTENSION Y VINCULACION S.(NUEVA)</item>
+        <item>DIR.DESARROLLO Y GESTION DE REC HUM SGAD</item>
+        <item>DIRECCION INSTITUCIONAL DEL POSGRADO E INVESTIGACION</item>
+        <item>DIRECCION PLANEACION INSTITUCIONAL SGA</item>
+        <item>DIRECCION SERVICIOS EDUCATIVOS SGA</item>
+        <item>DIRECCION SERVICIOS ESCOLARES DSE</item>
+        <item>EDITORIAL (NUEVA)</item>
+        <item>ESC PREPARATORIA DIURNA</item>
+        <item>ESCUELA DE CIENCIAS Y TECNOLOGÍAS</item>
+        <item>ESCUELA DE LENGUAS</item>
+        <item>ESCUELA DE PINTURA ESCULTURA ARTESANIAS</item>
+        <item>ESCUELA PREPARATORIA NOCTURNA</item>
+        <item>ESCUELA SUPERIOR DE MUSICA</item>
+        <item>FAC DE MEDICINA VETERINARIA Y ZOOTECNIA</item>
+        <item>FACULTAD CIENCIAS QUIMICAS DURANGO</item>
+        <item>FACULTAD DE CIENCIAS DE LA CULTURA FISICA Y DEPORTE</item>
+        <item>FACULTAD DE CIENCIAS EXACTAS</item>
+        <item>FACULTAD DE CIENCIAS FORESTALES</item>
+        <item>FACULTAD DE DERECHO Y CIENCIAS POLITICAS</item>
+        <item>FACULTAD DE ECONOMIA, CONTADURIA Y ADMINISTRACION</item>
+        <item>FACULTAD DE ENFERMERIA Y OBSTETRICIA</item>
+        <item>FACULTAD DE MEDICINA Y NUTRICION</item>
+        <item>FACULTAD DE ODONTOLOGIA</item>
+        <item>FACULTAD DE PSICOLOGIA Y TERAPIA DE LA COMUNICACION HUMANA</item>
+        <item>FACULTAD DE TRABAJO SOCIAL</item>
+        <item>HOSPITAL VETERINARIO</item>
+        <item>INST. DE CIENCIAS SOCIALES</item>
+        <item>INST. DE INVEST. HISTORICAS</item>
+        <item>INST. DE INVEST. JURIDICAS</item>
+        <item>INST. DE SILVICULT. E IND. MAD</item>
+        <item>INSTITUTO DE BELLAS ARTES</item>
+        <item>INSTITUTO DE INVESTIGACION CIENTIFICA</item>
+        <item>LIBRERIA (NUEVA)</item>
+        <item>MUSEO REGIONAL</item>
+        <item>RADIO UNIVERSIDAD (NUEVA)</item>
+        <item>RECTORIA</item>
+        <item>RELACIONES LABORALES (NUEVA)</item>
+        <item>RELACIONES PUBLICAS SGAD</item>
+        <item>SERVICIOS GENERALES SGAD</item>
+        <item>SISTEMA UNIVERSIDAD VIRTUAL SGA</item>
+        <item>SPAUJED</item>
+        <item>STAUJED</item>
+        <item>STEUJED</item>
+        <item>SUBSECRETARIA GENERAL ACADEMICA</item>
+        <item>SUBSECRETARIA GENERAL ADMINISTRATIVA</item>
+        <item>TESORERIA</item>
+        <item>TV UJED (NUEVA)</item>
+
+    </string-array>
+
 
     <string-array name="opticas">
         <item>SELECCIONE UNA OPTICA</item>
@@ -93,4 +165,21 @@
         <item>Cuatrimestre</item>
         <item>Nivel</item>
     </string-array>
+    <string name="title_activity_editar_datos">Leanback editarDatos</string>
+    <string name="browse_title">Videos by Your Company</string>
+    <string name="related_movies">Related Videos</string>
+    <string name="grid_view">Grid View</string>
+    <string name="error_fragment">Error Fragment</string>
+    <string name="personal_settings">Personal Settings</string>
+    <string name="watch_trailer_1">Watch trailer</string>
+    <string name="watch_trailer_2">FREE</string>
+    <string name="rent_1">Rent By Day</string>
+    <string name="rent_2">From $1.99</string>
+    <string name="buy_1">Buy and Own</string>
+    <string name="buy_2">AT $9.99</string>
+    <string name="movie">Movie</string>
+
+    <!-- Error messages -->
+    <string name="error_fragment_message">An error occurred</string>
+    <string name="dismiss_error">Dismiss</string>
 </resources>

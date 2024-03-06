@@ -21,8 +21,8 @@
 
   <ImageButton
       android:id="@+id/btnBackC"
-      android:layout_width="54dp"
-      android:layout_height="51dp"
+      android:layout_width="85dp"
+      android:layout_height="50dp"
       android:layout_marginStart="4dp"
       android:background="?attr/selectableItemBackgroundBorderless"
       android:src="@drawable/ic_back_foreground"
@@ -30,6 +30,8 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.444" />
+
+
   <TextView
       android:id="@+id/textView"
       android:layout_width="212dp"
@@ -46,59 +48,48 @@
       app:layout_constraintTop_toTopOf="@+id/tolbar"
       app:layout_constraintVertical_bias="1.0" />
 
-
-  <Button
-      android:id="@+id/btnDependientesC"
-      style="@style/bottonGreen"
-      android:layout_width="170dp"
-      android:layout_height="96dp"
-      android:layout_marginBottom="504dp"
-      android:gravity="center"
-      android:text="Exento para dependientes economicos "
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.871"
-      app:layout_constraintStart_toStartOf="parent" />
-
-  <Button
-      android:id="@+id/btnNietoC"
-      style="@style/bottonGreen"
-      android:layout_width="165dp"
-      android:layout_height="105dp"
-      android:layout_marginBottom="496dp"
-      android:gravity="center"
-      android:text="Exentos para nietos de trabajadores"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.109"
-      app:layout_constraintStart_toStartOf="parent" />
-
   <Button
       android:id="@+id/btnHijoC"
       style="@style/bottonGreen"
-      android:layout_width="165dp"
-      android:layout_height="65dp"
-      android:layout_marginTop="68dp"
-      android:gravity="center"
-      android:text="Exento Hijo de trabajador "
-      app:layout_constraintBottom_toTopOf="@+id/btnNietoC"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="32dp"
+      android:text="Exento Hijo de trabajador"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.109"
+      app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/tolbar"
-      app:layout_constraintVertical_bias="0.076" />
+      app:layout_constraintTop_toBottomOf="@+id/tolbar" />
 
   <Button
       android:id="@+id/btnTrabajadorC"
       style="@style/bottonGreen"
-      android:layout_width="165dp"
-      android:layout_height="60dp"
-      android:layout_marginTop="68dp"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
       android:text="Exento trabajador"
-      app:layout_constraintBottom_toTopOf="@+id/btnDependientesC"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.873"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/tolbar"
-      app:layout_constraintVertical_bias="0.098" />
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/btnHijoC" />
+
+  <Button
+      android:id="@+id/btnDependientesC"
+      style="@style/bottonGreen"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:text="Exento para dependientes económicos"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/btnTrabajadorC" />
+
+  <Button
+      android:id="@+id/btnNietoC"
+      style="@style/bottonGreen"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:text="Exentos para nietos de trabajadores"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/btnDependientesC" />
   </androidx.constraintlayout.widget.ConstraintLayout>

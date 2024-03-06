@@ -79,7 +79,6 @@
         android:layout_marginBottom="56dp"
         android:backgroundTint="@color/red"
         android:text="Ingresar"
-        app:cornerRadius="@android:dimen/system_app_widget_inner_radius"
         app:layout_constraintBottom_toTopOf="@+id/dowView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

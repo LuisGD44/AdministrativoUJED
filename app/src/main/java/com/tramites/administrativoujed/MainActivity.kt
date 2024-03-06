@@ -19,6 +19,7 @@ import com.google.firebase.ktx.Firebase
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import  com.tramites.administrativoujed.RecordarPassActivity
 
@@ -86,36 +87,29 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun signIn(email: String, password: String)
-    {
-        firebaseAuth.signInWithEmailAndPassword(email, password).
-        addOnCompleteListener(this) { task ->
-            if (task.isSuccessful){
-                val user = firebaseAuth.currentUser
-                val verfica = user?.isEmailVerified
-                if (verfica==true){
+    private fun signIn(email: String, password: String) {
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val user = firebaseAuth.currentUser
+                    val verfica = user?.isEmailVerified
+                    if (verfica == true) {
+                        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+                        editor.putBoolean("isAuthenticated", true) // Usuario autenticado correctamente
+                        editor.putString("correo", email)
+                        editor.apply()
 
-                    Toast.makeText(baseContext,"Credenciales Correctas", Toast.LENGTH_SHORT).show()
-
-
-                    val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-                    val editor = sharedPreferences.edit()
-                    editor.putString("correo", email)
-                    editor.apply()
-
-                    val i = Intent(this, MainPerfil::class.java)
-                    startActivity(i)
-
-                }else{
-                    Toast.makeText(baseContext,"No se autentico el correo", Toast.LENGTH_SHORT).show()
+                        val i = Intent(this, MainPerfil::class.java)
+                        startActivity(i)
+                    } else {
+                        Toast.makeText(baseContext, "No se autenticó el correo", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    val errorMessage = findViewById<TextView>(R.id.errorMessage)
+                    errorMessage.visibility = View.VISIBLE
                 }
             }
-            else
-            {
-                Toast.makeText(baseContext, "Usuario y/o contraseña incorrectos", Toast.LENGTH_SHORT).show()
-                //redireccion a contraseña incorrecta
-            }
-        }
     }
 
 

@@ -131,10 +131,41 @@ class dental : AppCompatActivity() {
 
                     informacionDentalRef.add(nuevoDocumento)
                         .addOnSuccessListener {
-                            // Resto del código
-                        }
+// Crear un intent para la actividad a la que deseas ir
+                            val intent = Intent(this, MainPerfil::class.java)
+                            val pendingIntent = PendingIntent.getActivity(this, 0, intent,
+                                PendingIntent.FLAG_IMMUTABLE)
+
+                            // Crear un NotificationCompat.Builder
+                            val builder = NotificationCompat.Builder(this, "Notificacion_lentes")
+                                .setSmallIcon(R.drawable.ic_notification)
+                                .setContentTitle("Solicitud de descuento en optica enviada con éxito.")
+                                .setContentText("Haz clic para ver el status de este tramite.")
+                                .setContentIntent(pendingIntent)
+                                .setAutoCancel(true) // Cierra la notificación al hacer clic en ella
+
+                            // Verificar la versión de Android y crear un canal de notificación si es necesario
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                val channel = NotificationChannel(
+                                    "Notificacion dental",
+                                    "Nombre del canal",
+                                    NotificationManager.IMPORTANCE_DEFAULT
+                                )
+                                val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                                notificationManager.createNotificationChannel(channel)
+                            }
+
+                            // Obtener el NotificationManager y mostrar la notificación
+                            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                            notificationManager.notify(1, builder.build())
+
+                            Toast.makeText(this, "Solicitud de exento dental enviada con éxito.", Toast.LENGTH_SHORT).show()
+
+                            // Iniciar la nueva actividad
+                            startActivity(intent)                        }
                         .addOnFailureListener { e ->
-                            // Resto del código
+                            Toast.makeText(this, "Error al guardar en Firestore: $e", Toast.LENGTH_SHORT).show()
+
                         }
                 }
             }
